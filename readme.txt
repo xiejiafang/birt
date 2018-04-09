@@ -1,4 +1,1 @@
-hi,my name is x-man.
-this is a test file.
-this is a test file.
-created a branch dev.
+这是基于birt开源报表技术搭建的报表平台
