@@ -1,0 +1,1156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.0.v201405191524 Build &lt;4.4.0.v20140606-1451></property>
+    <property name="units">in</property>
+    <method name="onPageStart"><![CDATA[
+
+]]></method>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="namelist" id="262">
+            <text-property name="promptText">请选择中支：</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="dataSetName">namelist</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["NAME"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["NAME"]</expression>
+            <expression name="sortByColumn">dataSetRow["NAME"]</expression>
+            <property name="sortDirection">desc</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">false</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="yearlist" id="264">
+            <text-property name="promptText">请输入年份：</text-property>
+            <property name="valueType">static</property>
+            <property name="sortBy">value</property>
+            <property name="sortDirection">desc</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">2014</value>
+            </simple-property-list>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value">2014</property>
+                    <property name="label">2014</property>
+                </structure>
+                <structure>
+                    <property name="value">2015</property>
+                    <property name="label">2015</property>
+                </structure>
+            </list-property>
+            <property name="paramType">simple</property>
+            <property name="controlType">radio-button</property>
+            <property name="fixedOrder">false</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="mlist" id="265">
+            <text-property name="promptText">请选择查询月份</text-property>
+            <property name="valueType">static</property>
+            <property name="sortBy">value</property>
+            <property name="sortDirection">desc</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value">01</property>
+                    <property name="label">1月</property>
+                </structure>
+                <structure>
+                    <property name="value">02</property>
+                    <property name="label">2月</property>
+                </structure>
+                <structure>
+                    <property name="value">03</property>
+                    <property name="label">3月</property>
+                </structure>
+                <structure>
+                    <property name="value">04</property>
+                    <property name="label">4月</property>
+                </structure>
+                <structure>
+                    <property name="value">05</property>
+                    <property name="label">5月</property>
+                </structure>
+                <structure>
+                    <property name="value">06</property>
+                    <property name="label">6月</property>
+                </structure>
+                <structure>
+                    <property name="value">07</property>
+                    <property name="label">7月</property>
+                </structure>
+                <structure>
+                    <property name="value">08</property>
+                    <property name="label">8月</property>
+                </structure>
+                <structure>
+                    <property name="value">09</property>
+                    <property name="label">9月</property>
+                </structure>
+                <structure>
+                    <property name="value">10</property>
+                    <property name="label">10月</property>
+                </structure>
+                <structure>
+                    <property name="value">11</property>
+                    <property name="label">11月</property>
+                </structure>
+                <structure>
+                    <property name="value">12</property>
+                    <property name="label">12月</property>
+                </structure>
+            </list-property>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">false</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Data Source" id="8">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.ibm.db2.jcc.DB2Driver</property>
+            <property name="odaURL">jdbc:db2://10.19.19.34:50000/hnii</property>
+            <property name="odaUser">report</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">b2ttMTIz</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="gxyj" id="10">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">BRANCH</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">BRANCH</text-property>
+                    <text-property name="heading">BRANCH</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CURR_YJ</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">CURR_YJ</text-property>
+                    <text-property name="heading">CURR_YJ</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CURR_YJ_LAST</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">CURR_YJ_LAST</text-property>
+                    <text-property name="heading">CURR_YJ_LAST</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CURR_MON</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">CURR_MON</text-property>
+                    <text-property name="heading">CURR_MON</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CURR_MON_LAST</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">CURR_MON_LAST</text-property>
+                    <text-property name="heading">CURR_MON_LAST</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">BRANCH</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">CURR_YJ</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">CURR_YJ_LAST</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">CURR_MON</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">CURR_MON_LAST</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[importPackage( Packages.java.io ); 
+//记录调用信息
+var curr_time =BirtDateTime.now( );
+out = new PrintWriter( new FileWriter("visitation.txt", true ));    
+out.println("IT_WDL_liucun6  ##  "+curr_time);    
+out.close(); 
+]]></method>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">BRANCH</property>
+                    <property name="nativeName">BRANCH</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">CURR_YJ</property>
+                    <property name="nativeName">CURR_YJ</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">CURR_YJ_LAST</property>
+                    <property name="nativeName">CURR_YJ_LAST</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">CURR_MON</property>
+                    <property name="nativeName">CURR_MON</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">CURR_MON_LAST</property>
+                    <property name="nativeName">CURR_MON_LAST</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with mytable as(
+select 
+        branch,
+        case when kpi_mon=decimal(current date) then this_mon end as curr_yj,
+        case when kpi_mon=decimal(current date) then last_mon end as curr_yj_last,   
+        case when kpi_mon=int(decimal(current date)/100) then this_mon end as curr_mon,   
+        case when kpi_mon=int(decimal(current date)/100) then last_mon end as curr_mon_last
+        from administrator.hn_kpi_information
+                where kpi_name='标准保费'
+                and kpi_mon >=int(decimal(current date)/100)
+                and category='个险'
+                and series='中支')
+select 
+        branch,
+        value(sum(curr_yj),0) as curr_yj,
+        value(sum(curr_yj_last),0) as curr_yj_last,
+        sum(curr_mon) as curr_mon,
+        sum(curr_mon_last) as curr_mon_last
+                from mytable   
+                        group by branch       
+                                order by curr_mon desc    ]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="namelist" id="54">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">NAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">NAME</text-property>
+                    <text-property name="heading">NAME</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">NAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">NAME</property>
+                    <property name="nativeName">NAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select name from administrator.hn_branch]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TASK_TYPE</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>12</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TASK_TYPE</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TASK_TYPE</design:label>
+            <design:formattingHints>
+              <design:displaySize>12</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="jin" id="56">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">AGNTNAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AGNTNAME</text-property>
+                    <text-property name="heading">AGNTNAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">NAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">NAME</text-property>
+                    <text-property name="heading">NAME</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">AGNTNAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">NAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">AGNTNAME</property>
+                    <property name="nativeName">AGNTNAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">NAME</property>
+                    <property name="nativeName">NAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with 
+c as
+(     
+      select *
+      from administrator.hn_agntinfo
+      where left(varchar(dteapp),6)='201401'
+),
+b as
+(
+     select branch,name from administrator.hn_branch    
+    
+)
+, 
+xr as 
+(
+select agntname,name from c,b 
+where c.branch=b.branch 
+order by name
+)
+
+select *
+from xr
+where name = '焦作']]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="shou_xin" id="92">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">XINZENG</property>
+                    <text-property name="displayName">XINZENG</text-property>
+                    <text-property name="heading">XINZENG</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">XINZENG</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[importPackage( Packages.java.io );  
+
+
+var name = reportContext.getParameterValue("namelist");  
+var year = reportContext.getParameterValue("yearlist");  
+var mm = reportContext.getParameterValue("mlist"); 
+var time = year+mm
+
+
+var query = 
+ "with c as ( "+
+             " select * from administrator.hn_agntinfo where left(varchar(dteapp),6)="+"'"+time+"'"+
+             "),"+
+ "b as("+
+     "select branch,name from administrator.hn_branch ),"+
+  "liucun as ("+
+   "select * from c where dtetrm-dteapp>180),"+
+"xr as ("+
+"select agntname,name from c,b where c.branch=b.branch order by name),"+
+"lc as("+
+"select agntname,name from liucun,b where liucun.branch=b.branch order by name)"+
+"select count(agntname) as xinzeng from xr where name = "+"'"+name+"'"
+
+
+this.queryText = query;]]></method>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">XINZENG</property>
+                    <property name="nativeName">XINZENG</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with 
+c as
+(     
+      select *
+      from administrator.hn_agntinfo
+      where left(varchar(dteapp),6)='201401'
+),
+b as
+(
+     select branch,name from administrator.hn_branch    
+    
+),
+liucun as
+(
+     select * 
+     from c
+     where dtetrm-dteapp>180
+),
+xr as 
+(
+select agntname,name from c,b 
+where c.branch=b.branch 
+order by name
+),
+lc as
+(
+select agntname,name from liucun,b 
+where liucun.branch=b.branch 
+order by name
+)
+select count(agntname) as xinzeng
+from xr
+where name = '焦作']]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>XINZENG</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>XINZENG</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>XINZENG</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="shou_liu" id="93">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">LIUCUN</property>
+                    <text-property name="displayName">LIUCUN</text-property>
+                    <text-property name="heading">LIUCUN</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">LIUCUN</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[importPackage( Packages.java.io );  
+
+
+var name = reportContext.getParameterValue("namelist");  
+var year = reportContext.getParameterValue("yearlist");  
+var mm = reportContext.getParameterValue("mlist"); 
+var time = year+mm
+
+
+var query = 
+ "with c as ( "+
+             " select * from administrator.hn_agntinfo where left(varchar(dteapp),6)="+"'"+time+"'"+
+             "),"+
+ "b as("+
+     "select branch,name from administrator.hn_branch ),"+
+  "liucun as ("+
+   "select * from c where dtetrm-dteapp>180),"+
+"xr as ("+
+"select agntname,name from c,b where c.branch=b.branch order by name),"+
+"lc as("+
+"select agntname,name from liucun,b where liucun.branch=b.branch order by name)"+
+"select count(agntname) as liucun from lc where name = "+"'"+name+"'"
+
+
+this.queryText = query;
+
+          
+
+]]></method>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">LIUCUN</property>
+                    <property name="nativeName">LIUCUN</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with 
+c as
+(     
+      select *
+      from administrator.hn_agntinfo
+      where left(varchar(dteapp),6)='201401'
+),
+b as
+(
+     select branch,name from administrator.hn_branch    
+    
+),
+liucun as
+(
+     select * 
+     from c
+     where dtetrm-dteapp>180
+),
+xr as 
+(
+select agntname,name from c,b 
+where c.branch=b.branch 
+order by name
+),
+lc as
+(
+select agntname,name from liucun,b 
+where liucun.branch=b.branch 
+order by name
+)
+select count(agntname) as liucun
+from lc
+where name = '焦作']]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>LIUCUN</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>LIUCUN</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>LIUCUN</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="xu_liu" id="229">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">LIUCUN</property>
+                    <text-property name="displayName">LIUCUN</text-property>
+                    <text-property name="heading">LIUCUN</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">LIUCUN</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[importPackage( Packages.java.io );  
+
+
+var name = reportContext.getParameterValue("namelist");  
+var year = reportContext.getParameterValue("yearlist");  
+var mm = reportContext.getParameterValue("mlist"); 
+var time = year+mm
+
+
+var query = 
+ "with c as ( "+
+             " select * from administrator.hn_zcllinfo where left(varchar(dteapp),6)="+"'"+time+"'"+
+             "),"+
+ "b as("+
+     "select branch,name from administrator.hn_branch ),"+
+  "liucun as ("+
+   "select * from c where dtetrm-dteapp>180),"+
+"xr as ("+
+"select zgrp_name,name from c,b where c.agntbr=b.branch order by name),"+
+"lc as("+
+"select zgrp_name,name from liucun,b where liucun.agntbr=b.branch order by name)"+
+"select count(zgrp_name) as liucun from lc where name = "+"'"+name+"'"
+
+
+this.queryText = query;
+]]></method>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">LIUCUN</property>
+                    <property name="nativeName">LIUCUN</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with 
+c as
+(     
+      select *
+      from administrator.hn_zcllinfo
+      where left(varchar(dteapp),6)='201401'
+),
+b as
+(
+     select branch,name from administrator.hn_branch    
+    
+),
+liucun as
+(
+     select * 
+     from c
+     where dtetrm-dteapp>180
+),
+xr as 
+(
+select zgrp_name,name from c,b 
+where c.agntbr=b.branch 
+order by name
+),
+lc as
+(
+select zgrp_name,name from liucun,b 
+where liucun.agntbr=b.branch 
+order by name
+)
+select count(zgrp_name) as liucun
+from lc
+where name = '焦作']]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>LIUCUN</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>LIUCUN</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>LIUCUN</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="xu_xin" id="230">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">XINZENG</property>
+                    <text-property name="displayName">XINZENG</text-property>
+                    <text-property name="heading">XINZENG</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">XINZENG</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[importPackage( Packages.java.io );  
+
+
+var name = reportContext.getParameterValue("namelist");  
+var year = reportContext.getParameterValue("yearlist");  
+var mm = reportContext.getParameterValue("mlist"); 
+var time = year+mm
+
+
+var query = 
+ "with c as ( "+
+             " select * from administrator.hn_zcllinfo where left(varchar(dteapp),6)="+"'"+time+"'"+
+             "),"+
+ "b as("+
+     "select branch,name from administrator.hn_branch ),"+
+  "liucun as ("+
+   "select * from c where dtetrm-dteapp>180),"+
+"xr as ("+
+"select zgrp_name,name from c,b where c.agntbr=b.branch order by name),"+
+"lc as("+
+"select zgrp_name,name from liucun,b where liucun.agntbr=b.branch order by name)"+
+"select count(zgrp_name) as xinzeng from xr where name = "+"'"+name+"'"
+
+
+this.queryText = query;
+
+
+out.close();   ]]></method>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">XINZENG</property>
+                    <property name="nativeName">XINZENG</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with 
+c as
+(     
+      select *
+      from administrator.hn_zcllinfo
+      where left(varchar(dteapp),6)='201401'
+),
+b as
+(
+     select branch,name from administrator.hn_branch    
+    
+),
+liucun as
+(
+     select * 
+     from c
+     where dtetrm-dteapp>180
+),
+xr as 
+(
+select zgrp_name,name from c,b 
+where c.agntbr=b.branch 
+order by name
+),
+lc as
+(
+select zgrp_name,name from liucun,b 
+where liucun.agntbr=b.branch 
+order by name
+)
+
+select count(zgrp_name) as xinzeng
+from xr
+where name = '焦作']]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>XINZENG</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>XINZENG</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>XINZENG</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="shou_lv" id="274">
+            <structure name="cachedMetaData"/>
+            <property name="dataSource">Data Source</property>
+            <xml-property name="queryText"><![CDATA[select 
+from ]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="267">
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Column Binding</property>
+                    <expression name="expression" type="javascript">params["namelist"].value</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="268"/>
+            <row id="269">
+                <cell id="270">
+                    <data id="271">
+                        <property name="color">#FF0000</property>
+                        <property name="textAlign">center</property>
+                        <property name="resultSetColumn">Column Binding</property>
+                    </data>
+                </cell>
+            </row>
+        </grid>
+        <label id="116">
+            <property name="color">red</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">人力明细</text-property>
+        </label>
+        <grid id="123">
+            <property name="height">5.208333333333333in</property>
+            <property name="width">7.927083333333333in</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Column Binding</property>
+                    <expression name="expression" type="javascript">params["namelist"].value</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="124">
+                <property name="width">7.927083333333333in</property>
+            </column>
+            <row id="125">
+                <property name="height">2.71875in</property>
+                <cell id="126">
+                    <table id="198">
+                        <property name="dataSet">shou_xin</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">XINZENG</property>
+                                <text-property name="displayName">XINZENG</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["XINZENG"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                        </list-property>
+                        <column id="208"/>
+                        <column id="209"/>
+                        <header>
+                            <row id="199">
+                                <cell id="200">
+                                    <text id="210">
+                                        <property name="contentType">auto</property>
+                                        <text-property name="content"><![CDATA[营销新增人力：]]></text-property>
+                                    </text>
+                                </cell>
+                                <cell id="201">
+                                    <data id="214">
+                                        <property name="resultSetColumn">XINZENG</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="202">
+                                <cell id="203"/>
+                                <cell id="204"/>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="205">
+                                <cell id="206"/>
+                                <cell id="207"/>
+                            </row>
+                        </footer>
+                    </table>
+                    <table id="215">
+                        <property name="dataSet">shou_liu</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">LIUCUN</property>
+                                <text-property name="displayName">LIUCUN</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["LIUCUN"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                        </list-property>
+                        <column id="225"/>
+                        <column id="226"/>
+                        <header>
+                            <row id="216">
+                                <cell id="217">
+                                    <text id="227">
+                                        <property name="contentType">auto</property>
+                                        <text-property name="content"><![CDATA[营销6个月留存人力：]]></text-property>
+                                    </text>
+                                </cell>
+                                <cell id="218">
+                                    <data id="228">
+                                        <property name="resultSetColumn">LIUCUN</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="219">
+                                <cell id="220"/>
+                                <cell id="221"/>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="222">
+                                <cell id="223"/>
+                                <cell id="224"/>
+                            </row>
+                        </footer>
+                    </table>
+                    <table id="232">
+                        <property name="dataSet">xu_xin</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">XINZENG</property>
+                                <text-property name="displayName">XINZENG</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["XINZENG"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                        </list-property>
+                        <column id="242"/>
+                        <column id="243"/>
+                        <header>
+                            <row id="233">
+                                <cell id="234">
+                                    <text id="244">
+                                        <property name="contentType">auto</property>
+                                        <text-property name="content"><![CDATA[续期新增人力：]]></text-property>
+                                    </text>
+                                </cell>
+                                <cell id="235">
+                                    <data id="259">
+                                        <property name="resultSetColumn">XINZENG</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="236">
+                                <cell id="237"/>
+                                <cell id="238"/>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="239">
+                                <cell id="240"/>
+                                <cell id="241"/>
+                            </row>
+                        </footer>
+                    </table>
+                    <table id="245">
+                        <property name="dataSet">xu_liu</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">LIUCUN</property>
+                                <text-property name="displayName">LIUCUN</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["LIUCUN"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                        </list-property>
+                        <column id="255"/>
+                        <column id="256"/>
+                        <header>
+                            <row id="246">
+                                <cell id="247">
+                                    <text id="257">
+                                        <property name="contentType">auto</property>
+                                        <text-property name="content"><![CDATA[续期6个月留存人力：]]></text-property>
+                                    </text>
+                                </cell>
+                                <cell id="248">
+                                    <data id="258">
+                                        <property name="resultSetColumn">LIUCUN</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="249">
+                                <cell id="250"/>
+                                <cell id="251"/>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="252">
+                                <cell id="253"/>
+                                <cell id="254"/>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+            <row id="127">
+                <property name="height">2.4895833333333335in</property>
+                <cell id="128"/>
+            </row>
+        </grid>
+    </body>
+</report>

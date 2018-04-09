@@ -1,0 +1,871 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT 设计器 V4.4.2.v201410272105 构建 &lt;4.4.2.v20150217-1805></property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">211</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">211</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">211</property>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="数据源" id="205">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.microsoft.jdbc.sqlserver.SQLServerDriver</property>
+            <property name="odaURL">jdbc:sqlserver://10.19.19.63;databaseName=Tem</property>
+            <property name="odaUser">jiankong</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">b2ttMTIz</encrypted-property>
+        </oda-data-source>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="数据源2" id="550">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.microsoft.jdbc.sqlserver.SQLServerDriver</property>
+            <property name="odaURL">jdbc:sqlserver://10.19.19.63;databaseName=NetPerfMon</property>
+            <property name="odaUser">sa</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">VGFpa2FuZzg=</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="机房温湿度" id="211">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">FLR</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">flr</text-property>
+                    <text-property name="heading">flr</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TMP</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">tmp</text-property>
+                    <text-property name="heading">tmp</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">hour</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">hour</text-property>
+                    <text-property name="heading">hour</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">FLR</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">TMP</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">hour</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">数据源</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">FLR</property>
+                    <property name="nativeName">flr</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">TMP</property>
+                    <property name="nativeName">tmp</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">hour</property>
+                    <property name="nativeName">hour</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select a.flr,a.tmp,datediff(hour,a.tim,getdate()) hour
+        from tem a
+        inner join
+        (select flr,max(tim) tim from tem group by flr) b on a.flr = b.flr and a.tim = b.tim
+        and a.flr in('鹤壁','周口','开封','新乡','漯河','三门峡','洛阳','南阳','信阳','商丘','郑州','平顶山','濮阳','驻马店','安阳','许昌','焦作')
+order by a.flr]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="办公线路" id="670">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">branch</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">branch</text-property>
+                    <text-property name="heading">branch</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">status</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">status</text-property>
+                    <text-property name="heading">status</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">branch</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">status</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">数据源2</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">branch</property>
+                    <property name="nativeName">branch</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">status</property>
+                    <property name="nativeName">status</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select a.branch,
+case when b.status=1 then 'UP'
+when b.status=2 then 'DOWN'
+when b.status=3 then 'WARNING'
+when b.status=4 then 'SHUTDOWN'
+when b.status=0 then 'UNKNOWN' end as status
+from branch a,nodes b
+where a.nodeid = b.nodeid
+and a.priority in (0,3)
+and a.branch in('鹤壁','周口','开封','新乡','漯河','三门峡','洛阳','南阳','信阳','商丘','郑州','平顶山','濮阳','驻马店','安阳','许昌','焦作')
+and a.placename = '办公'
+order by branch]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>branch</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>branch</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>branch</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>status</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>8</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>status</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>status</design:label>
+            <design:formattingHints>
+              <design:displaySize>8</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="高清线路" id="672">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">branch</property>
+                    <text-property name="displayName">branch</text-property>
+                    <text-property name="heading">branch</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">status</property>
+                    <text-property name="displayName">status</text-property>
+                    <text-property name="heading">status</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">branch</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">status</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">数据源2</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">branch</property>
+                    <property name="nativeName">branch</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">status</property>
+                    <property name="nativeName">status</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select a.branch,
+case when b.status=1 then 'UP'
+when b.status=2 then 'DOWN'
+when b.status=3 then 'WARNING'
+when b.status=4 then 'SHUTDOWN'
+when b.status=0 then 'UNKNOWN' end as status
+from branch a,nodes b
+where a.nodeid = b.nodeid
+and a.priority in (0,3)
+and a.branch in('鹤壁','周口','开封','新乡','漯河','三门峡','洛阳','南阳','信阳','商丘','郑州','平顶山','濮阳','驻马店','安阳','许昌','焦作')
+and a.placename = '高清'
+order by branch]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>branch</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>branch</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>branch</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>status</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>8</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>status</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>status</design:label>
+            <design:formattingHints>
+              <design:displaySize>8</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="露点" id="549">
+            <property name="color">#008080</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <image id="130">
+            <property name="marginLeft">0pt</property>
+            <property name="height">100px</property>
+            <property name="width">445px</property>
+            <property name="source">embed</property>
+            <property name="imageName">logo.gif</property>
+        </image>
+        <grid id="131">
+            <property name="textAlign">center</property>
+            <property name="verticalAlign">middle</property>
+            <property name="width">7.625in</property>
+            <column id="132">
+                <property name="width">3.2708333333333335in</property>
+            </column>
+            <column id="628">
+                <property name="width">2.1770833333333335in</property>
+            </column>
+            <column id="636">
+                <property name="width">2.1770833333333335in</property>
+            </column>
+            <row id="381">
+                <property name="textAlign">left</property>
+                <cell id="382">
+                    <property name="colSpan">3</property>
+                    <property name="rowSpan">1</property>
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <text id="383">
+                        <property name="fontSize">36pt</property>
+                        <property name="contentType">html</property>
+                        <text-property name="content"><![CDATA[<CENTER>
+中支机房实时状况一览表
+</CENTER>]]></text-property>
+                    </text>
+                </cell>
+            </row>
+            <row id="675">
+                <property name="textAlign">left</property>
+                <cell id="676">
+                    <property name="colSpan">3</property>
+                    <property name="rowSpan">1</property>
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <text-data id="680">
+                        <property name="fontSize">14pt</property>
+                        <expression name="valueExpr">new Date()</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+            <row id="377">
+                <property name="textAlign">left</property>
+                <cell id="378">
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <table id="385">
+                        <property name="width">3.09375in</property>
+                        <property name="dataSet">机房温湿度</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">FLR</property>
+                                <text-property name="displayName">flr</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["FLR"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">TMP</property>
+                                <text-property name="displayName">tmp</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["TMP"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">hour</property>
+                                <text-property name="displayName">hour</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["hour"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                        </list-property>
+                        <column id="414">
+                            <property name="width">1.1458333333333333in</property>
+                        </column>
+                        <column id="415">
+                            <property name="width">1.9479166666666667in</property>
+                        </column>
+                        <header>
+                            <row id="386">
+                                <method name="onPrepare"><![CDATA[this.getStyle().backgroundColor = "#FFCC99"; ]]></method>
+                                <property name="backgroundColor">orange</property>
+                                <property name="fontSize">24pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="387">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingLeft">10pt</property>
+                                    <property name="paddingRight">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="388">
+                                        <text-property name="text">机房</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="389">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="390">
+                                        <text-property name="text">温度</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="397">
+                                <method name="onPrepare"><![CDATA[count=0;
+]]></method>
+                                <method name="onCreate"><![CDATA[count++; 
+if(count % 2 == 0){ 
+this.getStyle().backgroundColor = "#FFFFCC"; 
+}else{ 
+this.getStyle().backgroundColor = "#99CCFF"; 
+} ]]></method>
+                                <property name="fontSize">20pt</property>
+                                <property name="textAlign">center</property>
+                                <property name="height">17mm</property>
+                                <cell id="398">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingTop">11pt</property>
+                                    <property name="paddingBottom">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="656">
+                                        <property name="resultSetColumn">FLR</property>
+                                    </data>
+                                </cell>
+                                <cell id="400">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <list-property name="highlightRules">
+                                        <structure>
+                                            <property name="operator">ge</property>
+                                            <property name="backgroundColor">#808080</property>
+                                            <property name="color">#808080</property>
+                                            <expression name="testExpr" type="javascript">row["hour"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">2</value>
+                                            </simple-property-list>
+                                        </structure>
+                                        <structure>
+                                            <property name="operator">ge</property>
+                                            <property name="backgroundColor">#FF0000</property>
+                                            <expression name="testExpr" type="javascript">row["tmp"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">31</value>
+                                            </simple-property-list>
+                                        </structure>
+                                        <structure>
+                                            <property name="operator">lt</property>
+                                            <expression name="testExpr" type="javascript">row["tmp"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">31</value>
+                                            </simple-property-list>
+                                        </structure>
+                                    </list-property>
+                                    <data id="657">
+                                        <property name="resultSetColumn">TMP</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                    </table>
+                </cell>
+                <cell id="620">
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <table id="637">
+                        <property name="width">2.0104166666666665in</property>
+                        <property name="dataSet">办公线路</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">status</property>
+                                <text-property name="displayName">status</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["status"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <column id="652">
+                            <property name="width">2.0104166666666665in</property>
+                        </column>
+                        <header>
+                            <row id="638">
+                                <method name="onPrepare"><![CDATA[this.getStyle().backgroundColor = "#FFCC99"; ]]></method>
+                                <property name="backgroundColor">orange</property>
+                                <property name="fontSize">24pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="641">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="642">
+                                        <text-property name="text">办公线路</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="643">
+                                <method name="onPrepare"><![CDATA[count=0;
+]]></method>
+                                <method name="onCreate"><![CDATA[count++; 
+if(count % 2 == 0){ 
+this.getStyle().backgroundColor = "#99CCFF"; 
+}else{ 
+this.getStyle().backgroundColor = "#FFFFCC"; 
+} ]]></method>
+                                <property name="fontSize">20pt</property>
+                                <property name="textAlign">center</property>
+                                <property name="height">17mm</property>
+                                <cell id="646">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <list-property name="highlightRules">
+                                        <structure>
+                                            <property name="operator">eq</property>
+                                            <property name="fontWeight">bold</property>
+                                            <property name="color">#008000</property>
+                                            <expression name="testExpr" type="javascript">row["status"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">"UP"</value>
+                                            </simple-property-list>
+                                        </structure>
+                                        <structure>
+                                            <property name="operator">eq</property>
+                                            <property name="fontWeight">bold</property>
+                                            <property name="color">#FF0000</property>
+                                            <expression name="testExpr" type="javascript">row["status"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">"DOWN"</value>
+                                            </simple-property-list>
+                                        </structure>
+                                    </list-property>
+                                    <data id="671">
+                                        <property name="resultSetColumn">status</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                    </table>
+                </cell>
+                <cell id="634">
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <table id="662">
+                        <property name="width">2.0104166666666665in</property>
+                        <property name="dataSet">高清线路</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">status</property>
+                                <text-property name="displayName">status</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["status"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <column id="669">
+                            <property name="width">2.0104166666666665in</property>
+                        </column>
+                        <header>
+                            <row id="663">
+                                <method name="onPrepare"><![CDATA[this.getStyle().backgroundColor = "#FFCC99"; ]]></method>
+                                <property name="backgroundColor">orange</property>
+                                <property name="fontSize">24pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="664">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="665">
+                                        <text-property name="text">高清线路</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="666">
+                                <method name="onPrepare"><![CDATA[count=0;
+]]></method>
+                                <method name="onCreate"><![CDATA[count++; 
+if(count % 2 == 0){ 
+this.getStyle().backgroundColor = "#FFFFCC"; 
+}else{ 
+this.getStyle().backgroundColor = "#99CCFF"; 
+} ]]></method>
+                                <property name="fontSize">20pt</property>
+                                <property name="textAlign">center</property>
+                                <property name="height">17mm</property>
+                                <cell id="667">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <list-property name="highlightRules">
+                                        <structure>
+                                            <property name="operator">eq</property>
+                                            <property name="fontWeight">bold</property>
+                                            <property name="color">#008000</property>
+                                            <expression name="testExpr" type="javascript">row["status"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">"UP"</value>
+                                            </simple-property-list>
+                                        </structure>
+                                        <structure>
+                                            <property name="operator">eq</property>
+                                            <property name="fontWeight">bold</property>
+                                            <property name="color">#FF0000</property>
+                                            <expression name="testExpr" type="javascript">row["status"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">"DOWN"</value>
+                                            </simple-property-list>
+                                        </structure>
+                                    </list-property>
+                                    <data id="673">
+                                        <property name="resultSetColumn">status</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                    </table>
+                </cell>
+            </row>
+            <row id="335">
+                <cell id="336">
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">0pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="627">
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">0pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="635">
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">0pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                </cell>
+            </row>
+        </grid>
+    </body>
+    <list-property name="images">
+        <structure>
+            <property name="name">logo.gif</property>
+            <property name="type">image/gif</property>
+            <property name="data">
+                R0lGODlhvQFkAOYAAP/+//z7/NPT1v39/vz8/fv7/O3t7uTl6ujp7cjL1tnb4hknVB8tWCIwWyMxXCQx
+                XC06YzA9ZTNAaDxIbkJOc15oh2hxj212k32Fno2Uqp6kt6qvwM7R28vO2A0dSxIiTxUkURcmUhopVRwr
+                Vh0sVyAvWSQzXSU0XiY0Xig2Xyo4YTZDajlGbD5LcEVRdUhUd0pWeU1Ze1FdflVggVlkhGNti3N8l3iB
+                m4GJoYaOpZKZrpifs6SqvK+0w7S5yMLG0r/Dz8XJ1Lq/zN7g5dTX3u/w8vn6+/f4+fP2+PH09fn9/ePz
+                8gOShQuWiRaaji2kmT2roYzNxwCRgwCQggCPgQCNfwCLfACJeQCHeAGSgwGRgwKSgwORgwSRgweThQqR
+                gxGXih2dkSKgk0yyqF66sXDBuX/IwaLX0rHe2bvi3tDr6ACGdsfn47bn3/f8+/////7+/v///wAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAHEALAAAAAC9AWQAAAf/gHGC
+                g4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+
+                v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZvBxACps+OUK3B0RHjAkdONrr7ME+LwwVRZkcDSEytkQy
+                KTpIiRs4eIDL0K6gwVs3GDTAoGnHBxM6bO1AsWCFD0QbLOjQsMMHD4YHQ4pc9WZHigdA4hQpkmQAJQUx
+                bPQo8uZNEn+wDtBQeGPIoQ45fEywcCMFDw0bRioN6WZJqCMHEmyogeKBDBpYa2RAMKlDh5sdNmSoQSOi
+                pQKYfEAoYSPJGyNG/woB2aGAQo4MEDYcubG0L7s3Ucaw8USAg44ZLCCgMPFghIgFC0SouAgJCREhO2pM
+                SGzChIoKPSgN2RHOUhALJIzOxYBhwzxBPnQocGGjxYw4SPj63X3tDJgqUAZveiNkBQMSJR48MBFBxooU
+                MW7sMPCIiIYLLFKkUJGiQQQbG4J0qDQjeYwgk4YAuaGigWcUDUqUQMFjUJAMCVwQ+QFBBxCzvAUYjW9V
+                SEFFcJwI0cIKMVgwgwomWHABDBm85ggCOUzAwHwvSJdDCABWUkMIDzBggjrVCYFDDCmUYIIDI6AgAQUu
+                uCBDaIPskAEPXPmwgwUcCCikMwRKIcUUwKXBSf8CPBDhgwUpmOBCChHUgKMj/DHWQA4JCKLBB0Hp+MMk
+                OyhEggQ0jOnIDjs9tIIKDkBAgwYdDHGAEEQYkgMPKWnA0ZCAKlOkkUauQYYnF0zp3gghgOBBDpAg0MMK
+                IMwQVxw7zMBAiyGEQMOVjvAgAQMM1CCEOI9scMEMF4jVogxCdIAZDyES0sMOPAgU6K7GkPEboUdW8QQa
+                nBgggwcLdFYRBhn4gB4kQKgwQlI8ZFiCdxhcUAIEMeRAXSNJVLAACTfkSUkRClzAwAMtwCBBCSF4wMIB
+                vNbbTBlhUAGsgcN2goQGOMwwggoYmEvABjZYQBkjGXwQgwI5sPBABTCMYEH/Ahg84EAKEiy8iA7y3cDV
+                JEJUMCFjL4YQQQU5aACqvTAXg6++wFLRLyFOZULECw3g4CQNLsSwAgQqUEDQIkmgdkMGLFzwgwbGTUAB
+                hA1siuoiQbAwQgX0ThJxiyU4oFwMPQyRp14d9DByzGz/Qka++9pMLCFmIGjJDzu08AAKKyS2WAMNpABB
+                Ay6kpAgHE0AAAws4ZCDDWp5JgAIDENigAAGMHHEBCS50SQkOElzlgAMR6HAAAj/o4BwLK1TZdduw53KG
+                EwUCK+zcg5jRxIHCQcKBBhjIAKHGJCwAOOAS3LCBWDgEqUgPDDjQwAoSIMcCCwxckCENQLwRagQp+OD9
+                /yQ12aSDezLgUAEEJpRwnAginIhT7PTTMiihVtwsCGBeUIGk3Y4AGQhAsAAHmKABDpgBs24gARFMYAcj
+                G58icOA+EoyABTS4QQdsIAIZREACG0jChWYQAkhRwggH8JENomQCBoAgBCJggARicAEM2EADFqqfDl9x
+                v2DpTxBR+ELtpmAFACLNBtejgAVo0D4bxKEmR5gBDBbwgRdooBFDoEAKaICBiKBrByxwXwkWQIFnMSIH
+                H6CBPw7QgbWtKQYjQJbY5LOCC+wgDhvgYg53yEeS9HAKcitEGrxgBWD9r3eP4MAMSDCDIgRgBxXwHAZS
+                AIIE0kURQGhADcYTBwXwQP8GpILPFpPSiA2oYAV5EoIMXiATBFxqEUJQwQdQoBgHMMAFGjDXG3wALxvo
+                gJN9DKYp4NBDfuFuEEkowxZoZiRAGrERCXHBeHwgAQ/U5w2SggEDFgCdHbyOELlJwRXjwIMXpEAEgiuB
+                BMYpAJ8oggh6o4wFPhBDDDZJTYnIwQtqoIEaiO0G3igC6soZtqq8QJgIJUUxA3mIJZSBCcw0Eu8eoQHv
+                8AiPKViADxRwgxdsQAE2eNcIHkChDqBlEAiYgAuCVJIXyOACGpinbn4wgQu4sRAKkIEJ6iOIdEWgAchJ
+                AQssoAFvHGIABhhTECjAACfGIQEZmEEE4GPABjAuoVj//YRvIiqF2xHCDYVwKBOmELdnIiIIo6qBBWrg
+                DQqIoAYeJIEJvGSDoUVgAjiw0C4rhxYO4EAH7tyAByJSlxCswHCGyClEDLGBGEigag14QANakAPEGkJz
+                IKhAB/oZAQeo4K4yeOwDenDSrJoWE8X0Kt3IoAacPTSizkQkImIAoguYYAE4SEIMFkBUHMQJR0nQwI5+
+                QIT5DcACDbhIcRbwgtfcAASkrcECZqCB+REiCDCAwB0RAckWlEAEYSMBCzDwMkH0YAT64WgFVmAC8PTA
+                rwxowWnne4li5u+YcYgCGIqYM0E4VAuwBY5sCbGXEGRgABy4wAQ04AMWhOAiL93u/yKIwIIXcEUILPiA
+                DYTgAxss4AE+aDCKfsICEDJiBwGDAAwZMIIVlGYQQ3ABBC6SBAN0wK1OFUQJLCBC+voYEmOg3b7uW4go
+                CBk4/Y2DQwFpyCQhoqI6OOmqmCa9H/BgBBfIsSIyQIKjkXMGPsBADCZQng08LSXOK4QMXGBGRgTBBwEr
+                AQhSUIMQ6eAEXu5kC0JQAhwBAQQS/rGgF/GEQtbsh/kVcrCgkOT/wvYKZzhEDyjAA8zFQQNwmkHeTPCD
+                A8CABBBwQa0KUQQapMCo5l2vDDzpgR4cwAJSo0EN2lwtSjhJA0FAdRxoGug4GIEHK5CmIHQggqsN+tiH
+                SIMYmP/J0Nz9ilD/a7QyaQbIMhyiADwgZRx8EIERtOAiMXBASohAgwWMgALANIQQTmCBQfygAhTYsTe+
+                lIAhtGAEJNiQDSz0TU1gIAevRKYC3BmHFlQA2QhHhLKrAEhE646rwRpDWF9LBSpYGxH8psEHLEIvLRoO
+                ATeAAJbz+QE1/cAFI2BAXgWBAxHEoQAH2MEETPCBC+xxSRro9yAOYFQLSKDNCQ96HJRN5EEMIApeIOu+
+                CIVk1wL44owIwIR6gE0LMFfXPWBVImaADy9NLwc9joMEYDCINxDhApQWBRzMgYghzAACEJAAT4VO9zig
+                YQzHPHr/ll5WaUO9EUJYmw5q/q3/nd98EBEYZxyIMIMQ/cADICFw2FXhgxaAAAYeq7vQk8y/2vHddlBo
+                7SCSLAkefCoSJkyEAsBciyFggKiajz0hACPEzy+diKGXve5j5oYget72hizigHdP/AAtAQqGBv7S9RWF
+                4jt/SGgQw++Vb6Au/P352PfLwpWu/Clw4fqOUAARxk9+8r+uB+JXgEA5oAAkGGD8YUc/B4ZQ2p6O/wBG
+                MJuuO0mEb5qN4ISQBGqgBkugBGHFBmqABAI4gAzIgEiwBAjYgAyYfce2cNQ3BVoAfo5AAxPQAh74gQty
+                AyJEbizQAi5wK6FjHSp1EQk2AStAAfjkJR64Aj0xAytAA7pG/wESABI6QAMf6AJzJwho8ARhUAakp19P
+                kAZnIAZh0IROGAbDYgZg8IROKAYUWIHSB3zVVgkq4AEf8AHIQQIg8AEeMAPUoQMhQCoPUC0b1wEZwAAo
+                AATk9hgqoHiD0AL5llkKMAEjMAIjFgcOAALgUQEoIAIhQIYscBlXgwb7NQakZwZrwARoYAZIYgVYcAWY
+                uAZTcAZlsAZUYImYGIpXiIUQ10xVoIGPgAM2cAM28FMSUEMwtXgT4CIPEAE8kAELMAGGYQLaVQEpFwHl
+                pQOLYQIiYAFD8AIOsC1zNzgzUAMPQAINMAOrqABCEAEt4Dlo4ARUQAaPeAVgkAZRwARMAP8FZFCO5VgG
+                alAGV5AFUFAG5liOo0iKt2dxl4AESHAESUABIyADcogTE6EcDwABt5iLhrEYKxAfHWMIQyAD7mECFnOM
+                BiQCKyUIEPAAKSA9LbABB4AEBEBNJEACTpWN29iN3xgFWtAEZ+AGKqmS/kAGVyAFzacEK2ld8ehjFkgo
+                /oOK5INyM+A5cXAAMcAALMBUAomLuiiM0uMAJHBwhrAD7RF3vBVjYuMAItAWcVCRGgMBikdNI2BLMHBF
+                IsmNhWAG3giOJ4kGSlIILskEkVaTQrd9BvJ9nHAEPGlGTikC2rMARUmQSAk4JRABadZTFcAAEYABFBAC
+                xvgC76GUSXH/Eu0TAz3GbSOQAitQAitwcG2gjWJJN2UZjlvwBFAQmk+Ad3HgklogBqEJBU9QBpPnljYp
+                fVQgl3PJk55TagygAkDwJXt5lCjgAC9AAyLQM4XAAxDAADSAOCBgjC7wADRwAS2CbiqwHKUyCDiQAgyQ
+                AToQJxIQB5k5kmPZmWNVBVYwnlaAkqVZSFQgnlZwBYzmmlh4ip5AlyPQk4KwARHASCXxAbu5iynwXt2G
+                SoRgAQoReCuAmDE2AjUwBDUwAg1AA8NYArcxCBhwRxQ0Q9ypmSQJjkygBU4gBk/woVBALGRQSB0qBkxI
+                Bq3pnvSFBs0Xn3UZBwZQASRAH28wePup/wO8OCY48AEOcAMuEQc9UJwu0HEGinI0kAQJgD0j0BkvMmOF
+                AE+cExFh2ZpkWZIn2aJqeQVbYAYq2qWKIJ8ykCdBygDNFQc2OpBH6RniAAT3OQHmYgMWNE6Wp5wkQAOC
+                cANVwaTtwwJqUxOqpJQWMA9hqQTlUxNVapZNgF+CsJZnUKg14aWQCqb0oi4OwAPec6ZGuYu4KQgXED+Q
+                kgArIAIwQC9D4GB0WgHocQAzEFkPEAMuYEsSYAGk8QLuwwJqMjs2Ywa6qqtscKgmiZISNAimOQa7qqtY
+                CqnueQQUsAAxgDoSwFwjowMeoAK3CAIs0AHnkwJCAADbBgEi8AIKgP8BnbJdCrACH2CMy0oDz1KNDICX
+                QsBEyHFADNoCipeNDDcF+DoFWwqJTQCOVOAFjWoILuk/+YqvUoCsXXoEMWACMzAEN6BOG8CtZko5tPIA
+                6KYDcdc9cXAENcAxFfACKPAwPSUx6GoCmjUIGSABJnABcQAEGUABQ7MCNeUx0dcENnuzYBAFQeQE4NgE
+                ThCwhVAGX3CzRNsECNulQtADCVAEQLABF9VTG+ADQ6AAGyAEBqAAPeADaxMEG9ADXtsD6eYDYMu0PRAE
+                FlIELuM8RZAALlO1hedfZxC3chu3A3gGaLAEahC3pCcIbDC3fnu0XeqohuCo4/OohVCoh2u4hjuRe8H6
+                RIlAuIS7P43LuJALuJZ7uZibuZq7uZzbuZ77uaAbuqI7uqRbuqZ7uqibuqq7uqzbuq77urAbu7I7u7Rb
+                u7Z7u7ibu7q7u7zbu777u8AbvMI7vMRbvMZ7vMibvMq7vMzbvM77vNAbvdI7vdRbvdZ7vdibvdq7vdzb
+                vd77veAbvuI7vuRbvuZ7vuibvoUQCAA7
+</property>
+        </structure>
+    </list-property>
+</report>

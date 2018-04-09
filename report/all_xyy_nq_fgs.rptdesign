@@ -1,0 +1,1971 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.0.v201405191524 Build &lt;4.4.0.v20140606-1451></property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">178</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">178</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">178</property>
+        </structure>
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">320</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">320</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">320</property>
+        </structure>
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">365</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">365</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">365</property>
+        </structure>
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">366</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">366</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">366</property>
+        </structure>
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">392</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">392</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">392</property>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Data Source" id="80">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.ibm.db2.jcc.DB2Driver</property>
+            <property name="odaURL">jdbc:db2://10.19.19.34:50000/hnii</property>
+            <property name="odaUser">report</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">b2ttMTIz</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="data_one" id="178">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">DEPARTMENT</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">DEPARTMENT</text-property>
+                    <text-property name="heading">DEPARTMENT</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">NAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">NAME</text-property>
+                    <text-property name="heading">NAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SALES_COUNT</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">SALES_COUNT</text-property>
+                    <text-property name="heading">SALES_COUNT</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">M_SORT</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">M_SORT</text-property>
+                    <text-property name="heading">M_SORT</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">DEPARTMENT</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">NAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">SALES_COUNT</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">M_SORT</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">DEPARTMENT</property>
+                    <property name="nativeName">DEPARTMENT</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">NAME</property>
+                    <property name="nativeName">NAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">SALES_COUNT</property>
+                    <property name="nativeName">SALES_COUNT</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">M_SORT</property>
+                    <property name="nativeName">M_SORT</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with Sales_Performance as(
+select 
+        branch,
+        department,
+        name,
+        policy_no,
+        datestart
+        from administrator.hn_xyy a right join administrator.hn_ehr_list b
+                on a.home_id=b.oa),
+incorporation as(
+select 
+        value(branch,'合计') as branch,
+        department,
+        value(name,'合计')as name,
+        count(distinct policy_no) as sales_count,
+        case 
+                when department='办公室' then 1 
+                when department='人力资源部' then 2
+                when department='计划财务部' then 3
+                when department='信息技术部' then 4
+                when department='运营中心综合服务部' then 5
+                when department='运营中心运营支持部' then 6
+                when department='合规法律部' then 7
+                when department='营销部' then 8
+                when department='培训部' then 9
+                when department='组织发展部' then 10
+                when department='意健险部' then 11
+                when department='续期收展部' then 12
+                when department='银保业务部' then 13
+                when department='银保续期部' then 14
+                when department='银保业务支持部' then 15
+                when department='银保培训部' then 16
+                when department='银保二部' then 17
+                when department='电话行销部' then 18
+                when department='运营中心综合服务部' then 19
+                else 99
+        end as m_rank              
+                from Sales_Performance
+                        where branch='分公司'  
+                        group by grouping sets(
+                                (branch,
+                                department,
+                                name),
+                                (branch,
+                                department),()))
+select 
+        department,
+        name,
+        sales_count,
+        case when name='合计' then -1 else 0 end as m_sort
+        from incorporation
+                where branch<>'合计'
+                and m_rank between 1 and 3
+                        order by m_rank,(case when name='合计' then 1 else 0 end),sales_count desc]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="data_two" id="320">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">DEPARTMENT</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">DEPARTMENT</text-property>
+                    <text-property name="heading">DEPARTMENT</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">NAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">NAME</text-property>
+                    <text-property name="heading">NAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SALES_COUNT</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">SALES_COUNT</text-property>
+                    <text-property name="heading">SALES_COUNT</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">M_SORT</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">M_SORT</text-property>
+                    <text-property name="heading">M_SORT</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">DEPARTMENT</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">NAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">SALES_COUNT</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">M_SORT</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[importPackage( Packages.java.io );  
+
+//记录调用信息
+var curr_time =BirtDateTime.now( );
+out = new PrintWriter( new FileWriter("visitation.txt", true ));    
+out.println("all_xyy_nq_fgs  ##  "+curr_time);    
+out.close();]]></method>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">DEPARTMENT</property>
+                    <property name="nativeName">DEPARTMENT</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">NAME</property>
+                    <property name="nativeName">NAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">SALES_COUNT</property>
+                    <property name="nativeName">SALES_COUNT</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">M_SORT</property>
+                    <property name="nativeName">M_SORT</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with Sales_Performance as(
+select 
+        branch,
+        department,
+        name,
+        policy_no,
+        datestart
+        from administrator.hn_xyy a right join administrator.hn_ehr_list b
+                on a.home_id=b.oa),
+incorporation as(
+select 
+        value(branch,'合计') as branch,
+        department,
+        value(name,'合计')as name,
+        count(distinct policy_no) as sales_count,
+        case 
+                when department='办公室' then 1 
+                when department='人力资源部' then 2
+                when department='计划财务部' then 3
+                when department='信息技术部' then 4
+                when department='运营中心综合服务部' then 5
+                when department='运营中心运营支持部' then 6
+                when department='合规法律部' then 7
+                when department='营销部' then 8
+                when department='培训部' then 9
+                when department='组织发展部' then 10
+                when department='意健险部' then 11
+                when department='续期收展部' then 12
+                when department='银保业务部' then 13
+                when department='银保续期部' then 14
+                when department='银保业务支持部' then 15
+                when department='银保培训部' then 16
+                when department='银保二部' then 17
+                when department='电话行销部' then 18
+                when department='运营中心综合服务部' then 19
+                else 99
+        end as m_rank              
+                from Sales_Performance
+                        where branch='分公司'  
+                        group by grouping sets(
+                                (branch,
+                                department,
+                                name),
+                                (branch,
+                                department),()))
+select 
+        department,
+        name,
+        sales_count,
+        case when name='合计' then -1 else 0 end as m_sort
+        from incorporation
+                where branch<>'合计'
+                and m_rank between 4 and 7
+                        order by m_rank,(case when name='合计' then 1 else 0 end),sales_count desc]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="data_three" id="365">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">DEPARTMENT</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">DEPARTMENT</text-property>
+                    <text-property name="heading">DEPARTMENT</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">NAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">NAME</text-property>
+                    <text-property name="heading">NAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SALES_COUNT</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">SALES_COUNT</text-property>
+                    <text-property name="heading">SALES_COUNT</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">M_SORT</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">M_SORT</text-property>
+                    <text-property name="heading">M_SORT</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">DEPARTMENT</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">NAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">SALES_COUNT</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">M_SORT</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">DEPARTMENT</property>
+                    <property name="nativeName">DEPARTMENT</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">NAME</property>
+                    <property name="nativeName">NAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">SALES_COUNT</property>
+                    <property name="nativeName">SALES_COUNT</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">M_SORT</property>
+                    <property name="nativeName">M_SORT</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with Sales_Performance as(
+select 
+        branch,
+        department,
+        name,
+        policy_no,
+        datestart
+        from administrator.hn_xyy a right join administrator.hn_ehr_list b
+                on a.home_id=b.oa),
+incorporation as(
+select 
+        value(branch,'合计') as branch,
+        department,
+        value(name,'合计')as name,
+        count(distinct policy_no) as sales_count,
+        case 
+                when department='办公室' then 1 
+                when department='人力资源部' then 2
+                when department='计划财务部' then 3
+                when department='信息技术部' then 4
+                when department='运营中心综合服务部' then 5
+                when department='运营中心运营支持部' then 6
+                when department='合规法律部' then 7
+                when department='营销部' then 8
+                when department='培训部' then 9
+                when department='组织发展部' then 10
+                when department='意健险部' then 11
+                when department='续期收展部' then 12
+                when department='银保业务部' then 13
+                when department='银保续期部' then 14
+                when department='银保业务支持部' then 15
+                when department='银保培训部' then 16
+                when department='银保二部' then 17
+                when department='电话行销部' then 18
+                when department='运营中心综合服务部' then 19
+                else 99
+        end as m_rank              
+                from Sales_Performance
+                        where branch='分公司'  
+                        group by grouping sets(
+                                (branch,
+                                department,
+                                name),
+                                (branch,
+                                department),()))
+select 
+        department,
+        name,
+        sales_count,
+        case when name='合计' then -1 else 0 end as m_sort
+        from incorporation
+                where branch<>'合计'
+                and m_rank between 8 and 11
+                        order by m_rank,(case when name='合计' then 1 else 0 end),sales_count desc]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="data_four" id="366">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">DEPARTMENT</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">DEPARTMENT</text-property>
+                    <text-property name="heading">DEPARTMENT</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">NAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">NAME</text-property>
+                    <text-property name="heading">NAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SALES_COUNT</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">SALES_COUNT</text-property>
+                    <text-property name="heading">SALES_COUNT</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">M_SORT</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">M_SORT</text-property>
+                    <text-property name="heading">M_SORT</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">DEPARTMENT</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">NAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">SALES_COUNT</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">M_SORT</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">DEPARTMENT</property>
+                    <property name="nativeName">DEPARTMENT</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">NAME</property>
+                    <property name="nativeName">NAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">SALES_COUNT</property>
+                    <property name="nativeName">SALES_COUNT</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">M_SORT</property>
+                    <property name="nativeName">M_SORT</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with Sales_Performance as(
+select 
+        branch,
+        department,
+        name,
+        policy_no,
+        datestart
+        from administrator.hn_xyy a right join administrator.hn_ehr_list b
+                on a.home_id=b.oa),
+incorporation as(
+select 
+        value(branch,'合计') as branch,
+        department,
+        value(name,'合计')as name,
+        count(distinct policy_no) as sales_count,
+        case 
+                when department='办公室' then 1 
+                when department='人力资源部' then 2
+                when department='计划财务部' then 3
+                when department='信息技术部' then 4
+                when department='运营中心综合服务部' then 5
+                when department='运营中心运营支持部' then 6
+                when department='合规法律部' then 7
+                when department='营销部' then 8
+                when department='培训部' then 9
+                when department='组织发展部' then 10
+                when department='意健险部' then 11
+                when department='续期收展部' then 12
+                when department='银保业务部' then 13
+                when department='银保续期部' then 14
+                when department='银保业务支持部' then 15
+                when department='银保培训部' then 16
+                when department='银保二部' then 17
+                when department='电话行销部' then 18
+                when department='运营中心综合服务部' then 19
+                else 99
+        end as m_rank              
+                from Sales_Performance
+                        where branch='分公司'  
+                        group by grouping sets(
+                                (branch,
+                                department,
+                                name),
+                                (branch,
+                                department),()))
+select 
+        department,
+        name,
+        sales_count,
+        case when name='合计' then -1 else 0 end as m_sort
+        from incorporation
+                where branch<>'合计'
+                and m_rank between 12 and 15
+                        order by m_rank,(case when name='合计' then 1 else 0 end),sales_count desc]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="data_five" id="392">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">DEPARTMENT</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">DEPARTMENT</text-property>
+                    <text-property name="heading">DEPARTMENT</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">NAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">NAME</text-property>
+                    <text-property name="heading">NAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SALES_COUNT</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">SALES_COUNT</text-property>
+                    <text-property name="heading">SALES_COUNT</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">M_SORT</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">M_SORT</text-property>
+                    <text-property name="heading">M_SORT</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">DEPARTMENT</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">NAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">SALES_COUNT</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">M_SORT</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">DEPARTMENT</property>
+                    <property name="nativeName">DEPARTMENT</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">NAME</property>
+                    <property name="nativeName">NAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">SALES_COUNT</property>
+                    <property name="nativeName">SALES_COUNT</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">M_SORT</property>
+                    <property name="nativeName">M_SORT</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with Sales_Performance as(
+select 
+        branch,
+        department,
+        name,
+        policy_no,
+        datestart
+        from administrator.hn_xyy a right join administrator.hn_ehr_list b
+                on a.home_id=b.oa),
+incorporation as(
+select 
+        value(branch,'合计') as branch,
+        department,
+        value(name,'合计')as name,
+        count(distinct policy_no) as sales_count,
+        case 
+                when department='办公室' then 1 
+                when department='人力资源部' then 2
+                when department='计划财务部' then 3
+                when department='信息技术部' then 4
+                when department='运营中心综合服务部' then 5
+                when department='运营中心运营支持部' then 6
+                when department='合规法律部' then 7
+                when department='营销部' then 8
+                when department='培训部' then 9
+                when department='组织发展部' then 10
+                when department='意健险部' then 11
+                when department='续期收展部' then 12
+                when department='银保业务部' then 13
+                when department='银保续期部' then 14
+                when department='银保业务支持部' then 15
+                when department='银保培训部' then 16
+                when department='银保二部' then 17
+                when department='电话行销部' then 18
+                when department='运营中心综合服务部' then 19
+                else 99
+        end as m_rank              
+                from Sales_Performance
+                        where branch='分公司'  
+                        group by grouping sets(
+                                (branch,
+                                department,
+                                name),
+                                (branch,
+                                department),()))
+select 
+        department,
+        name,
+        sales_count,
+        case when name='合计' then -1 else 0 end as m_sort
+        from incorporation
+                where branch<>'合计'
+                and m_rank between 16 and 50
+                        order by m_rank,(case when name='合计' then 1 else 0 end),sales_count desc]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <image id="130">
+            <property name="marginLeft">0pt</property>
+            <property name="height">100px</property>
+            <property name="width">445px</property>
+            <property name="source">embed</property>
+            <property name="imageName">logo.gif</property>
+        </image>
+        <grid id="131">
+            <property name="textAlign">center</property>
+            <property name="verticalAlign">middle</property>
+            <column id="132"/>
+            <column id="291"/>
+            <column id="297"/>
+            <column id="294"/>
+            <column id="369"/>
+            <row id="133">
+                <property name="borderBottomStyle">none</property>
+                <property name="borderLeftStyle">none</property>
+                <property name="borderRightStyle">none</property>
+                <property name="borderTopStyle">none</property>
+                <property name="textAlign">left</property>
+                <cell id="134">
+                    <property name="borderBottomColor">#008000</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">2px</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="289">
+                    <property name="borderBottomColor">#008000</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">2px</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="295">
+                    <property name="borderBottomColor">#008000</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">2px</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">bottom</property>
+                    <text id="135">
+                        <property name="fontFamily">"黑体"</property>
+                        <property name="fontSize">24pt</property>
+                        <property name="contentType">html</property>
+                        <text-property name="content"><![CDATA[<CENTER>
+喜洋洋统计表
+</CENTER>
+]]></text-property>
+                    </text>
+                </cell>
+                <cell id="292">
+                    <property name="borderBottomColor">#008000</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">2px</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="367">
+                    <property name="borderBottomColor">#008000</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">2px</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                </cell>
+            </row>
+            <row id="136">
+                <cell id="137">
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">left</property>
+                    <table id="267">
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <property name="width">2.5in</property>
+                        <property name="dataSet">data_one</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">DEPARTMENT</property>
+                                <text-property name="displayName">DEPARTMENT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["DEPARTMENT"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">NAME</property>
+                                <text-property name="displayName">NAME</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["NAME"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">SALES_COUNT</property>
+                                <text-property name="displayName">SALES_COUNT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["SALES_COUNT"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">M_SORT</property>
+                                <text-property name="displayName">M_SORT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["M_SORT"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                        </list-property>
+                        <property name="pageBreakInterval">100</property>
+                        <column id="280"/>
+                        <column id="281"/>
+                        <column id="282"/>
+                        <header>
+                            <row id="268">
+                                <property name="backgroundColor">orange</property>
+                                <cell id="269">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="283">
+                                        <property name="paddingTop">5pt</property>
+                                        <property name="paddingBottom">5pt</property>
+                                        <text-property name="text">部门</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="270">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="285">
+                                        <text-property name="text">姓名</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="271">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="287">
+                                        <property name="marginLeft">5pt</property>
+                                        <property name="marginRight">5pt</property>
+                                        <property name="paddingLeft">5pt</property>
+                                        <property name="paddingRight">5pt</property>
+                                        <text-property name="text">数量</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="272">
+                                <list-property name="highlightRules">
+                                    <structure>
+                                        <property name="operator">eq</property>
+                                        <property name="backgroundColor">#008080</property>
+                                        <expression name="testExpr" type="javascript">row["NAME"]</expression>
+                                        <simple-property-list name="value1">
+                                            <value type="javascript">"合计"</value>
+                                        </simple-property-list>
+                                    </structure>
+                                </list-property>
+                                <cell id="273">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="284">
+                                        <property name="resultSetColumn">DEPARTMENT</property>
+                                    </data>
+                                </cell>
+                                <cell id="274">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="286">
+                                        <property name="resultSetColumn">NAME</property>
+                                    </data>
+                                </cell>
+                                <cell id="275">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="288">
+                                        <property name="resultSetColumn">SALES_COUNT</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="276">
+                                <cell id="277">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="278">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="279">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+                <cell id="290">
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">left</property>
+                    <table id="298">
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <property name="width">2.5in</property>
+                        <property name="dataSet">data_two</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">DEPARTMENT</property>
+                                <text-property name="displayName">DEPARTMENT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["DEPARTMENT"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">NAME</property>
+                                <text-property name="displayName">NAME</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["NAME"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">SALES_COUNT</property>
+                                <text-property name="displayName">SALES_COUNT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["SALES_COUNT"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">M_SORT</property>
+                                <text-property name="displayName">M_SORT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["M_SORT"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                        </list-property>
+                        <property name="pageBreakInterval">100</property>
+                        <column id="317"/>
+                        <column id="318"/>
+                        <column id="319"/>
+                        <header>
+                            <row id="299">
+                                <property name="backgroundColor">orange</property>
+                                <cell id="300">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="301">
+                                        <property name="paddingTop">5pt</property>
+                                        <property name="paddingBottom">5pt</property>
+                                        <text-property name="text">部门</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="302">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="303">
+                                        <text-property name="text">姓名</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="304">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="305">
+                                        <property name="marginLeft">5pt</property>
+                                        <property name="marginRight">5pt</property>
+                                        <property name="paddingLeft">5pt</property>
+                                        <property name="paddingRight">5pt</property>
+                                        <text-property name="text">数量</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="306">
+                                <list-property name="highlightRules">
+                                    <structure>
+                                        <property name="operator">eq</property>
+                                        <property name="backgroundColor">#008080</property>
+                                        <expression name="testExpr" type="javascript">row["NAME"]</expression>
+                                        <simple-property-list name="value1">
+                                            <value type="javascript">"合计"</value>
+                                        </simple-property-list>
+                                    </structure>
+                                </list-property>
+                                <cell id="307">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="308">
+                                        <property name="resultSetColumn">DEPARTMENT</property>
+                                    </data>
+                                </cell>
+                                <cell id="309">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="310">
+                                        <property name="resultSetColumn">NAME</property>
+                                    </data>
+                                </cell>
+                                <cell id="311">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="312">
+                                        <property name="resultSetColumn">SALES_COUNT</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="313">
+                                <cell id="314">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="315">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="316">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+                <cell id="296">
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">left</property>
+                    <table id="321">
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <property name="width">2.5in</property>
+                        <property name="dataSet">data_three</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">DEPARTMENT</property>
+                                <text-property name="displayName">DEPARTMENT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["DEPARTMENT"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">NAME</property>
+                                <text-property name="displayName">NAME</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["NAME"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">SALES_COUNT</property>
+                                <text-property name="displayName">SALES_COUNT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["SALES_COUNT"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">M_SORT</property>
+                                <text-property name="displayName">M_SORT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["M_SORT"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                        </list-property>
+                        <property name="pageBreakInterval">100</property>
+                        <column id="340"/>
+                        <column id="341"/>
+                        <column id="342"/>
+                        <header>
+                            <row id="322">
+                                <property name="backgroundColor">orange</property>
+                                <cell id="323">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="324">
+                                        <property name="paddingTop">5pt</property>
+                                        <property name="paddingBottom">5pt</property>
+                                        <text-property name="text">部门</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="325">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="326">
+                                        <text-property name="text">姓名</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="327">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="328">
+                                        <property name="marginLeft">5pt</property>
+                                        <property name="marginRight">5pt</property>
+                                        <property name="paddingLeft">5pt</property>
+                                        <property name="paddingRight">5pt</property>
+                                        <text-property name="text">数量</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="329">
+                                <list-property name="highlightRules">
+                                    <structure>
+                                        <property name="operator">eq</property>
+                                        <property name="backgroundColor">#008080</property>
+                                        <expression name="testExpr" type="javascript">row["NAME"]</expression>
+                                        <simple-property-list name="value1">
+                                            <value type="javascript">"合计"</value>
+                                        </simple-property-list>
+                                    </structure>
+                                </list-property>
+                                <cell id="330">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="331">
+                                        <property name="resultSetColumn">DEPARTMENT</property>
+                                    </data>
+                                </cell>
+                                <cell id="332">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="333">
+                                        <property name="resultSetColumn">NAME</property>
+                                    </data>
+                                </cell>
+                                <cell id="334">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="335">
+                                        <property name="resultSetColumn">SALES_COUNT</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="336">
+                                <cell id="337">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="338">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="339">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+                <cell id="293">
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">left</property>
+                    <table id="343">
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <property name="width">2.5in</property>
+                        <property name="dataSet">data_four</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">DEPARTMENT</property>
+                                <text-property name="displayName">DEPARTMENT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["DEPARTMENT"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">NAME</property>
+                                <text-property name="displayName">NAME</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["NAME"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">SALES_COUNT</property>
+                                <text-property name="displayName">SALES_COUNT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["SALES_COUNT"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">M_SORT</property>
+                                <text-property name="displayName">M_SORT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["M_SORT"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                        </list-property>
+                        <property name="pageBreakInterval">100</property>
+                        <column id="362"/>
+                        <column id="363"/>
+                        <column id="364"/>
+                        <header>
+                            <row id="344">
+                                <property name="backgroundColor">orange</property>
+                                <cell id="345">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="346">
+                                        <property name="paddingTop">5pt</property>
+                                        <property name="paddingBottom">5pt</property>
+                                        <text-property name="text">部门</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="347">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="348">
+                                        <text-property name="text">姓名</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="349">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="350">
+                                        <property name="marginLeft">5pt</property>
+                                        <property name="marginRight">5pt</property>
+                                        <property name="paddingLeft">5pt</property>
+                                        <property name="paddingRight">5pt</property>
+                                        <text-property name="text">数量</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="351">
+                                <list-property name="highlightRules">
+                                    <structure>
+                                        <property name="operator">eq</property>
+                                        <property name="backgroundColor">#008080</property>
+                                        <expression name="testExpr" type="javascript">row["NAME"]</expression>
+                                        <simple-property-list name="value1">
+                                            <value type="javascript">"合计"</value>
+                                        </simple-property-list>
+                                    </structure>
+                                </list-property>
+                                <cell id="352">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="353">
+                                        <property name="resultSetColumn">DEPARTMENT</property>
+                                    </data>
+                                </cell>
+                                <cell id="354">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="355">
+                                        <property name="resultSetColumn">NAME</property>
+                                    </data>
+                                </cell>
+                                <cell id="356">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="357">
+                                        <property name="resultSetColumn">SALES_COUNT</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="358">
+                                <cell id="359">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="360">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="361">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+                <cell id="368">
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">left</property>
+                    <table id="370">
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <property name="width">2.5in</property>
+                        <property name="dataSet">data_five</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">DEPARTMENT</property>
+                                <text-property name="displayName">DEPARTMENT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["DEPARTMENT"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">NAME</property>
+                                <text-property name="displayName">NAME</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["NAME"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">SALES_COUNT</property>
+                                <text-property name="displayName">SALES_COUNT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["SALES_COUNT"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">M_SORT</property>
+                                <text-property name="displayName">M_SORT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["M_SORT"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                        </list-property>
+                        <property name="pageBreakInterval">100</property>
+                        <column id="389"/>
+                        <column id="390"/>
+                        <column id="391"/>
+                        <header>
+                            <row id="371">
+                                <property name="backgroundColor">orange</property>
+                                <cell id="372">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="373">
+                                        <property name="paddingTop">5pt</property>
+                                        <property name="paddingBottom">5pt</property>
+                                        <text-property name="text">部门</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="374">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="375">
+                                        <text-property name="text">姓名</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="376">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="377">
+                                        <property name="marginLeft">5pt</property>
+                                        <property name="marginRight">5pt</property>
+                                        <property name="paddingLeft">5pt</property>
+                                        <property name="paddingRight">5pt</property>
+                                        <text-property name="text">数量</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="378">
+                                <list-property name="highlightRules">
+                                    <structure>
+                                        <property name="operator">eq</property>
+                                        <property name="backgroundColor">#008080</property>
+                                        <expression name="testExpr" type="javascript">row["NAME"]</expression>
+                                        <simple-property-list name="value1">
+                                            <value type="javascript">"合计"</value>
+                                        </simple-property-list>
+                                    </structure>
+                                </list-property>
+                                <cell id="379">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="380">
+                                        <property name="resultSetColumn">DEPARTMENT</property>
+                                    </data>
+                                </cell>
+                                <cell id="381">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="382">
+                                        <property name="resultSetColumn">NAME</property>
+                                    </data>
+                                </cell>
+                                <cell id="383">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="384">
+                                        <property name="resultSetColumn">SALES_COUNT</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="385">
+                                <cell id="386">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="387">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="388">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
+    </body>
+    <list-property name="images">
+        <structure>
+            <property name="name">logo.gif</property>
+            <property name="type">image/gif</property>
+            <property name="data">
+                R0lGODlhvQFkAOYAAP/+//z7/NPT1v39/vz8/fv7/O3t7uTl6ujp7cjL1tnb4hknVB8tWCIwWyMxXCQx
+                XC06YzA9ZTNAaDxIbkJOc15oh2hxj212k32Fno2Uqp6kt6qvwM7R28vO2A0dSxIiTxUkURcmUhopVRwr
+                Vh0sVyAvWSQzXSU0XiY0Xig2Xyo4YTZDajlGbD5LcEVRdUhUd0pWeU1Ze1FdflVggVlkhGNti3N8l3iB
+                m4GJoYaOpZKZrpifs6SqvK+0w7S5yMLG0r/Dz8XJ1Lq/zN7g5dTX3u/w8vn6+/f4+fP2+PH09fn9/ePz
+                8gOShQuWiRaaji2kmT2roYzNxwCRgwCQggCPgQCNfwCLfACJeQCHeAGSgwGRgwKSgwORgwSRgweThQqR
+                gxGXih2dkSKgk0yyqF66sXDBuX/IwaLX0rHe2bvi3tDr6ACGdsfn47bn3/f8+/////7+/v///wAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAHEALAAAAAC9AWQAAAf/gHGC
+                g4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+
+                v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZvBxACps+OUK3B0RHjAkdONrr7ME+LwwVRZkcDSEytkQy
+                KTpIiRs4eIDL0K6gwVs3GDTAoGnHBxM6bO1AsWCFD0QbLOjQsMMHD4YHQ4pc9WZHigdA4hQpkmQAJQUx
+                bPQo8uZNEn+wDtBQeGPIoQ45fEywcCMFDw0bRioN6WZJqCMHEmyogeKBDBpYa2RAMKlDh5sdNmSoQSOi
+                pQKYfEAoYSPJGyNG/woB2aGAQo4MEDYcubG0L7s3Ucaw8USAg44ZLCCgMPFghIgFC0SouAgJCREhO2pM
+                SGzChIoKPSgN2RHOUhALJIzOxYBhwzxBPnQocGGjxYw4SPj63X3tDJgqUAZveiNkBQMSJR48MBFBxooU
+                MW7sMPCIiIYLLFKkUJGiQQQbG4J0qDQjeYwgk4YAuaGigWcUDUqUQMFjUJAMCVwQ+QFBBxCzvAUYjW9V
+                SEFFcJwI0cIKMVgwgwomWHABDBm85ggCOUzAwHwvSJdDCABWUkMIDzBggjrVCYFDDCmUYIIDI6AgAQUu
+                uCBDaIPskAEPXPmwgwUcCCikMwRKIcUUwKXBSf8CPBDhgwUpmOBCChHUgKMj/DHWQA4JCKLBB0Hp+MMk
+                OyhEggQ0jOnIDjs9tIIKDkBAgwYdDHGAEEQYkgMPKWnA0ZCAKlOkkUauQYYnF0zp3gghgOBBDpAg0MMK
+                IMwQVxw7zMBAiyGEQMOVjvAgAQMM1CCEOI9scMEMF4jVogxCdIAZDyES0sMOPAgU6K7GkPEboUdW8QQa
+                nBgggwcLdFYRBhn4gB4kQKgwQlI8ZFiCdxhcUAIEMeRAXSNJVLAACTfkSUkRClzAwAMtwCBBCSF4wMIB
+                vNbbTBlhUAGsgcN2goQGOMwwggoYmEvABjZYQBkjGXwQgwI5sPBABTCMYEH/Ahg84EAKEiy8iA7y3cDV
+                JEJUMCFjL4YQQQU5aACqvTAXg6++wFLRLyFOZULECw3g4CQNLsSwAgQqUEDQIkmgdkMGLFzwgwbGTUAB
+                hA1siuoiQbAwQgX0ThJxiyU4oFwMPQyRp14d9DByzGz/Qka++9pMLCFmIGjJDzu08AAKKyS2WAMNpABB
+                Ay6kpAgHE0AAAws4ZCDDWp5JgAIDENigAAGMHHEBCS50SQkOElzlgAMR6HAAAj/o4BwLK1TZdduw53KG
+                EwUCK+zcg5jRxIHCQcKBBhjIAKHGJCwAOOAS3LCBWDgEqUgPDDjQwAoSIMcCCwxckCENQLwRagQp+OD9
+                /yQ12aSDezLgUAEEJpRwnAginIhT7PTTMiihVtwsCGBeUIGk3Y4AGQhAsAAHmKABDpgBs24gARFMYAcj
+                G58icOA+EoyABTS4QQdsIAIZREACG0jChWYQAkhRwggH8JENomQCBoAgBCJggARicAEM2EADFqqfDl9x
+                v2DpTxBR+ELtpmAFACLNBtejgAVo0D4bxKEmR5gBDBbwgRdooBFDoEAKaICBiKBrByxwXwkWQIFnMSIH
+                H6CBPw7QgbWtKQYjQJbY5LOCC+wgDhvgYg53yEeS9HAKcitEGrxgBWD9r3eP4MAMSDCDIgRgBxXwHAZS
+                AIIE0kURQGhADcYTBwXwQP8GpILPFpPSiA2oYAV5EoIMXiATBFxqEUJQwQdQoBgHMMAFGjDXG3wALxvo
+                gJN9DKYp4NBDfuFuEEkowxZoZiRAGrERCXHBeHwgAQ/U5w2SggEDFgCdHbyOELlJwRXjwIMXpEAEgiuB
+                BMYpAJ8oggh6o4wFPhBDDDZJTYnIwQtqoIEaiO0G3igC6soZtqq8QJgIJUUxA3mIJZSBCcw0Eu8eoQHv
+                8AiPKViADxRwgxdsQAE2eNcIHkChDqBlEAiYgAuCVJIXyOACGpinbn4wgQu4sRAKkIEJ6iOIdEWgAchJ
+                AQssoAFvHGIABhhTECjAACfGIQEZmEEE4GPABjAuoVj//YRvIiqF2xHCDYVwKBOmELdnIiIIo6qBBWrg
+                DQqIoAYeJIEJvGSDoUVgAjiw0C4rhxYO4EAH7tyAByJSlxCswHCGyClEDLGBGEigag14QANakAPEGkJz
+                IKhAB/oZAQeo4K4yeOwDenDSrJoWE8X0Kt3IoAacPTSizkQkImIAoguYYAE4SEIMFkBUHMQJR0nQwI5+
+                QIT5DcACDbhIcRbwgtfcAASkrcECZqCB+REiCDCAwB0RAckWlEAEYSMBCzDwMkH0YAT64WgFVmAC8PTA
+                rwxowWnne4li5u+YcYgCGIqYM0E4VAuwBY5sCbGXEGRgABy4wAQ04AMWhOAiL93u/yKIwIIXcEUILPiA
+                DYTgAxss4AE+aDCKfsICEDJiBwGDAAwZMIIVlGYQQ3ABBC6SBAN0wK1OFUQJLCBC+voYEmOg3b7uW4go
+                CBk4/Y2DQwFpyCQhoqI6OOmqmCa9H/BgBBfIsSIyQIKjkXMGPsBADCZQng08LSXOK4QMXGBGRgTBBwEr
+                AQhSUIMQ6eAEXu5kC0JQAhwBAQQS/rGgF/GEQtbsh/kVcrCgkOT/wvYKZzhEDyjAA8zFQQNwmkHeTPCD
+                A8CABBBwQa0KUQQapMCo5l2vDDzpgR4cwAJSo0EN2lwtSjhJA0FAdRxoGug4GIEHK5CmIHQggqsN+tiH
+                SIMYmP/J0Nz9ilD/a7QyaQbIMhyiADwgZRx8EIERtOAiMXBASohAgwWMgALANIQQTmCBQfygAhTYsTe+
+                lIAhtGAEJNiQDSz0TU1gIAevRKYC3BmHFlQA2QhHhLKrAEhE646rwRpDWF9LBSpYGxH8psEHLEIvLRoO
+                ATeAAJbz+QE1/cAFI2BAXgWBAxHEoQAH2MEETPCBC+xxSRro9yAOYFQLSKDNCQ96HJRN5EEMIApeIOu+
+                CIVk1wL44owIwIR6gE0LMFfXPWBVImaADy9NLwc9joMEYDCINxDhApQWBRzMgYghzAACEJAAT4VO9zig
+                YQzHPHr/ll5WaUO9EUJYmw5q/q3/nd98EBEYZxyIMIMQ/cADICFw2FXhgxaAAAYeq7vQk8y/2vHddlBo
+                7SCSLAkefCoSJkyEAsBciyFggKiajz0hACPEzy+diKGXve5j5oYget72hizigHdP/AAtAQqGBv7S9RWF
+                4jt/SGgQw++Vb6Au/P352PfLwpWu/Clw4fqOUAARxk9+8r+uB+JXgEA5oAAkGGD8YUc/B4ZQ2p6O/wBG
+                MJuuO0mEb5qN4ISQBGqgBkugBGHFBmqABAI4gAzIgEiwBAjYgAyYfce2cNQ3BVoAfo5AAxPQAh74gQty
+                AyJEbizQAi5wK6FjHSp1EQk2AStAAfjkJR64Aj0xAytAA7pG/wESABI6QAMf6AJzJwho8ARhUAakp19P
+                kAZnIAZh0IROGAbDYgZg8IROKAYUWIHSB3zVVgkq4AEf8AHIQQIg8AEeMAPUoQMhQCoPUC0b1wEZwAAo
+                AATk9hgqoHiD0AL5llkKMAEjMAIjFgcOAALgUQEoIAIhQIYscBlXgwb7NQakZwZrwARoYAZIYgVYcAWY
+                uAZTcAZlsAZUYImYGIpXiIUQ10xVoIGPgAM2cAM28FMSUEMwtXgT4CIPEAE8kAELMAGGYQLaVQEpFwHl
+                pQOLYQIiYAFD8AIOsC1zNzgzUAMPQAINMAOrqABCEAEt4Dlo4ARUQAaPeAVgkAZRwARMAP8FZFCO5VgG
+                alAGV5AFUFAG5liOo0iKt2dxl4AESHAESUABIyADcogTE6EcDwABt5iLhrEYKxAfHWMIQyAD7mECFnOM
+                BiQCKyUIEPAAKSA9LbABB4AEBEBNJEACTpWN29iN3xgFWtAEZ+AGKqmS/kAGVyAFzacEK2ld8ehjFkgo
+                /oOK5INyM+A5cXAAMcAALMBUAomLuiiM0uMAJHBwhrAD7RF3vBVjYuMAItAWcVCRGgMBikdNI2BLMHBF
+                IsmNhWAG3giOJ4kGSlIILskEkVaTQrd9BvJ9nHAEPGlGTikC2rMARUmQSAk4JRABadZTFcAAEYABFBAC
+                xvgC76GUSXH/Eu0TAz3GbSOQAitQAitwcG2gjWJJN2UZjlvwBFAQmk+Ad3HgklogBqEJBU9QBpPnljYp
+                fVQgl3PJk55TagygAkDwJXt5lCjgAC9AAyLQM4XAAxDAADSAOCBgjC7wADRwAS2CbiqwHKUyCDiQAgyQ
+                AToQJxIQB5k5kmPZmWNVBVYwnlaAkqVZSFQgnlZwBYzmmlh4ip5AlyPQk4KwARHASCXxAbu5iynwXt2G
+                SoRgAQoReCuAmDE2AjUwBDUwAg1AA8NYArcxCBhwRxQ0Q9ypmSQJjkygBU4gBk/woVBALGRQSB0qBkxI
+                Bq3pnvSFBs0Xn3UZBwZQASRAH28wePup/wO8OCY48AEOcAMuEQc9UJwu0HEGinI0kAQJgD0j0BkvMmOF
+                AE+cExFh2ZpkWZIn2aJqeQVbYAYq2qWKIJ8ykCdBygDNFQc2OpBH6RniAAT3OQHmYgMWNE6Wp5wkQAOC
+                cANVwaTtwwJqUxOqpJQWMA9hqQTlUxNVapZNgF+CsJZnUKg14aWQCqb0oi4OwAPec6ZGuYu4KQgXED+Q
+                kgArIAIwQC9D4GB0WgHocQAzEFkPEAMuYEsSYAGk8QLuwwJqMjs2Ywa6qqtscKgmiZISNAimOQa7qqtY
+                CqnueQQUsAAxgDoSwFwjowMeoAK3CAIs0AHnkwJCAADbBgEi8AIKgP8BnbJdCrACH2CMy0oDz1KNDICX
+                QsBEyHFADNoCipeNDDcF+DoFWwqJTQCOVOAFjWoILuk/+YqvUoCsXXoEMWACMzAEN6BOG8CtZko5tPIA
+                6KYDcdc9cXAENcAxFfACKPAwPSUx6GoCmjUIGSABJnABcQAEGUABQ7MCNeUx0dcENnuzYBAFQeQE4NgE
+                ThCwhVAGX3CzRNsECNulQtADCVAEQLABF9VTG+ADQ6AAGyAEBqAAPeADaxMEG9ADXtsD6eYDYMu0PRAE
+                FlIELuM8RZAALlO1hedfZxC3chu3A3gGaLAEahC3pCcIbDC3fnu0XeqohuCo4/OohVCoh2u4hjuRe8H6
+                RIlAuIS7P43LuJALuJZ7uZibuZq7uZzbuZ77uaAbuqI7uqRbuqZ7uqibuqq7uqzbuq77urAbu7I7u7Rb
+                u7Z7u7ibu7q7u7zbu777u8AbvMI7vMRbvMZ7vMibvMq7vMzbvM77vNAbvdI7vdRbvdZ7vdibvdq7vdzb
+                vd77veAbvuI7vuRbvuZ7vuibvoUQCAA7
+</property>
+        </structure>
+    </list-property>
+</report>

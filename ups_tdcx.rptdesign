@@ -1,0 +1,3195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT 设计器 V4.4.1.v201408290142 构建 &lt;4.4.1.v20140916-1320></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="数据源" id="474">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.ibm.db2.jcc.DB2Driver</property>
+            <property name="odaURL">jdbc:db2://10.19.19.60:50000/jiankong</property>
+            <property name="odaUser">administrator</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">QWxlcnQ6amlhbmtvbmcy</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="13楼apc" id="611">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">HOST</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">HOST</text-property>
+                    <text-property name="heading">HOST</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">COUNT</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">COUNT</text-property>
+                    <text-property name="heading">COUNT</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TOTAL</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">TOTAL</text-property>
+                    <text-property name="heading">TOTAL</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">HOST</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">COUNT</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">TOTAL</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">数据源</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">HOST</property>
+                    <property name="nativeName">HOST</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">COUNT</property>
+                    <property name="nativeName">COUNT</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">TOTAL</property>
+                    <property name="nativeName">TOTAL</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with us as (select row_number() over(order by maketime)as row_num,
+host,vol_in,maketime
+from ADMINISTRATOR.apc
+where date(maketime) between (current date - 1 year) and current date
+and host='13')
+select case when c.host='13' then '13楼apc' end host,c.count,d.total
+from
+(select x.host,count(cha) as count
+from
+(select a.*,(a.vol_in+b.vol_in)as he,(a.vol_in-b.vol_in)as cha from(
+select row_num+1 as row_num,host,vol_in,maketime from us
+)a
+left join(select row_number() over(order by maketime)as row_num,host,vol_in
+from ADMINISTRATOR.apc
+where date(maketime)between (current date - 1 year) and current date
+and host='13')b on a.row_num=b.row_num)x
+where x.cha>=210
+group by host)c
+inner join(select host,count(vol_in)*0.17 as total
+from administrator.apc
+where vol_in<=5 and host='13' and date(maketime)between (current date - 1 year) and current date
+group by host)d on c.host=d.host
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>HOST</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>7</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>HOST</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>HOST</design:label>
+            <design:formattingHints>
+              <design:displaySize>7</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>COUNT</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>COUNT</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>COUNT</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TOTAL</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+            <design:precision>14</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TOTAL</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TOTAL</design:label>
+            <design:formattingHints>
+              <design:displaySize>16</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="13楼apc明细" id="612">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">HOST</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">HOST</text-property>
+                    <text-property name="heading">HOST</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">VOL_IN</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">VOL_IN</text-property>
+                    <text-property name="heading">VOL_IN</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">MAKETIME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">MAKETIME</text-property>
+                    <text-property name="heading">MAKETIME</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">HOST</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">VOL_IN</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">MAKETIME</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">数据源</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">HOST</property>
+                    <property name="nativeName">HOST</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">VOL_IN</property>
+                    <property name="nativeName">VOL_IN</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">MAKETIME</property>
+                    <property name="nativeName">MAKETIME</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with us as (select row_number() over(order by maketime)as row_num,
+host,vol_in,maketime
+from ADMINISTRATOR.apc
+where date(maketime) between (current date - 1 year) and current date
+and host='13')
+
+select case when x.host='13' then '13楼apc' end host,x.vol_in,x.maketime
+from
+(select b.*,(a.vol_in+b.vol_in)as he,(a.vol_in-b.vol_in)as cha from(
+select row_num+1 as row_num,host,vol_in,maketime from us
+)a
+left join(select row_number() over(order by maketime)as row_num,host,vol_in,maketime
+from ADMINISTRATOR.apc
+where date(maketime) between (current date - 1 year) and current date
+and host='13')b on a.row_num=b.row_num)x
+where x.cha>=220 or x.cha<=-210]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>HOST</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>HOST</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>HOST</design:label>
+            <design:formattingHints>
+              <design:displaySize>2</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>VOL_IN</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>5</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>VOL_IN</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>VOL_IN</design:label>
+            <design:formattingHints>
+              <design:displaySize>7</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>MAKETIME</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>26</design:precision>
+            <design:scale>6</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>MAKETIME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>MAKETIME</design:label>
+            <design:formattingHints>
+              <design:displaySize>26</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="11楼ups" id="613">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">HOST</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">HOST</text-property>
+                    <text-property name="heading">HOST</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">COUNT</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">COUNT</text-property>
+                    <text-property name="heading">COUNT</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TOTAL</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">TOTAL</text-property>
+                    <text-property name="heading">TOTAL</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">HOST</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">COUNT</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">TOTAL</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">数据源</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">HOST</property>
+                    <property name="nativeName">HOST</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">COUNT</property>
+                    <property name="nativeName">COUNT</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">TOTAL</property>
+                    <property name="nativeName">TOTAL</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with us as (select row_number() over(order by maketime)as row_num,
+host,vol_in,maketime
+from ADMINISTRATOR.apc
+where date(maketime) between (current date - 1 year) and current date
+and host='11')
+select case when c.host='11' then '11楼ups' end host,c.count,d.total
+from
+(select x.host,count(cha) as count
+from
+(select a.*,(a.vol_in+b.vol_in)as he,(a.vol_in-b.vol_in)as cha from(
+select row_num+1 as row_num,host,vol_in,maketime from us
+)a
+left join(select row_number() over(order by maketime)as row_num,host,vol_in
+from ADMINISTRATOR.apc
+where date(maketime)between (current date - 1 year) and current date 
+and host='11')b on a.row_num=b.row_num)x
+where x.cha>=210
+group by host)c
+inner join(select host,count(vol_in)*0.17 as total
+from administrator.apc
+where vol_in<=10 and host='11' and date(maketime)between (current date - 1 year) and current date
+group by host)d on c.host=d.host
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>HOST</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>6</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>HOST</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>HOST</design:label>
+            <design:formattingHints>
+              <design:displaySize>6</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>COUNT</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>COUNT</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>COUNT</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TOTAL</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+            <design:precision>14</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TOTAL</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TOTAL</design:label>
+            <design:formattingHints>
+              <design:displaySize>16</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="7楼ups" id="615">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">HOST</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">HOST</text-property>
+                    <text-property name="heading">HOST</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">COUNT</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">COUNT</text-property>
+                    <text-property name="heading">COUNT</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TOTAL</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">TOTAL</text-property>
+                    <text-property name="heading">TOTAL</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">HOST</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">COUNT</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">TOTAL</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">数据源</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">HOST</property>
+                    <property name="nativeName">HOST</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">COUNT</property>
+                    <property name="nativeName">COUNT</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">TOTAL</property>
+                    <property name="nativeName">TOTAL</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with us as (select row_number() over(order by maketime)as row_num,
+host,vol_in,maketime
+from ADMINISTRATOR.apc
+where date(maketime) between (current date - 1 year) and current date
+and host='7F')
+select case when c.host='7F' then '7楼ups' end host,c.count,d.total
+from
+(select x.host,count(cha) as count
+from
+(select a.*,(a.vol_in+b.vol_in)as he,(a.vol_in-b.vol_in)as cha from(
+select row_num+1 as row_num,host,vol_in,maketime from us
+)a
+left join(select row_number() over(order by maketime)as row_num,host,vol_in
+from ADMINISTRATOR.apc
+where date(maketime)between (current date - 1 year) and current date
+and host='7F')b on a.row_num=b.row_num)x
+where x.cha>=210
+group by host)c
+inner join(select host,count(vol_in)*0.17 as total
+from administrator.apc
+where vol_in<=5 and host='7F' and date(maketime)between (current date - 1 year) and current date
+group by host)d on c.host=d.host
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>HOST</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>6</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>HOST</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>HOST</design:label>
+            <design:formattingHints>
+              <design:displaySize>6</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>COUNT</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>COUNT</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>COUNT</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TOTAL</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+            <design:precision>14</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TOTAL</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TOTAL</design:label>
+            <design:formattingHints>
+              <design:displaySize>16</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="7楼ups明细" id="616">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">HOST</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">HOST</text-property>
+                    <text-property name="heading">HOST</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">VOL_IN</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">VOL_IN</text-property>
+                    <text-property name="heading">VOL_IN</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">MAKETIME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">MAKETIME</text-property>
+                    <text-property name="heading">MAKETIME</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">HOST</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">VOL_IN</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">MAKETIME</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">数据源</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">HOST</property>
+                    <property name="nativeName">HOST</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">VOL_IN</property>
+                    <property name="nativeName">VOL_IN</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">MAKETIME</property>
+                    <property name="nativeName">MAKETIME</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with us as (select row_number() over(order by maketime)as row_num,
+host,vol_in,maketime
+from ADMINISTRATOR.apc
+where date(maketime) between (current date - 1 year) and current date
+and host='7F')
+
+select case when x.host='7F' then '7楼ups' end host,x.vol_in,x.maketime
+from
+(select b.*,(a.vol_in+b.vol_in)as he,(a.vol_in-b.vol_in)as cha from(
+select row_num+1 as row_num,host,vol_in,maketime from us
+)a
+left join(select row_number() over(order by maketime)as row_num,host,vol_in,maketime
+from ADMINISTRATOR.apc
+where date(maketime) between (current date - 1 year) and current date
+and host='7F')b on a.row_num=b.row_num)x
+where x.cha>=210 or x.cha<=-210]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>HOST</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>HOST</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>HOST</design:label>
+            <design:formattingHints>
+              <design:displaySize>2</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>VOL_IN</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>5</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>VOL_IN</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>VOL_IN</design:label>
+            <design:formattingHints>
+              <design:displaySize>7</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>MAKETIME</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>26</design:precision>
+            <design:scale>6</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>MAKETIME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>MAKETIME</design:label>
+            <design:formattingHints>
+              <design:displaySize>26</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="13楼10K" id="617">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">HOST</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">HOST</text-property>
+                    <text-property name="heading">HOST</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">COUNT</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">COUNT</text-property>
+                    <text-property name="heading">COUNT</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TOTAL</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">TOTAL</text-property>
+                    <text-property name="heading">TOTAL</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">HOST</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">COUNT</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">TOTAL</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">数据源</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">HOST</property>
+                    <property name="nativeName">HOST</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">COUNT</property>
+                    <property name="nativeName">COUNT</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">TOTAL</property>
+                    <property name="nativeName">TOTAL</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with us as (select row_number() over(order by maketime)as row_num,
+host,vol_in,maketime
+from ADMINISTRATOR.apc
+where date(maketime) between (current date - 1 year) and current date
+and host='1K')
+select case when c.host='1K' then '13楼10K' end host,c.count,d.total
+from
+(select x.host,count(cha) as count
+from
+(select a.*,(a.vol_in+b.vol_in)as he,(a.vol_in-b.vol_in)as cha from(
+select row_num+1 as row_num,host,vol_in,maketime from us
+)a
+left join(select row_number() over(order by maketime)as row_num,host,vol_in
+from ADMINISTRATOR.apc
+where date(maketime)between (current date - 1 year) and current date
+and host='1K')b on a.row_num=b.row_num)x
+where x.cha>=45
+group by host)c
+inner join(select host,count(vol_in)*0.17 as total
+from administrator.apc
+where vol_in<=5 and host='1K' and date(maketime)between (current date - 1 year) and current date
+group by host)d on c.host=d.host
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>HOST</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>7</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>HOST</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>HOST</design:label>
+            <design:formattingHints>
+              <design:displaySize>7</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>COUNT</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>COUNT</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>COUNT</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TOTAL</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+            <design:precision>14</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TOTAL</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TOTAL</design:label>
+            <design:formattingHints>
+              <design:displaySize>16</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="13楼10k明细" id="618">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">HOST</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">HOST</text-property>
+                    <text-property name="heading">HOST</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">VOL_IN</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">VOL_IN</text-property>
+                    <text-property name="heading">VOL_IN</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">MAKETIME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">MAKETIME</text-property>
+                    <text-property name="heading">MAKETIME</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">HOST</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">VOL_IN</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">MAKETIME</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">数据源</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">HOST</property>
+                    <property name="nativeName">HOST</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">VOL_IN</property>
+                    <property name="nativeName">VOL_IN</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">MAKETIME</property>
+                    <property name="nativeName">MAKETIME</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with us as (select row_number() over(order by maketime)as row_num,
+host,vol_in,maketime
+from ADMINISTRATOR.apc
+where date(maketime) between (current date - 1 year) and current date
+and host='1K')
+
+select case when x.host='1K' then '13楼10k' end host,x.vol_in,x.maketime
+from
+(select b.*,(a.vol_in+b.vol_in)as he,(a.vol_in-b.vol_in)as cha from(
+select row_num+1 as row_num,host,vol_in,maketime from us
+)a
+left join(select row_number() over(order by maketime)as row_num,host,vol_in,maketime
+from ADMINISTRATOR.apc
+where date(maketime) between (current date - 1 year) and current date
+and host='1K')b on a.row_num=b.row_num)x
+where x.cha>=45 or x.cha<=-45]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>HOST</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>HOST</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>HOST</design:label>
+            <design:formattingHints>
+              <design:displaySize>2</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>VOL_IN</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>5</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>VOL_IN</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>VOL_IN</design:label>
+            <design:formattingHints>
+              <design:displaySize>7</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>MAKETIME</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>26</design:precision>
+            <design:scale>6</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>MAKETIME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>MAKETIME</design:label>
+            <design:formattingHints>
+              <design:displaySize>26</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="13楼20K" id="619">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">HOST</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">HOST</text-property>
+                    <text-property name="heading">HOST</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">COUNT</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">COUNT</text-property>
+                    <text-property name="heading">COUNT</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TOTAL</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">TOTAL</text-property>
+                    <text-property name="heading">TOTAL</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">HOST</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">COUNT</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">TOTAL</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">数据源</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">HOST</property>
+                    <property name="nativeName">HOST</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">COUNT</property>
+                    <property name="nativeName">COUNT</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">TOTAL</property>
+                    <property name="nativeName">TOTAL</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with us as (select row_number() over(order by maketime)as row_num,
+host,vol_in,maketime
+from ADMINISTRATOR.apc
+where date(maketime) between (current date - 1 year) and current date
+and host='2K')
+select case when c.host='2K' then '13楼20k' end host,c.count,d.total
+from
+(select x.host,count(cha) as count
+from
+(select a.*,(a.vol_in+b.vol_in)as he,(a.vol_in-b.vol_in)as cha from(
+select row_num+1 as row_num,host,vol_in,maketime from us
+)a
+left join(select row_number() over(order by maketime)as row_num,host,vol_in
+from ADMINISTRATOR.apc
+where date(maketime)between (current date - 1 year) and current date
+and host='2K')b on a.row_num=b.row_num)x
+where x.cha>=210
+group by host)c
+inner join(select host,count(vol_in)*0.17 as total
+from administrator.apc
+where vol_in<=5 and host='2K' and date(maketime)between (current date - 1 year) and current date
+group by host)d on c.host=d.host
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>HOST</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>7</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>HOST</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>HOST</design:label>
+            <design:formattingHints>
+              <design:displaySize>7</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>COUNT</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>COUNT</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>COUNT</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TOTAL</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+            <design:precision>14</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TOTAL</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TOTAL</design:label>
+            <design:formattingHints>
+              <design:displaySize>16</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="13楼20K明细" id="620">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">HOST</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">HOST</text-property>
+                    <text-property name="heading">HOST</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">VOL_IN</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">VOL_IN</text-property>
+                    <text-property name="heading">VOL_IN</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">MAKETIME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">MAKETIME</text-property>
+                    <text-property name="heading">MAKETIME</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">HOST</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">VOL_IN</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">MAKETIME</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">数据源</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">HOST</property>
+                    <property name="nativeName">HOST</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">VOL_IN</property>
+                    <property name="nativeName">VOL_IN</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">MAKETIME</property>
+                    <property name="nativeName">MAKETIME</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with us as (select row_number() over(order by maketime)as row_num,
+host,vol_in,maketime
+from ADMINISTRATOR.apc
+where date(maketime) between (current date - 1 year) and current date
+and host='2K')
+
+select case when x.host='2K' then '13楼20k' end host,x.vol_in,x.maketime
+from
+(select b.*,(a.vol_in+b.vol_in)as he,(a.vol_in-b.vol_in)as cha from(
+select row_num+1 as row_num,host,vol_in,maketime from us
+)a
+left join(select row_number() over(order by maketime)as row_num,host,vol_in,maketime
+from ADMINISTRATOR.apc
+where date(maketime) between (current date - 1 year) and current date
+and host='2K')b on a.row_num=b.row_num)x
+where x.cha>=210 or x.cha<=-210]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>HOST</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>HOST</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>HOST</design:label>
+            <design:formattingHints>
+              <design:displaySize>2</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>VOL_IN</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>5</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>VOL_IN</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>VOL_IN</design:label>
+            <design:formattingHints>
+              <design:displaySize>7</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>MAKETIME</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>26</design:precision>
+            <design:scale>6</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>MAKETIME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>MAKETIME</design:label>
+            <design:formattingHints>
+              <design:displaySize>26</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="11楼ups明细" id="880">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">HOST</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">HOST</text-property>
+                    <text-property name="heading">HOST</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">VOL_IN</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">VOL_IN</text-property>
+                    <text-property name="heading">VOL_IN</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">MAKETIME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">MAKETIME</text-property>
+                    <text-property name="heading">MAKETIME</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">HOST</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">VOL_IN</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">MAKETIME</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">数据源</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">HOST</property>
+                    <property name="nativeName">HOST</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">VOL_IN</property>
+                    <property name="nativeName">VOL_IN</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">MAKETIME</property>
+                    <property name="nativeName">MAKETIME</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with us as (select row_number() over(order by maketime )as row_num,
+host,vol_in,maketime
+from ADMINISTRATOR.apc
+where date(maketime) between (current date - 1 year) and current date
+and host='11')
+
+select 
+ case when x.host='11' then '11楼ups' end host
+,x.vol_in,x.maketime
+from
+(select b.*,(a.vol_in+b.vol_in)as he,(a.vol_in-b.vol_in)as cha from(
+select row_num+1 as row_num,host,vol_in,maketime from us
+)a
+left join(select row_number() over(order by maketime)as row_num,host,vol_in,maketime
+from ADMINISTRATOR.apc
+where date(maketime) between (current date - 1 year) and current date
+and host='11')b on a.row_num=b.row_num)x
+where x.cha>=210 or x.cha<=-210]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <image id="130">
+            <property name="marginLeft">0pt</property>
+            <property name="height">100px</property>
+            <property name="width">445px</property>
+            <property name="source">embed</property>
+            <property name="imageName">logo.gif</property>
+        </image>
+        <grid id="131">
+            <property name="textAlign">center</property>
+            <property name="verticalAlign">middle</property>
+            <column id="132"/>
+            <row id="381">
+                <property name="textAlign">left</property>
+                <cell id="382">
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <text id="383">
+                        <property name="fontSize">36pt</property>
+                        <property name="contentType">html</property>
+                        <text-property name="content"><![CDATA[<CENTER>
+分公司机房一年停电状况总览
+</CENTER>
+]]></text-property>
+                    </text>
+                </cell>
+            </row>
+            <row id="377">
+                <property name="textAlign">left</property>
+                <cell id="378">
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <table id="385">
+                        <property name="width">10in</property>
+                        <property name="dataSet">11楼ups</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">HOST</property>
+                                <text-property name="displayName">HOST</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["HOST"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">COUNT</property>
+                                <text-property name="displayName">COUNT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["COUNT"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">TOTAL</property>
+                                <text-property name="displayName">TOTAL</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["TOTAL"]</expression>
+                                <property name="dataType">float</property>
+                            </structure>
+                        </list-property>
+                        <column id="414">
+                            <property name="width">0.5in</property>
+                        </column>
+                        <column id="415">
+                            <property name="width">1in</property>
+                        </column>
+                        <column id="416">
+                            <property name="width">1in</property>
+                        </column>
+                        <header>
+                            <row id="386">
+                                <method name="onPrepare"><![CDATA[this.getStyle().backgroundColor = "#FFCC99"; ]]></method>
+                                <property name="backgroundColor">orange</property>
+                                <property name="fontSize">24pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="387">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingLeft">10pt</property>
+                                    <property name="paddingRight">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="388">
+                                        <text-property name="text">ups</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="389">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="390">
+                                        <text-property name="text">停电次数</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="391">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingTop">10pt</property>
+                                    <property name="paddingBottom">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="392">
+                                        <text-property name="text">停电总时长(h)</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="397">
+                                <method name="onPrepare"><![CDATA[count=0;
+]]></method>
+                                <method name="onCreate"><![CDATA[count++; 
+if(count % 2 == 0){ 
+this.getStyle().backgroundColor = "#FFFFCC"; 
+}else{ 
+this.getStyle().backgroundColor = "#99CCFF"; 
+} ]]></method>
+                                <property name="fontSize">20pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="398">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingTop">11pt</property>
+                                    <property name="paddingBottom">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="604">
+                                        <property name="resultSetColumn">HOST</property>
+                                    </data>
+                                </cell>
+                                <cell id="400">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="605">
+                                        <property name="resultSetColumn">COUNT</property>
+                                    </data>
+                                </cell>
+                                <cell id="402">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="606">
+                                        <property name="resultSetColumn">TOTAL</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="408">
+                                <cell id="409">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="410">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="411">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                    <table id="951">
+                        <property name="marginLeft">0pt</property>
+                        <property name="width">10in</property>
+                        <property name="dataSet">7楼ups</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">HOST</property>
+                                <text-property name="displayName">HOST</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["HOST"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">COUNT</property>
+                                <text-property name="displayName">COUNT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["COUNT"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">TOTAL</property>
+                                <text-property name="displayName">TOTAL</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["TOTAL"]</expression>
+                                <property name="dataType">float</property>
+                            </structure>
+                        </list-property>
+                        <column id="970">
+                            <property name="width">0.85in</property>
+                        </column>
+                        <column id="971">
+                            <property name="width">1in</property>
+                        </column>
+                        <column id="972">
+                            <property name="width">1in</property>
+                        </column>
+                        <detail>
+                            <row id="959">
+                                <method name="onPrepare"><![CDATA[count=0;
+]]></method>
+                                <method name="onCreate"><![CDATA[count++; 
+if(count % 2 == 0){ 
+this.getStyle().backgroundColor = "#FFFFCC"; 
+}else{ 
+this.getStyle().backgroundColor = "#99CCFF"; 
+} ]]></method>
+                                <property name="fontSize">20pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="960">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingTop">11pt</property>
+                                    <property name="paddingBottom">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="973">
+                                        <property name="resultSetColumn">HOST</property>
+                                    </data>
+                                </cell>
+                                <cell id="962">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="974">
+                                        <property name="resultSetColumn">COUNT</property>
+                                    </data>
+                                </cell>
+                                <cell id="964">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="975">
+                                        <property name="resultSetColumn">TOTAL</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="966">
+                                <cell id="967">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="968">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="969">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                    <table id="976">
+                        <property name="marginLeft">0pt</property>
+                        <property name="width">10in</property>
+                        <property name="dataSet">13楼apc</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">HOST</property>
+                                <text-property name="displayName">HOST</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["HOST"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">COUNT</property>
+                                <text-property name="displayName">COUNT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["COUNT"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">TOTAL</property>
+                                <text-property name="displayName">TOTAL</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["TOTAL"]</expression>
+                                <property name="dataType">float</property>
+                            </structure>
+                        </list-property>
+                        <column id="988">
+                            <property name="width">0.85in</property>
+                        </column>
+                        <column id="989">
+                            <property name="width">1in</property>
+                        </column>
+                        <column id="990">
+                            <property name="width">1in</property>
+                        </column>
+                        <detail>
+                            <row id="977">
+                                <method name="onPrepare"><![CDATA[count=0;
+]]></method>
+                                <method name="onCreate"><![CDATA[count++; 
+if(count % 2 == 0){ 
+this.getStyle().backgroundColor = "#FFFFCC"; 
+}else{ 
+this.getStyle().backgroundColor = "#99CCFF"; 
+} ]]></method>
+                                <property name="fontSize">20pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="978">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingTop">11pt</property>
+                                    <property name="paddingBottom">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="1021">
+                                        <property name="resultSetColumn">HOST</property>
+                                    </data>
+                                </cell>
+                                <cell id="980">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="1022">
+                                        <property name="resultSetColumn">COUNT</property>
+                                    </data>
+                                </cell>
+                                <cell id="982">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="1023">
+                                        <property name="resultSetColumn">TOTAL</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="984">
+                                <cell id="985">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="986">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="987">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                    <table id="1006">
+                        <property name="marginLeft">0pt</property>
+                        <property name="width">10in</property>
+                        <property name="dataSet">13楼10K</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">HOST</property>
+                                <text-property name="displayName">HOST</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["HOST"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">COUNT</property>
+                                <text-property name="displayName">COUNT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["COUNT"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">TOTAL</property>
+                                <text-property name="displayName">TOTAL</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["TOTAL"]</expression>
+                                <property name="dataType">float</property>
+                            </structure>
+                        </list-property>
+                        <column id="1018">
+                            <property name="width">0.85in</property>
+                        </column>
+                        <column id="1019">
+                            <property name="width">1in</property>
+                        </column>
+                        <column id="1020">
+                            <property name="width">1in</property>
+                        </column>
+                        <detail>
+                            <row id="1007">
+                                <method name="onPrepare"><![CDATA[count=0;
+]]></method>
+                                <method name="onCreate"><![CDATA[count++; 
+if(count % 2 == 0){ 
+this.getStyle().backgroundColor = "#FFFFCC"; 
+}else{ 
+this.getStyle().backgroundColor = "#99CCFF"; 
+} ]]></method>
+                                <property name="fontSize">20pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="1008">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingTop">11pt</property>
+                                    <property name="paddingBottom">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="1049">
+                                        <property name="resultSetColumn">HOST</property>
+                                    </data>
+                                </cell>
+                                <cell id="1010">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="1050">
+                                        <property name="resultSetColumn">COUNT</property>
+                                    </data>
+                                </cell>
+                                <cell id="1012">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="1051">
+                                        <property name="resultSetColumn">TOTAL</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="1014">
+                                <cell id="1015">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="1016">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="1017">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                    <table id="1034">
+                        <property name="marginLeft">0pt</property>
+                        <property name="width">10in</property>
+                        <property name="dataSet">13楼20K</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">HOST</property>
+                                <text-property name="displayName">HOST</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["HOST"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">COUNT</property>
+                                <text-property name="displayName">COUNT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["COUNT"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">TOTAL</property>
+                                <text-property name="displayName">TOTAL</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["TOTAL"]</expression>
+                                <property name="dataType">float</property>
+                            </structure>
+                        </list-property>
+                        <column id="1046">
+                            <property name="width">0.85in</property>
+                        </column>
+                        <column id="1047">
+                            <property name="width">1in</property>
+                        </column>
+                        <column id="1048">
+                            <property name="width">1in</property>
+                        </column>
+                        <detail>
+                            <row id="1035">
+                                <method name="onPrepare"><![CDATA[count=0;
+]]></method>
+                                <method name="onCreate"><![CDATA[count++; 
+if(count % 2 == 0){ 
+this.getStyle().backgroundColor = "#FFFFCC"; 
+}else{ 
+this.getStyle().backgroundColor = "#99CCFF"; 
+} ]]></method>
+                                <property name="fontSize">20pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="1036">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingTop">11pt</property>
+                                    <property name="paddingBottom">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="1052">
+                                        <property name="resultSetColumn">HOST</property>
+                                    </data>
+                                </cell>
+                                <cell id="1038">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="1053">
+                                        <property name="resultSetColumn">COUNT</property>
+                                    </data>
+                                </cell>
+                                <cell id="1040">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="1054">
+                                        <property name="resultSetColumn">TOTAL</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="1042">
+                                <cell id="1043">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="1044">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="1045">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
+        <grid id="556">
+            <property name="textAlign">center</property>
+            <property name="verticalAlign">middle</property>
+            <column id="557"/>
+            <row id="558">
+                <property name="textAlign">left</property>
+                <cell id="559">
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <text id="560">
+                        <property name="fontSize">36pt</property>
+                        <property name="marginTop">10pt</property>
+                        <property name="paddingTop">1pt</property>
+                        <property name="contentType">html</property>
+                        <text-property name="content"><![CDATA[<CENTER>
+11楼ups一年停电状况明细
+</CENTER>
+]]></text-property>
+                    </text>
+                </cell>
+            </row>
+            <row id="561">
+                <property name="textAlign">left</property>
+                <cell id="562">
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <table id="563">
+                        <property name="width">10in</property>
+                        <property name="dataSet">11楼ups明细</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">HOST</property>
+                                <text-property name="displayName">HOST</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["HOST"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">VOL_IN</property>
+                                <text-property name="displayName">VOL_IN</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["VOL_IN"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">MAKETIME</property>
+                                <text-property name="displayName">MAKETIME</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["MAKETIME"]</expression>
+                                <property name="dataType">date-time</property>
+                            </structure>
+                        </list-property>
+                        <column id="597">
+                            <property name="width">0.5in</property>
+                        </column>
+                        <column id="598">
+                            <property name="width">1in</property>
+                        </column>
+                        <column id="602">
+                            <property name="width">1.7in</property>
+                        </column>
+                        <header>
+                            <row id="564">
+                                <method name="onPrepare"><![CDATA[this.getStyle().backgroundColor = "#FFCC99"; ]]></method>
+                                <property name="backgroundColor">orange</property>
+                                <property name="fontSize">24pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="565">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingLeft">10pt</property>
+                                    <property name="paddingRight">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="566">
+                                        <text-property name="text">ups</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="567">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="568">
+                                        <text-property name="text">输入电压</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="575">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="576">
+                                        <text-property name="text">采集时间</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="577">
+                                <method name="onPrepare"><![CDATA[count=0;
+]]></method>
+                                <method name="onCreate"><![CDATA[count++; 
+if(count % 2 == 0){ 
+this.getStyle().backgroundColor = "#FFFFCC"; 
+}else{ 
+this.getStyle().backgroundColor = "#99CCFF"; 
+} ]]></method>
+                                <property name="fontSize">20pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="578">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingTop">11pt</property>
+                                    <property name="paddingBottom">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="853">
+                                        <property name="resultSetColumn">HOST</property>
+                                    </data>
+                                </cell>
+                                <cell id="580">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="854">
+                                        <property name="resultSetColumn">VOL_IN</property>
+                                    </data>
+                                </cell>
+                                <cell id="588">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="855">
+                                        <structure name="dateTimeFormat">
+                                            <property name="category">Custom</property>
+                                            <property name="pattern">yyyy-MM-dd HH:mm:ss</property>
+                                        </structure>
+                                        <property name="resultSetColumn">MAKETIME</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="590">
+                                <cell id="591">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="592">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="596">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
+        <grid id="650">
+            <property name="textAlign">center</property>
+            <property name="verticalAlign">middle</property>
+            <column id="651"/>
+            <row id="652">
+                <property name="textAlign">left</property>
+                <cell id="653">
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <text id="654">
+                        <property name="fontSize">36pt</property>
+                        <property name="marginTop">10pt</property>
+                        <property name="paddingTop">1pt</property>
+                        <property name="contentType">html</property>
+                        <text-property name="content"><![CDATA[<CENTER>
+7楼ups一年停电状况明细
+</CENTER>
+]]></text-property>
+                    </text>
+                </cell>
+            </row>
+            <row id="655">
+                <property name="textAlign">left</property>
+                <cell id="656">
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <table id="657">
+                        <property name="width">10in</property>
+                        <property name="dataSet">7楼ups明细</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">HOST</property>
+                                <text-property name="displayName">HOST</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["HOST"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">VOL_IN</property>
+                                <text-property name="displayName">VOL_IN</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["VOL_IN"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">MAKETIME</property>
+                                <text-property name="displayName">MAKETIME</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["MAKETIME"]</expression>
+                                <property name="dataType">date-time</property>
+                            </structure>
+                        </list-property>
+                        <column id="676">
+                            <property name="width">0.5in</property>
+                        </column>
+                        <column id="677">
+                            <property name="width">1in</property>
+                        </column>
+                        <column id="678">
+                            <property name="width">1.7in</property>
+                        </column>
+                        <header>
+                            <row id="658">
+                                <method name="onPrepare"><![CDATA[this.getStyle().backgroundColor = "#FFCC99"; ]]></method>
+                                <property name="backgroundColor">orange</property>
+                                <property name="fontSize">24pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="659">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingLeft">10pt</property>
+                                    <property name="paddingRight">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="660">
+                                        <text-property name="text">ups</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="661">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="662">
+                                        <text-property name="text">输入电压</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="663">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="664">
+                                        <text-property name="text">采集时间</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="665">
+                                <method name="onPrepare"><![CDATA[count=0;
+]]></method>
+                                <method name="onCreate"><![CDATA[count++; 
+if(count % 2 == 0){ 
+this.getStyle().backgroundColor = "#FFFFCC"; 
+}else{ 
+this.getStyle().backgroundColor = "#99CCFF"; 
+} ]]></method>
+                                <property name="fontSize">20pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="666">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingTop">11pt</property>
+                                    <property name="paddingBottom">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="859">
+                                        <property name="resultSetColumn">HOST</property>
+                                    </data>
+                                </cell>
+                                <cell id="668">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="860">
+                                        <property name="resultSetColumn">VOL_IN</property>
+                                    </data>
+                                </cell>
+                                <cell id="670">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="861">
+                                        <structure name="dateTimeFormat">
+                                            <property name="category">Custom</property>
+                                            <property name="pattern">yyyy-MM-dd HH:mm:ss</property>
+                                        </structure>
+                                        <property name="resultSetColumn">MAKETIME</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="672">
+                                <cell id="673">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="674">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="675">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
+        <grid id="708">
+            <property name="textAlign">center</property>
+            <property name="verticalAlign">middle</property>
+            <column id="709"/>
+            <row id="710">
+                <property name="textAlign">left</property>
+                <cell id="711">
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <text id="712">
+                        <property name="fontSize">36pt</property>
+                        <property name="marginTop">10pt</property>
+                        <property name="paddingTop">1pt</property>
+                        <property name="contentType">html</property>
+                        <text-property name="content"><![CDATA[<CENTER>
+13楼apc一年停电状况明细
+</CENTER>
+]]></text-property>
+                    </text>
+                </cell>
+            </row>
+            <row id="713">
+                <property name="textAlign">left</property>
+                <cell id="714">
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <table id="715">
+                        <property name="width">10in</property>
+                        <property name="dataSet">13楼apc明细</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">HOST</property>
+                                <text-property name="displayName">HOST</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["HOST"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">VOL_IN</property>
+                                <text-property name="displayName">VOL_IN</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["VOL_IN"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">MAKETIME</property>
+                                <text-property name="displayName">MAKETIME</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["MAKETIME"]</expression>
+                                <property name="dataType">date-time</property>
+                            </structure>
+                        </list-property>
+                        <column id="734">
+                            <property name="width">0.5in</property>
+                        </column>
+                        <column id="735">
+                            <property name="width">1in</property>
+                        </column>
+                        <column id="736">
+                            <property name="width">1.7in</property>
+                        </column>
+                        <header>
+                            <row id="716">
+                                <method name="onPrepare"><![CDATA[this.getStyle().backgroundColor = "#FFCC99"; ]]></method>
+                                <property name="backgroundColor">orange</property>
+                                <property name="fontSize">24pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="717">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingLeft">10pt</property>
+                                    <property name="paddingRight">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="718">
+                                        <text-property name="text">ups</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="719">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="720">
+                                        <text-property name="text">输入电压</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="721">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="722">
+                                        <text-property name="text">采集时间</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="723">
+                                <method name="onPrepare"><![CDATA[count=0;
+]]></method>
+                                <method name="onCreate"><![CDATA[count++; 
+if(count % 2 == 0){ 
+this.getStyle().backgroundColor = "#FFFFCC"; 
+}else{ 
+this.getStyle().backgroundColor = "#99CCFF"; 
+} ]]></method>
+                                <property name="fontSize">20pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="724">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingTop">11pt</property>
+                                    <property name="paddingBottom">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="865">
+                                        <property name="resultSetColumn">HOST</property>
+                                    </data>
+                                </cell>
+                                <cell id="726">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="866">
+                                        <property name="resultSetColumn">VOL_IN</property>
+                                    </data>
+                                </cell>
+                                <cell id="728">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="867">
+                                        <structure name="dateTimeFormat">
+                                            <property name="category">Custom</property>
+                                            <property name="pattern">yyyy-MM-dd HH:mm:ss</property>
+                                        </structure>
+                                        <property name="resultSetColumn">MAKETIME</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="730">
+                                <cell id="731">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="732">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="733">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
+        <grid id="824">
+            <property name="textAlign">center</property>
+            <property name="verticalAlign">middle</property>
+            <column id="825"/>
+            <row id="826">
+                <property name="textAlign">left</property>
+                <cell id="827">
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <text id="828">
+                        <property name="fontSize">36pt</property>
+                        <property name="marginTop">20pt</property>
+                        <property name="paddingTop">1pt</property>
+                        <property name="contentType">html</property>
+                        <text-property name="content"><![CDATA[<CENTER>
+13楼10k一年停电状况明细
+</CENTER>
+]]></text-property>
+                    </text>
+                </cell>
+            </row>
+            <row id="829">
+                <property name="textAlign">left</property>
+                <cell id="830">
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <table id="831">
+                        <property name="width">10in</property>
+                        <property name="dataSet">13楼10k明细</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">HOST</property>
+                                <text-property name="displayName">HOST</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["HOST"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">VOL_IN</property>
+                                <text-property name="displayName">VOL_IN</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["VOL_IN"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">MAKETIME</property>
+                                <text-property name="displayName">MAKETIME</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["MAKETIME"]</expression>
+                                <property name="dataType">date-time</property>
+                            </structure>
+                        </list-property>
+                        <column id="850">
+                            <property name="width">0.5in</property>
+                        </column>
+                        <column id="851">
+                            <property name="width">1in</property>
+                        </column>
+                        <column id="852">
+                            <property name="width">1.7in</property>
+                        </column>
+                        <header>
+                            <row id="832">
+                                <method name="onPrepare"><![CDATA[this.getStyle().backgroundColor = "#FFCC99"; ]]></method>
+                                <property name="backgroundColor">orange</property>
+                                <property name="fontSize">24pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="833">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingLeft">10pt</property>
+                                    <property name="paddingRight">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="834">
+                                        <text-property name="text">ups</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="835">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="836">
+                                        <text-property name="text">输入频率</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="837">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="838">
+                                        <text-property name="text">采集时间</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="839">
+                                <method name="onPrepare"><![CDATA[count=0;
+]]></method>
+                                <method name="onCreate"><![CDATA[count++; 
+if(count % 2 == 0){ 
+this.getStyle().backgroundColor = "#FFFFCC"; 
+}else{ 
+this.getStyle().backgroundColor = "#99CCFF"; 
+} ]]></method>
+                                <property name="fontSize">20pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="840">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingTop">11pt</property>
+                                    <property name="paddingBottom">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="1099">
+                                        <property name="resultSetColumn">HOST</property>
+                                    </data>
+                                </cell>
+                                <cell id="842">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="1100">
+                                        <property name="resultSetColumn">VOL_IN</property>
+                                    </data>
+                                </cell>
+                                <cell id="844">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="1101">
+                                        <structure name="dateTimeFormat">
+                                            <property name="category">Custom</property>
+                                            <property name="pattern">yyyy-MM-dd HH:mm:ss</property>
+                                        </structure>
+                                        <property name="resultSetColumn">MAKETIME</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="846">
+                                <cell id="847">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="848">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="849">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
+        <grid id="1070">
+            <property name="textAlign">center</property>
+            <property name="verticalAlign">middle</property>
+            <column id="1071"/>
+            <row id="1072">
+                <property name="textAlign">left</property>
+                <cell id="1073">
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <text id="1074">
+                        <property name="fontSize">36pt</property>
+                        <property name="marginTop">10pt</property>
+                        <property name="paddingTop">1pt</property>
+                        <property name="contentType">html</property>
+                        <text-property name="content"><![CDATA[<CENTER>
+13楼20k一年停电状况明细
+</CENTER>
+]]></text-property>
+                    </text>
+                </cell>
+            </row>
+            <row id="1075">
+                <property name="textAlign">left</property>
+                <cell id="1076">
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <table id="1077">
+                        <property name="width">10in</property>
+                        <property name="dataSet">13楼20K明细</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">HOST</property>
+                                <text-property name="displayName">HOST</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["HOST"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">VOL_IN</property>
+                                <text-property name="displayName">VOL_IN</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["VOL_IN"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">MAKETIME</property>
+                                <text-property name="displayName">MAKETIME</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["MAKETIME"]</expression>
+                                <property name="dataType">date-time</property>
+                            </structure>
+                        </list-property>
+                        <column id="1096">
+                            <property name="width">0.5in</property>
+                        </column>
+                        <column id="1097">
+                            <property name="width">1in</property>
+                        </column>
+                        <column id="1098">
+                            <property name="width">1.7in</property>
+                        </column>
+                        <header>
+                            <row id="1078">
+                                <method name="onPrepare"><![CDATA[this.getStyle().backgroundColor = "#FFCC99"; ]]></method>
+                                <property name="backgroundColor">orange</property>
+                                <property name="fontSize">24pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="1079">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingLeft">10pt</property>
+                                    <property name="paddingRight">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="1080">
+                                        <text-property name="text">ups</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="1081">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="1082">
+                                        <text-property name="text">输入电压</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="1083">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="1084">
+                                        <text-property name="text">采集时间</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="1085">
+                                <method name="onPrepare"><![CDATA[count=0;
+]]></method>
+                                <method name="onCreate"><![CDATA[count++; 
+if(count % 2 == 0){ 
+this.getStyle().backgroundColor = "#FFFFCC"; 
+}else{ 
+this.getStyle().backgroundColor = "#99CCFF"; 
+} ]]></method>
+                                <property name="fontSize">20pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="1086">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingTop">11pt</property>
+                                    <property name="paddingBottom">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="1102">
+                                        <property name="resultSetColumn">HOST</property>
+                                    </data>
+                                </cell>
+                                <cell id="1088">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="1103">
+                                        <property name="resultSetColumn">VOL_IN</property>
+                                    </data>
+                                </cell>
+                                <cell id="1090">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="1104">
+                                        <structure name="dateTimeFormat">
+                                            <property name="category">Custom</property>
+                                            <property name="pattern">yyyy-MM-dd HH:mm:ss</property>
+                                        </structure>
+                                        <property name="resultSetColumn">MAKETIME</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="1092">
+                                <cell id="1093">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="1094">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="1095">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
+    </body>
+    <list-property name="images">
+        <structure>
+            <property name="name">logo.gif</property>
+            <property name="type">image/gif</property>
+            <property name="data">
+                R0lGODlhvQFkAOYAAP/+//z7/NPT1v39/vz8/fv7/O3t7uTl6ujp7cjL1tnb4hknVB8tWCIwWyMxXCQx
+                XC06YzA9ZTNAaDxIbkJOc15oh2hxj212k32Fno2Uqp6kt6qvwM7R28vO2A0dSxIiTxUkURcmUhopVRwr
+                Vh0sVyAvWSQzXSU0XiY0Xig2Xyo4YTZDajlGbD5LcEVRdUhUd0pWeU1Ze1FdflVggVlkhGNti3N8l3iB
+                m4GJoYaOpZKZrpifs6SqvK+0w7S5yMLG0r/Dz8XJ1Lq/zN7g5dTX3u/w8vn6+/f4+fP2+PH09fn9/ePz
+                8gOShQuWiRaaji2kmT2roYzNxwCRgwCQggCPgQCNfwCLfACJeQCHeAGSgwGRgwKSgwORgwSRgweThQqR
+                gxGXih2dkSKgk0yyqF66sXDBuX/IwaLX0rHe2bvi3tDr6ACGdsfn47bn3/f8+/////7+/v///wAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAHEALAAAAAC9AWQAAAf/gHGC
+                g4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+
+                v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZvBxACps+OUK3B0RHjAkdONrr7ME+LwwVRZkcDSEytkQy
+                KTpIiRs4eIDL0K6gwVs3GDTAoGnHBxM6bO1AsWCFD0QbLOjQsMMHD4YHQ4pc9WZHigdA4hQpkmQAJQUx
+                bPQo8uZNEn+wDtBQeGPIoQ45fEywcCMFDw0bRioN6WZJqCMHEmyogeKBDBpYa2RAMKlDh5sdNmSoQSOi
+                pQKYfEAoYSPJGyNG/woB2aGAQo4MEDYcubG0L7s3Ucaw8USAg44ZLCCgMPFghIgFC0SouAgJCREhO2pM
+                SGzChIoKPSgN2RHOUhALJIzOxYBhwzxBPnQocGGjxYw4SPj63X3tDJgqUAZveiNkBQMSJR48MBFBxooU
+                MW7sMPCIiIYLLFKkUJGiQQQbG4J0qDQjeYwgk4YAuaGigWcUDUqUQMFjUJAMCVwQ+QFBBxCzvAUYjW9V
+                SEFFcJwI0cIKMVgwgwomWHABDBm85ggCOUzAwHwvSJdDCABWUkMIDzBggjrVCYFDDCmUYIIDI6AgAQUu
+                uCBDaIPskAEPXPmwgwUcCCikMwRKIcUUwKXBSf8CPBDhgwUpmOBCChHUgKMj/DHWQA4JCKLBB0Hp+MMk
+                OyhEggQ0jOnIDjs9tIIKDkBAgwYdDHGAEEQYkgMPKWnA0ZCAKlOkkUauQYYnF0zp3gghgOBBDpAg0MMK
+                IMwQVxw7zMBAiyGEQMOVjvAgAQMM1CCEOI9scMEMF4jVogxCdIAZDyES0sMOPAgU6K7GkPEboUdW8QQa
+                nBgggwcLdFYRBhn4gB4kQKgwQlI8ZFiCdxhcUAIEMeRAXSNJVLAACTfkSUkRClzAwAMtwCBBCSF4wMIB
+                vNbbTBlhUAGsgcN2goQGOMwwggoYmEvABjZYQBkjGXwQgwI5sPBABTCMYEH/Ahg84EAKEiy8iA7y3cDV
+                JEJUMCFjL4YQQQU5aACqvTAXg6++wFLRLyFOZULECw3g4CQNLsSwAgQqUEDQIkmgdkMGLFzwgwbGTUAB
+                hA1siuoiQbAwQgX0ThJxiyU4oFwMPQyRp14d9DByzGz/Qka++9pMLCFmIGjJDzu08AAKKyS2WAMNpABB
+                Ay6kpAgHE0AAAws4ZCDDWp5JgAIDENigAAGMHHEBCS50SQkOElzlgAMR6HAAAj/o4BwLK1TZdduw53KG
+                EwUCK+zcg5jRxIHCQcKBBhjIAKHGJCwAOOAS3LCBWDgEqUgPDDjQwAoSIMcCCwxckCENQLwRagQp+OD9
+                /yQ12aSDezLgUAEEJpRwnAginIhT7PTTMiihVtwsCGBeUIGk3Y4AGQhAsAAHmKABDpgBs24gARFMYAcj
+                G58icOA+EoyABTS4QQdsIAIZREACG0jChWYQAkhRwggH8JENomQCBoAgBCJggARicAEM2EADFqqfDl9x
+                v2DpTxBR+ELtpmAFACLNBtejgAVo0D4bxKEmR5gBDBbwgRdooBFDoEAKaICBiKBrByxwXwkWQIFnMSIH
+                H6CBPw7QgbWtKQYjQJbY5LOCC+wgDhvgYg53yEeS9HAKcitEGrxgBWD9r3eP4MAMSDCDIgRgBxXwHAZS
+                AIIE0kURQGhADcYTBwXwQP8GpILPFpPSiA2oYAV5EoIMXiATBFxqEUJQwQdQoBgHMMAFGjDXG3wALxvo
+                gJN9DKYp4NBDfuFuEEkowxZoZiRAGrERCXHBeHwgAQ/U5w2SggEDFgCdHbyOELlJwRXjwIMXpEAEgiuB
+                BMYpAJ8oggh6o4wFPhBDDDZJTYnIwQtqoIEaiO0G3igC6soZtqq8QJgIJUUxA3mIJZSBCcw0Eu8eoQHv
+                8AiPKViADxRwgxdsQAE2eNcIHkChDqBlEAiYgAuCVJIXyOACGpinbn4wgQu4sRAKkIEJ6iOIdEWgAchJ
+                AQssoAFvHGIABhhTECjAACfGIQEZmEEE4GPABjAuoVj//YRvIiqF2xHCDYVwKBOmELdnIiIIo6qBBWrg
+                DQqIoAYeJIEJvGSDoUVgAjiw0C4rhxYO4EAH7tyAByJSlxCswHCGyClEDLGBGEigag14QANakAPEGkJz
+                IKhAB/oZAQeo4K4yeOwDenDSrJoWE8X0Kt3IoAacPTSizkQkImIAoguYYAE4SEIMFkBUHMQJR0nQwI5+
+                QIT5DcACDbhIcRbwgtfcAASkrcECZqCB+REiCDCAwB0RAckWlEAEYSMBCzDwMkH0YAT64WgFVmAC8PTA
+                rwxowWnne4li5u+YcYgCGIqYM0E4VAuwBY5sCbGXEGRgABy4wAQ04AMWhOAiL93u/yKIwIIXcEUILPiA
+                DYTgAxss4AE+aDCKfsICEDJiBwGDAAwZMIIVlGYQQ3ABBC6SBAN0wK1OFUQJLCBC+voYEmOg3b7uW4go
+                CBk4/Y2DQwFpyCQhoqI6OOmqmCa9H/BgBBfIsSIyQIKjkXMGPsBADCZQng08LSXOK4QMXGBGRgTBBwEr
+                AQhSUIMQ6eAEXu5kC0JQAhwBAQQS/rGgF/GEQtbsh/kVcrCgkOT/wvYKZzhEDyjAA8zFQQNwmkHeTPCD
+                A8CABBBwQa0KUQQapMCo5l2vDDzpgR4cwAJSo0EN2lwtSjhJA0FAdRxoGug4GIEHK5CmIHQggqsN+tiH
+                SIMYmP/J0Nz9ilD/a7QyaQbIMhyiADwgZRx8EIERtOAiMXBASohAgwWMgALANIQQTmCBQfygAhTYsTe+
+                lIAhtGAEJNiQDSz0TU1gIAevRKYC3BmHFlQA2QhHhLKrAEhE646rwRpDWF9LBSpYGxH8psEHLEIvLRoO
+                ATeAAJbz+QE1/cAFI2BAXgWBAxHEoQAH2MEETPCBC+xxSRro9yAOYFQLSKDNCQ96HJRN5EEMIApeIOu+
+                CIVk1wL44owIwIR6gE0LMFfXPWBVImaADy9NLwc9joMEYDCINxDhApQWBRzMgYghzAACEJAAT4VO9zig
+                YQzHPHr/ll5WaUO9EUJYmw5q/q3/nd98EBEYZxyIMIMQ/cADICFw2FXhgxaAAAYeq7vQk8y/2vHddlBo
+                7SCSLAkefCoSJkyEAsBciyFggKiajz0hACPEzy+diKGXve5j5oYget72hizigHdP/AAtAQqGBv7S9RWF
+                4jt/SGgQw++Vb6Au/P352PfLwpWu/Clw4fqOUAARxk9+8r+uB+JXgEA5oAAkGGD8YUc/B4ZQ2p6O/wBG
+                MJuuO0mEb5qN4ISQBGqgBkugBGHFBmqABAI4gAzIgEiwBAjYgAyYfce2cNQ3BVoAfo5AAxPQAh74gQty
+                AyJEbizQAi5wK6FjHSp1EQk2AStAAfjkJR64Aj0xAytAA7pG/wESABI6QAMf6AJzJwho8ARhUAakp19P
+                kAZnIAZh0IROGAbDYgZg8IROKAYUWIHSB3zVVgkq4AEf8AHIQQIg8AEeMAPUoQMhQCoPUC0b1wEZwAAo
+                AATk9hgqoHiD0AL5llkKMAEjMAIjFgcOAALgUQEoIAIhQIYscBlXgwb7NQakZwZrwARoYAZIYgVYcAWY
+                uAZTcAZlsAZUYImYGIpXiIUQ10xVoIGPgAM2cAM28FMSUEMwtXgT4CIPEAE8kAELMAGGYQLaVQEpFwHl
+                pQOLYQIiYAFD8AIOsC1zNzgzUAMPQAINMAOrqABCEAEt4Dlo4ARUQAaPeAVgkAZRwARMAP8FZFCO5VgG
+                alAGV5AFUFAG5liOo0iKt2dxl4AESHAESUABIyADcogTE6EcDwABt5iLhrEYKxAfHWMIQyAD7mECFnOM
+                BiQCKyUIEPAAKSA9LbABB4AEBEBNJEACTpWN29iN3xgFWtAEZ+AGKqmS/kAGVyAFzacEK2ld8ehjFkgo
+                /oOK5INyM+A5cXAAMcAALMBUAomLuiiM0uMAJHBwhrAD7RF3vBVjYuMAItAWcVCRGgMBikdNI2BLMHBF
+                IsmNhWAG3giOJ4kGSlIILskEkVaTQrd9BvJ9nHAEPGlGTikC2rMARUmQSAk4JRABadZTFcAAEYABFBAC
+                xvgC76GUSXH/Eu0TAz3GbSOQAitQAitwcG2gjWJJN2UZjlvwBFAQmk+Ad3HgklogBqEJBU9QBpPnljYp
+                fVQgl3PJk55TagygAkDwJXt5lCjgAC9AAyLQM4XAAxDAADSAOCBgjC7wADRwAS2CbiqwHKUyCDiQAgyQ
+                AToQJxIQB5k5kmPZmWNVBVYwnlaAkqVZSFQgnlZwBYzmmlh4ip5AlyPQk4KwARHASCXxAbu5iynwXt2G
+                SoRgAQoReCuAmDE2AjUwBDUwAg1AA8NYArcxCBhwRxQ0Q9ypmSQJjkygBU4gBk/woVBALGRQSB0qBkxI
+                Bq3pnvSFBs0Xn3UZBwZQASRAH28wePup/wO8OCY48AEOcAMuEQc9UJwu0HEGinI0kAQJgD0j0BkvMmOF
+                AE+cExFh2ZpkWZIn2aJqeQVbYAYq2qWKIJ8ykCdBygDNFQc2OpBH6RniAAT3OQHmYgMWNE6Wp5wkQAOC
+                cANVwaTtwwJqUxOqpJQWMA9hqQTlUxNVapZNgF+CsJZnUKg14aWQCqb0oi4OwAPec6ZGuYu4KQgXED+Q
+                kgArIAIwQC9D4GB0WgHocQAzEFkPEAMuYEsSYAGk8QLuwwJqMjs2Ywa6qqtscKgmiZISNAimOQa7qqtY
+                CqnueQQUsAAxgDoSwFwjowMeoAK3CAIs0AHnkwJCAADbBgEi8AIKgP8BnbJdCrACH2CMy0oDz1KNDICX
+                QsBEyHFADNoCipeNDDcF+DoFWwqJTQCOVOAFjWoILuk/+YqvUoCsXXoEMWACMzAEN6BOG8CtZko5tPIA
+                6KYDcdc9cXAENcAxFfACKPAwPSUx6GoCmjUIGSABJnABcQAEGUABQ7MCNeUx0dcENnuzYBAFQeQE4NgE
+                ThCwhVAGX3CzRNsECNulQtADCVAEQLABF9VTG+ADQ6AAGyAEBqAAPeADaxMEG9ADXtsD6eYDYMu0PRAE
+                FlIELuM8RZAALlO1hedfZxC3chu3A3gGaLAEahC3pCcIbDC3fnu0XeqohuCo4/OohVCoh2u4hjuRe8H6
+                RIlAuIS7P43LuJALuJZ7uZibuZq7uZzbuZ77uaAbuqI7uqRbuqZ7uqibuqq7uqzbuq77urAbu7I7u7Rb
+                u7Z7u7ibu7q7u7zbu777u8AbvMI7vMRbvMZ7vMibvMq7vMzbvM77vNAbvdI7vdRbvdZ7vdibvdq7vdzb
+                vd77veAbvuI7vuRbvuZ7vuibvoUQCAA7
+</property>
+        </structure>
+    </list-property>
+</report>

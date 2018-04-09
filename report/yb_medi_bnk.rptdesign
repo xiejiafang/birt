@@ -1,0 +1,883 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.0.v201405191524 Build &lt;4.4.0.v20140606-1451></property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">26</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">26</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">26</property>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="series" id="192">
+            <text-property name="promptText">请选择业务团队</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value">银保</property>
+                    <property name="label">银保合计</property>
+                </structure>
+                <structure>
+                    <property name="value">首期</property>
+                    <property name="label">银保首期</property>
+                </structure>
+                <structure>
+                    <property name="value">拓展</property>
+                    <property name="label">银保拓展</property>
+                </structure>
+            </list-property>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="branch" id="22">
+            <text-property name="promptText">请选择中支</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="dataSetName">branch_list</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["BRANCH"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["BRANCH"]</expression>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">全部</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="monStart" id="23">
+            <text-property name="promptText">请选择起始月份</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="dataSetName">mon_list</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["KPI_MON"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["KPI_MON"]</expression>
+            <expression name="sortByColumn">dataSetRow["KPI_MON"]</expression>
+            <property name="sortDirection">desc</property>
+            <property name="dataType">decimal</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">false</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="monEnd" id="24">
+            <text-property name="promptText">请选择结束月份</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="dataSetName">mon_list</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["KPI_MON"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["KPI_MON"]</expression>
+            <expression name="sortByColumn">dataSetRow["KPI_MON"]</expression>
+            <property name="sortDirection">desc</property>
+            <property name="dataType">decimal</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">false</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="bftype" id="25">
+            <text-property name="promptText">请选择保费类型</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value">期缴</property>
+                    <property name="label">期缴</property>
+                </structure>
+                <structure>
+                    <property name="value">趸缴</property>
+                    <property name="label">趸缴</property>
+                </structure>
+                <structure>
+                    <property name="value">规模</property>
+                    <property name="label">规模</property>
+                </structure>
+                <structure>
+                    <property name="value">大个险</property>
+                    <property name="label">大个险</property>
+                </structure>
+            </list-property>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Data Source" id="19">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.ibm.db2.jcc.DB2Driver</property>
+            <property name="odaURL">jdbc:db2://10.19.19.34:50000/hnii</property>
+            <property name="odaUser">report</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">b2ttMTIz</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="branch_list" id="20">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">BRANCH</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">BRANCH</text-property>
+                    <text-property name="heading">BRANCH</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">BRANCH</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[
+importPackage( Packages.java.io );  
+ 
+
+//记录调用信息
+var curr_time =BirtDateTime.now( );
+out = new PrintWriter( new FileWriter("visitation.txt", true ));    
+out.println("yb_medi_bnk  ##  "+curr_time);    
+out.close(); ]]></method>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">BRANCH</property>
+                    <property name="nativeName">BRANCH</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select distinct branch 
+from administrator.hn_kpi_info_bnk
+	where kpi_mon=201501]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>BRANCH</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>9</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>BRANCH</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>BRANCH</design:label>
+            <design:formattingHints>
+              <design:displaySize>9</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="mon_list" id="21">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">KPI_MON</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">KPI_MON</text-property>
+                    <text-property name="heading">KPI_MON</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">KPI_MON</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">KPI_MON</property>
+                    <property name="nativeName">KPI_MON</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select distinct kpi_mon
+from administrator.hn_kpi_info_bnk
+	where category='银保' 
+	and kpi_mon <decimal(current date)]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>KPI_MON</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>8</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>KPI_MON</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>KPI_MON</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="dateList" id="26">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">BRANCH</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">BRANCH</text-property>
+                    <text-property name="heading">BRANCH</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">MEDI</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">MEDI</text-property>
+                    <text-property name="heading">MEDI</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">BF</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">BF</text-property>
+                    <text-property name="heading">BF</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">JS</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">JS</text-property>
+                    <text-property name="heading">JS</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">BRANCH</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">MEDI</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">BF</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">JS</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[importPackage( Packages.java.io );  
+
+var branch = reportContext.getParameterValue("branch");  
+var monStart = reportContext.getParameterValue("monStart");  
+var monEnd = reportContext.getParameterValue("monEnd");  
+var bftype = reportContext.getParameterValue("bftype");  
+var series = reportContext.getParameterValue("series");  
+var bfname="";
+var bfjs="";
+
+if(bftype == "趸缴"){
+	bfname="趸缴保费";
+	bfjs="趸缴件数";
+}
+if(bftype == "期缴"){
+	bfname="期缴保费";
+	bfjs="期缴件数";
+}
+if(bftype == "规模"){
+	bfname="规模保费";
+	bfjs="承保件数";
+}
+
+if(bftype == "大个险"){
+	bfname="APE保费";
+	bfjs="APE件数";
+}
+
+this.queryText="select "+
+"        branch, "+
+"        f.getbankname(medi_code) as medi, "+
+"        sum(case when kpi_name = '"+bfname+"' then this_mon else 0 end)/10000 as bf, "+
+"        sum(case when kpi_name = '"+bfjs+"' then this_mon else 0 end) as js "+
+"        from administrator.hn_kpi_info_bnk "+
+"                where kpi_name in('"+bfname+"','"+bfjs+"') "+
+"                and series='渠道' "+
+"                and category='"+series+"' "+
+"                and kpi_mon between "+monStart+" and "+monEnd+" "+
+"                        group by branch,medi_code"]]></method>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">BRANCH</property>
+                    <property name="nativeName">BRANCH</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">MEDI</property>
+                    <property name="nativeName">MEDI</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">BF</property>
+                    <property name="nativeName">BF</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">JS</property>
+                    <property name="nativeName">JS</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select 
+        branch,
+        f.getbankname(medi_code) as medi,
+        sum(case when kpi_name = '期缴保费' then this_mon else 0 end)/10000 as bf,
+        sum(case when kpi_name = '期缴件数' then this_mon else 0 end) as js
+        from administrator.hn_kpi_info_bnk
+                where kpi_name in('期缴保费','期缴件数')
+                and series='渠道'
+                and category='银保'
+                and kpi_mon between 201401 and 201402
+                        group by branch,medi_code]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <cubes>
+        <tabular-cube name="Data Cube" id="29">
+            <property name="dimensions">
+                <tabular-dimension name="branch" id="30">
+                    <property name="defaultHierarchy">NewTabularHierarchy</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy" id="31">
+                            <property name="levels">
+                                <tabular-level name="BRANCH" id="39">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">BRANCH</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="mediname" id="90">
+                    <property name="defaultHierarchy">NewTabularHierarchy1</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy1" id="91">
+                            <property name="levels">
+                                <tabular-level name="MEDI" id="92">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">MEDI</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+            </property>
+            <property name="measureGroups">
+                <tabular-measure-group name="Summary Field" id="40">
+                    <property name="measures">
+                        <tabular-measure name="BF" id="41">
+                            <expression name="measureExpression" type="javascript">dataSetRow["BF"]</expression>
+                            <property name="dataType">decimal</property>
+                        </tabular-measure>
+                        <tabular-measure name="JS" id="42">
+                            <expression name="measureExpression" type="javascript">dataSetRow["JS"]</expression>
+                            <property name="dataType">decimal</property>
+                        </tabular-measure>
+                    </property>
+                </tabular-measure-group>
+            </property>
+            <property name="dataSet">dateList</property>
+        </tabular-cube>
+    </cubes>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="7">
+            <property name="verticalAlign">middle</property>
+            <property name="width">11in</property>
+            <column id="8">
+                <property name="width">8.802083333333334in</property>
+            </column>
+            <row id="9">
+                <cell id="10">
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <text id="177">
+                        <property name="contentType">html</property>
+                        <text-property name="content"><![CDATA[<CENTER>
+<B>
+<h1>银保渠道业绩查询报表</h1>
+</B>
+</CENTER>]]></text-property>
+                    </text>
+                </cell>
+            </row>
+            <row id="11">
+                <cell id="12">
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <extended-item extensionName="Crosstab" extensionVersion="3.7.0" id="130">
+                        <property name="cube">Data Cube</property>
+                        <property name="measureDirection">horizontal</property>
+                        <property name="measures">
+                            <extended-item extensionName="MeasureView" id="162">
+                                <property name="measure">BF</property>
+                                <property name="detail">
+                                    <extended-item extensionName="AggregationCell" id="163">
+                                        <property name="aggregationOnRow">branch/BRANCH</property>
+                                        <property name="aggregationOnColumn">mediname/MEDI</property>
+                                        <property name="verticalAlign">middle</property>
+                                        <property name="width">500px</property>
+                                        <property name="content">
+                                            <data id="164">
+                                                <structure name="numberFormat">
+                                                    <property name="category">Fixed</property>
+                                                    <property name="pattern">###0{RoundingMode=HALF_UP}</property>
+                                                </structure>
+                                                <property name="resultSetColumn">BF_branch/BRANCH_mediname/MEDI</property>
+                                            </data>
+                                        </property>
+                                    </extended-item>
+                                </property>
+                                <property name="aggregations">
+                                    <extended-item extensionName="AggregationCell" id="172">
+                                        <property name="aggregationOnColumn">mediname/MEDI</property>
+                                        <property name="content">
+                                            <data id="173">
+                                                <structure name="numberFormat">
+                                                    <property name="category">Fixed</property>
+                                                    <property name="pattern">###0{RoundingMode=HALF_UP}</property>
+                                                </structure>
+                                                <property name="resultSetColumn">BF_mediname/MEDI</property>
+                                            </data>
+                                        </property>
+                                    </extended-item>
+                                    <extended-item extensionName="AggregationCell" id="179">
+                                        <property name="aggregationOnRow">branch/BRANCH</property>
+                                        <property name="content">
+                                            <data id="180">
+                                                <property name="resultSetColumn">BF_branch/BRANCH</property>
+                                            </data>
+                                        </property>
+                                    </extended-item>
+                                    <extended-item extensionName="AggregationCell" id="181">
+                                        <property name="content">
+                                            <data id="182">
+                                                <property name="resultSetColumn">BF</property>
+                                            </data>
+                                        </property>
+                                    </extended-item>
+                                </property>
+                                <property name="header">
+                                    <extended-item extensionName="CrosstabCell" id="165">
+                                        <property name="content">
+                                            <label id="166">
+                                                <text-property name="text">保费</text-property>
+                                            </label>
+                                        </property>
+                                        <property name="backgroundColor">orange</property>
+                                        <property name="verticalAlign">middle</property>
+                                    </extended-item>
+                                    <extended-item extensionName="CrosstabCell" id="183">
+                                        <property name="content">
+                                            <label id="184">
+                                                <text-property name="text">保费</text-property>
+                                            </label>
+                                        </property>
+                                        <property name="backgroundColor">orange</property>
+                                    </extended-item>
+                                </property>
+                            </extended-item>
+                            <extended-item extensionName="MeasureView" id="155">
+                                <property name="measure">JS</property>
+                                <property name="detail">
+                                    <extended-item extensionName="AggregationCell" id="156">
+                                        <property name="aggregationOnRow">branch/BRANCH</property>
+                                        <property name="aggregationOnColumn">mediname/MEDI</property>
+                                        <property name="verticalAlign">middle</property>
+                                        <property name="width">500px</property>
+                                        <property name="content">
+                                            <data id="157">
+                                                <property name="resultSetColumn">JS_branch/BRANCH_mediname/MEDI</property>
+                                            </data>
+                                        </property>
+                                    </extended-item>
+                                </property>
+                                <property name="aggregations">
+                                    <extended-item extensionName="AggregationCell" id="174">
+                                        <property name="aggregationOnColumn">mediname/MEDI</property>
+                                        <property name="content">
+                                            <data id="175">
+                                                <structure name="numberFormat">
+                                                    <property name="category">Fixed</property>
+                                                    <property name="pattern">###0{RoundingMode=HALF_UP}</property>
+                                                </structure>
+                                                <property name="resultSetColumn">JS_mediname/MEDI</property>
+                                            </data>
+                                        </property>
+                                    </extended-item>
+                                    <extended-item extensionName="AggregationCell" id="186">
+                                        <property name="aggregationOnRow">branch/BRANCH</property>
+                                        <property name="content">
+                                            <data id="187">
+                                                <property name="resultSetColumn">JS_branch/BRANCH</property>
+                                            </data>
+                                        </property>
+                                    </extended-item>
+                                    <extended-item extensionName="AggregationCell" id="188">
+                                        <property name="content">
+                                            <data id="189">
+                                                <property name="resultSetColumn">JS</property>
+                                            </data>
+                                        </property>
+                                    </extended-item>
+                                </property>
+                                <property name="header">
+                                    <extended-item extensionName="CrosstabCell" id="158">
+                                        <property name="content">
+                                            <label id="159">
+                                                <text-property name="text">件数</text-property>
+                                            </label>
+                                        </property>
+                                        <property name="backgroundColor">orange</property>
+                                        <property name="verticalAlign">middle</property>
+                                    </extended-item>
+                                    <extended-item extensionName="CrosstabCell" id="190">
+                                        <property name="content">
+                                            <label id="191">
+                                                <text-property name="text">件数</text-property>
+                                            </label>
+                                        </property>
+                                        <property name="backgroundColor">orange</property>
+                                    </extended-item>
+                                </property>
+                            </extended-item>
+                        </property>
+                        <property name="rows">
+                            <extended-item extensionName="CrosstabView" id="132">
+                                <property name="grandTotal">
+                                    <extended-item extensionName="CrosstabCell" id="171">
+                                        <property name="content">
+                                            <label id="176">
+                                                <text-property name="text">合计</text-property>
+                                            </label>
+                                        </property>
+                                    </extended-item>
+                                </property>
+                                <property name="views">
+                                    <extended-item extensionName="DimensionView" id="133">
+                                        <property name="dimension">branch</property>
+                                        <property name="levels">
+                                            <extended-item extensionName="LevelView" name="NewLevel View" id="134">
+                                                <property name="level">branch/BRANCH</property>
+                                                <property name="member">
+                                                    <extended-item extensionName="CrosstabCell" id="135">
+                                                        <property name="content">
+                                                            <data name="BRANCH" id="136">
+                                                                <property name="resultSetColumn">BRANCH</property>
+                                                            </data>
+                                                        </property>
+                                                        <property name="verticalAlign">middle</property>
+                                                        <property name="width">120px</property>
+                                                    </extended-item>
+                                                </property>
+                                            </extended-item>
+                                        </property>
+                                    </extended-item>
+                                </property>
+                            </extended-item>
+                        </property>
+                        <property name="columns">
+                            <extended-item extensionName="CrosstabView" id="138">
+                                <property name="grandTotal">
+                                    <extended-item extensionName="CrosstabCell" id="178">
+                                        <property name="content">
+                                            <label id="185">
+                                                <text-property name="text">合计</text-property>
+                                            </label>
+                                        </property>
+                                        <property name="backgroundColor">orange</property>
+                                    </extended-item>
+                                </property>
+                                <property name="views">
+                                    <extended-item extensionName="DimensionView" id="139">
+                                        <property name="dimension">mediname</property>
+                                        <property name="levels">
+                                            <extended-item extensionName="LevelView" name="NewLevel View1" id="140">
+                                                <property name="level">mediname/MEDI</property>
+                                                <property name="sort">
+                                                    <sort-element>
+                                                        <expression name="key" type="javascript">data["MEDI"]</expression>
+                                                        <property name="direction">desc</property>
+                                                        <property name="strength">-1</property>
+                                                    </sort-element>
+                                                </property>
+                                                <property name="member">
+                                                    <extended-item extensionName="CrosstabCell" id="141">
+                                                        <property name="content">
+                                                            <data name="MEDI" id="142">
+                                                                <property name="resultSetColumn">MEDI</property>
+                                                            </data>
+                                                        </property>
+                                                        <property name="backgroundColor">aqua</property>
+                                                        <property name="verticalAlign">middle</property>
+                                                    </extended-item>
+                                                </property>
+                                            </extended-item>
+                                        </property>
+                                    </extended-item>
+                                </property>
+                            </extended-item>
+                        </property>
+                        <property name="header">
+                            <extended-item extensionName="CrosstabCell" id="169">
+                                <property name="content">
+                                    <label id="170">
+                                        <text-property name="text">渠道</text-property>
+                                    </label>
+                                </property>
+                                <property name="backgroundColor">aqua</property>
+                            </extended-item>
+                            <extended-item extensionName="CrosstabCell" id="131">
+                                <property name="content">
+                                    <label id="137">
+                                        <text-property name="text">中支</text-property>
+                                    </label>
+                                </property>
+                                <property name="backgroundColor">orange</property>
+                                <property name="paddingTop">10pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <property name="paddingBottom">10pt</property>
+                                <property name="paddingRight">20pt</property>
+                            </extended-item>
+                        </property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">BRANCH</property>
+                                <expression name="expression">dimension["branch"]["BRANCH"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">MEDI</property>
+                                <expression name="expression">dimension["mediname"]["MEDI"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">BF_branch/BRANCH_mediname/MEDI</property>
+                                <expression name="expression">measure["BF"]</expression>
+                                <property name="dataType">decimal</property>
+                                <simple-property-list name="aggregateOn">
+                                    <value>branch/BRANCH</value>
+                                    <value>mediname/MEDI</value>
+                                </simple-property-list>
+                                <property name="aggregateFunction">SUM</property>
+                            </structure>
+                            <structure>
+                                <property name="name">JS_branch/BRANCH_mediname/MEDI</property>
+                                <expression name="expression">measure["JS"]</expression>
+                                <property name="dataType">decimal</property>
+                                <simple-property-list name="aggregateOn">
+                                    <value>branch/BRANCH</value>
+                                    <value>mediname/MEDI</value>
+                                </simple-property-list>
+                                <property name="aggregateFunction">SUM</property>
+                            </structure>
+                            <structure>
+                                <property name="name">BF_mediname/MEDI</property>
+                                <expression name="expression">measure["BF"]</expression>
+                                <property name="dataType">float</property>
+                                <simple-property-list name="aggregateOn">
+                                    <value>mediname/MEDI</value>
+                                </simple-property-list>
+                                <property name="aggregateFunction">sum</property>
+                            </structure>
+                            <structure>
+                                <property name="name">JS_mediname/MEDI</property>
+                                <expression name="expression">measure["JS"]</expression>
+                                <property name="dataType">float</property>
+                                <simple-property-list name="aggregateOn">
+                                    <value>mediname/MEDI</value>
+                                </simple-property-list>
+                                <property name="aggregateFunction">sum</property>
+                            </structure>
+                            <structure>
+                                <property name="name">BF_branch/BRANCH</property>
+                                <expression name="expression">measure["BF"]</expression>
+                                <property name="dataType">float</property>
+                                <simple-property-list name="aggregateOn">
+                                    <value>branch/BRANCH</value>
+                                </simple-property-list>
+                                <property name="aggregateFunction">sum</property>
+                            </structure>
+                            <structure>
+                                <property name="name">BF</property>
+                                <expression name="expression">measure["BF"]</expression>
+                                <property name="dataType">float</property>
+                                <property name="aggregateFunction">sum</property>
+                            </structure>
+                            <structure>
+                                <property name="name">JS_branch/BRANCH</property>
+                                <expression name="expression">measure["JS"]</expression>
+                                <property name="dataType">float</property>
+                                <simple-property-list name="aggregateOn">
+                                    <value>branch/BRANCH</value>
+                                </simple-property-list>
+                                <property name="aggregateFunction">sum</property>
+                            </structure>
+                            <structure>
+                                <property name="name">JS</property>
+                                <expression name="expression">measure["JS"]</expression>
+                                <property name="dataType">float</property>
+                                <property name="aggregateFunction">sum</property>
+                            </structure>
+                        </list-property>
+                    </extended-item>
+                </cell>
+            </row>
+            <row id="13">
+                <cell id="14">
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                </cell>
+            </row>
+        </grid>
+    </body>
+</report>

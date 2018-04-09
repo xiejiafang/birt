@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>微报表</title>
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta charset="utf-8">
+	
+	<link href="css/cate.css" rel="stylesheet" type="text/css" />
+	<link href="css/iscroll.css" rel="stylesheet" type="text/css" />
+	 
+	<style>
+		.banner img {
+			width: 100%;
+		}
+		.themeStyle{ 
+			background-color:#E83407 !important; 
+		}  
+	</style>
+        <script>
+		function isWeiXin() {
+			var ua = window.navigator.userAgent.toLowerCase();
+			if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		if (!isWeiXin()) {
+			alert("没有权限访问该页面！");
+			location.href = "error.html";
+		}
+		function onBridgeReady() {
+			WeixinJSBridge.call('hideOptionMenu');
+		}
+		if (typeof WeixinJSBridge == "undefined"){
+		    if( document.addEventListener ){
+		        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+		    }else if (document.attachEvent){
+		        document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+		        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+		    }
+		}else{
+		    onBridgeReady();
+		}
+	</script>
+	
+	<script src="js/iscroll.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var myScroll;
+		function loaded(){
+			myScroll = new iScroll('wrapper',{
+				snap: true,
+				momentum: false,
+				hScrollbar: false,
+				onScrollEnd: function (){
+					document.querySelector('#indicator > li.active').className = '';
+					document.querySelector('#indicator > li:nth-child(' + (this.currPageX+1) + ')').className = 'active';
+				}
+		 	});
+		}
+	
+		document.addEventListener('DOMContentLoaded', loaded, false);
+	</script>
+ 
+</head>
+
+<body>
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	playbox.init("playbox");
+	/*
+	setTimeout(function() {
+		// IE
+		if(document.all) {
+			document.getElementById("playbox").click();
+		}
+		// 其它浏览器
+		else {
+			var e = document.createEvent("MouseEvents");
+			e.initEvent("click", true, true);
+			document.getElementById("playbox").dispatchEvent(e);
+		}
+	}, 2000);
+	*/
+});
+
+</script>
+
+<ul class="mainmenu">
+	<li>
+		<a href="/birt_phone/frameset?__report=it/PHONE_gx_agtype_map.rptdesign" >
+			<p><img src="images/002.bmp" /><span>各职级人力分布数据表</span></p>
+			<b>各职级人力分布数据表</b>
+		</a>
+	</li>
+	<li>
+		<a href="/birt_phone/frameset?__report=it/PHONE_gx_newrl_1-6mon.rptdesign" >
+			<p><img src="images/003.bmp" /><span>新进人力统计表</span></p>
+			<b>新进人力统计表</b>
+		</a>
+	</li>
+	<li>
+		<a href="/birt_phone/frameset?__report=it/PHONE_gx_js3_branch.rptdesign" >
+			<p><img src="images/001.bmp" /><span>个险当月3件人力报表</span></p>
+			<b>个险当月3件人力报表</b>
+		</a>
+	</li>
+	<li>
+		<a href="/birt_phone/frameset?__report=it/PHONE_gx_zgwyj_branch.rptdesign" >
+			<p><img src="images/001.bmp" /><span>营销主管万元件人力报表</span></p>
+			<b>营销主管万元件人力报表</b>
+		</a>
+	</li>
+	<li>
+		<a href="/birt_phone/frameset?__report=it/PHONE_sfx_ssslBranch.rptdesign" >
+			<p><img src="images/001.bmp" /><span>中支实时受理业绩</span></p>
+			<b>中支实时受理业绩</b>
+		</a>
+	</li>
+	<li>
+		<a href="/birt_phone/frameset?__report=it/PHONE_sfx_ssyjBranch.rptdesign" >
+			<p><img src="images/005.bmp" /><span>中支实时承保业绩</span></p>
+			<b>中支个险实时承保业绩</b>
+		</a>
+	</li>
+        <li>
+		<a href="/birt_phone/frameset?__report=it/PHONE_pxy_ssyjAracde.rptdesign" >
+			<p><img src="images/001.bmp" /><span>支公司实时业绩</span></p>
+			<b>支公司个险实时业绩</b>
+		</a>
+	</li>
+        <li>
+		<a href="/birt_phone/frameset?__report=it/PHONE_xjf_qprl_ss.rptdesign" >
+			<p><img src="images/001.bmp" /><span>中支千P人力指标报表</span></p>
+			<b>千P人力，含当日实时</b>
+		</a>
+	</li>
+        <li>
+		<a href="/birt_phone/frameset?__report=it/PHONE_sfx_3qprl_ss.rptdesign" >
+			<p><img src="images/002.bmp" /><span>中支当月3千P人力指标报表</span></p>
+			<b>当月3千P人力，含当日实时</b>
+		</a>
+	</li>
+        <li>
+		<a href="/birt_phone/frameset?__report=it/PHONE_2jxrsdl_ss.rptdesign" >
+			<p><img src="images/002.bmp" /><span>二季度新人当月3千P人力指标报表</span></p>
+			<b>二季度新人当月3千P人力，含当日实时</b>
+		</a>
+	</li>
+        <li>
+		<a href="/birt_phone/frameset?__report=it/PHONE_macb_wqrl_ss.rptdesign" >
+			<p><img src="images/003.bmp" /><span>中支万P人力指标报表</span></p>
+			<b>万P人力，含当日实时</b>
+		</a>
+	</li>
+        <li>
+		<a href="/birt_phone/frameset?__report=it/PHONE_zcy_sqprl_zg.rptdesign" >
+			<p><img src="images/003.bmp" /><span>营销主管3千P指标报表</span></p>
+			<b>营销当月主管3千P人力</b>
+		</a>
+	</li>
+        <li>
+		<a href="/birt_phone/frameset?__report=it/PHONE_sz_sqprl_zg.rptdesign" >
+			<p><img src="images/003.bmp" /><span>收展主管3千P指标报表</span></p>
+			<b>收展当月主管3千P人力</b>
+		</a>
+	</li>
+        <li>
+		<a href="/birt_phone/frameset?__report=it/PHONE_wdl_branch_newRlKpi.rptdesign" >
+			<p><img src="images/002.bmp" /><span>中支新人KPI</span></p>
+			<b>中支新人业绩</b>
+		</a>
+	</li>
+        <li>
+		<a href="/birt_phone/frameset?__report=it/PHONE_sf_aracde_newRlKpi.rptdesign" >
+			<p><img src="images/003.bmp" /><span>支公司新人KPI</span></p>
+			<b>支公司新人业绩</b>
+		</a>
+	</li>
+        <li>
+		<a href="/birt_phone/frameset?__report=it/PHONE_yb_dgx_ssyj.rptdesign" >
+			<p><img src="images/003.bmp" /><span>银保大个险实时业绩</span></p>
+			<b>银保大个险实时业绩</b>
+		</a>
+	</li>
+        <li>
+		<a href="/birt_phone/frameset?__report=it/PHONE_sf_bnk_dgx.rptdesign" >
+			<p><img src="images/002.bmp" /><span>银保大个险业绩</span></p>
+			<b>银保大个险业绩</b>
+		</a>
+	</li>
+        <li>
+		<a href="/birt_phone/frameset?__report=it/PHONE_chdrinfo_list.rptdesign" >
+			<p><img src="images/005.bmp" /><span>个险承保清单</span></p>
+			<b>中支承保清单</b>
+		</a>
+	</li>
+	<li>
+		<a href="/birt_phone/frameset?__report=it/PHONE_a30_yj.rptdesign" >
+			<p><img src="images/005.bmp" /><span>鑫享人生实时承保业绩</span></p>
+			<b>鑫享人生实时承保业绩</b>
+		</a>
+	</li>
+	<li>
+		<a href="/birt_phone/frameset?__report=it/PHONE_a30_yj_ara.rptdesign" >
+			<p><img src="images/005.bmp" /><span>支公司_鑫享人生实时承保业绩</span></p>
+			<b>支公司_鑫享人生实时承保业绩</b>
+		</a>
+	</li>
+
+</ul>  
+</body>
+</html>

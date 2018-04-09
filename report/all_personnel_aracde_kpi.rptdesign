@@ -1,0 +1,1924 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.0.v201405191524 Build &lt;4.4.0.v20140606-1451></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="task_type" id="217">
+            <text-property name="promptText">任务类型</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="dataSetName">task_type</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["TASK_TYPE"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["TASK_TYPE"]</expression>
+            <expression name="sortByColumn">dataSetRow["TASK_TYPE"]</expression>
+            <property name="sortDirection">asc</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">false</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="monStart" id="218">
+            <text-property name="promptText">起始时间</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="dataSetName">date_list</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["KPI_MON"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["KPI_MON"]</expression>
+            <expression name="sortByColumn">dataSetRow["KPI_MON"]</expression>
+            <property name="sortDirection">desc</property>
+            <property name="dataType">decimal</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">false</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="monEnd" id="219">
+            <text-property name="promptText">结束时间</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="dataSetName">date_list</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["KPI_MON"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["KPI_MON"]</expression>
+            <expression name="sortByColumn">dataSetRow["KPI_MON"]</expression>
+            <property name="sortDirection">desc</property>
+            <property name="dataType">decimal</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">false</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Data Source" id="80">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.ibm.db2.jcc.DB2Driver</property>
+            <property name="odaURL">jdbc:db2://10.19.19.34:50000/hnii</property>
+            <property name="odaUser">report</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">b2ttMTIz</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Data Set" id="81">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">BRANCH</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">BRANCH</text-property>
+                    <text-property name="heading">BRANCH</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ARACDE</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ARACDE</text-property>
+                    <text-property name="heading">ARACDE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ARACDE_CODE</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ARACDE_CODE</text-property>
+                    <text-property name="heading">ARACDE_CODE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TASK</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">TASK</text-property>
+                    <text-property name="heading">TASK</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">THIS_MON</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">THIS_MON</text-property>
+                    <text-property name="heading">THIS_MON</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TASK_RATE</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">TASK_RATE</text-property>
+                    <text-property name="heading">TASK_RATE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">LAST_MON</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">LAST_MON</text-property>
+                    <text-property name="heading">LAST_MON</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">GROWN_RATE</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">GROWN_RATE</text-property>
+                    <text-property name="heading">GROWN_RATE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">JZ_TASK</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">JZ_TASK</text-property>
+                    <text-property name="heading">JZ_TASK</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">JZ_THIS_MON</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">JZ_THIS_MON</text-property>
+                    <text-property name="heading">JZ_THIS_MON</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">JZ_TASK_RATE</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">JZ_TASK_RATE</text-property>
+                    <text-property name="heading">JZ_TASK_RATE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">JZ_LAST_MON</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">JZ_LAST_MON</text-property>
+                    <text-property name="heading">JZ_LAST_MON</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">JZ_GROWN_RATE</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">JZ_GROWN_RATE</text-property>
+                    <text-property name="heading">JZ_GROWN_RATE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">YX</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">YX</text-property>
+                    <text-property name="heading">YX</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">XQ</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">XQ</text-property>
+                    <text-property name="heading">XQ</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">MYRANK</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">MYRANK</text-property>
+                    <text-property name="heading">MYRANK</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">BRANCH</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">ARACDE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">ARACDE_CODE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">TASK</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">THIS_MON</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">TASK_RATE</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">LAST_MON</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">GROWN_RATE</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">JZ_TASK</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">JZ_THIS_MON</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">JZ_TASK_RATE</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">JZ_LAST_MON</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">JZ_GROWN_RATE</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">YX</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">XQ</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">MYRANK</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[importPackage( Packages.java.io );  
+var task_type = reportContext.getParameterValue("task_type"); 
+var monStart = reportContext.getParameterValue("monStart"); 
+var monEnd = reportContext.getParameterValue("monEnd"); 
+   
+
+ 
+this.queryText = "with yj as ( " +
+"select  " +
+"        branch, " +
+"        case when aracde='' then '合计' else aracde end as aracde, " +
+"        sum(case when category='个险' and kpi_name in('标准保费','价值保费1') then this_mon end) as bb_this_mon, " +
+"        sum(case when category='个险' and kpi_name in('标准保费','价值保费1') then last_mon end) as bb_last_mon, " +
+"        sum(case when category='个险' and kpi_name in('标准保费1','价值保费') then this_mon end) as jz_this_mon, " +
+"        sum(case when category='个险' and kpi_name in('标准保费1','价值保费') then last_mon end) as jz_last_mon, " +
+"        sum(case when category='营销' and kpi_name in('标准保费','价值保费1') then this_mon end) as yx_bb_this, " +
+"        sum(case when category='收展' and kpi_name in('标准保费','价值保费1') then this_mon end) as xq_bb_this " +
+"                from administrator.hn_kpi_information  " +
+"                        where kpi_name in('标准保费','价值保费') " +
+"                        and series='支公司' " +
+"                        and kpi_mon between "+monStart+" and "+monEnd+" " +
+"                                group by branch,aracde),  " +
+"task as(   " +                  
+"select  " +
+"        value(f.getbranchname(a.branch),'合计') as branch, " +
+"        value(a.shortname,'合计') as aracde, " +
+"        value(b.aracde,'合计') as aracde_code, " +
+"        sum(bb_task) as bb_task, " +
+"        sum(jz_task) as jz_task " +
+"        from administrator.hn_aracde a, " +
+"        (select  " +
+"                branch_name as aracde, " +
+"                sum(case when task_name in('支公司新契约任务','支公司新单价值任务1') then task_aim else 0 end) as bb_task, " +
+"                sum(case when task_name in('支公司新契约任务1','支公司新单价值任务') then task_aim else 0 end) as jz_task " +
+"                from administrator.hn_task  " +
+"                        where task_name in('支公司新契约任务','支公司新单价值任务') " +
+"                        and task_type='"+task_type+"' " +
+"                        and task_mon between "+monStart+" and "+monEnd+" " +
+"                        and insert_time in(select datetime from (select task_name,max(insert_time) as datetime from administrator.hn_task       " +           
+"                                                where task_name in('支公司新契约任务','支公司新单价值任务') " +
+"                                                and task_type='"+task_type+"' group by task_name)a) " +
+"                                group by branch_name)b " +
+"                where a.aracde=b.aracde " +
+"                group by grouping sets(( " +
+"                                a.branch, " +
+"                                a.shortname,b.aracde),())), " +
+"incorporate as(         " +  
+"select  " +
+"        a.branch, " +
+"        a.aracde, " +
+"        aracde_code, " +
+"        bb_task, " +
+"        jz_task, " +
+"        value(bb_this_mon,0) as bb_this_mon, " +
+"        value(bb_last_mon,0) as bb_last_mon, " +
+"        value(jz_this_mon,0) as jz_this_mon, " +
+"        value(jz_last_mon,0) as jz_last_mon, " +
+"        value(yx_bb_this,0) as yx, " +
+"        value(xq_bb_this,0) as xq  " +
+"                from task a left join yj b on a.branch=b.branch and a.aracde=b.aracde) " +
+"select  " +
+"        branch, " +
+"        aracde, " +
+"        aracde_code, " +
+"        sum(bb_task) as task, " +
+"        sum(bb_this_mon)/10000 as this_mon, " +
+"        case when sum(bb_task) >0 then sum(bb_this_mon)*1.0000/10000/sum(bb_task) end as task_rate, " +
+"        sum(bb_last_mon)/10000 as last_mon, " +
+"        case when sum(bb_last_mon) >0 then sum(bb_this_mon)*1.0000/sum(bb_last_mon)-1 end as grown_rate, " +
+"        sum(jz_task) as jz_task, " +
+"        sum(jz_this_mon)/10000 as jz_this_mon, " +
+"        case when sum(jz_task) >0 then sum(jz_this_mon)*1.0000/10000/sum(jz_task) end as jz_task_rate, " +
+"        sum(jz_last_mon)/10000 as jz_last_mon, " +
+"        case when sum(jz_last_mon) >0 then sum(jz_this_mon)*1.0000/sum(jz_last_mon)-1 end as jz_grown_rate,     " +    
+"        sum(yx)/10000 as yx, " + 
+"        sum(xq)/10000 as xq,   " + 
+"        row_number()over()-1 as myRank " +
+"                from incorporate " +
+"                        group by branch,aracde,aracde_code " +
+"                           		order by aracde_code  "
+
+//记录调用信息
+var curr_time =BirtDateTime.now( );
+out = new PrintWriter( new FileWriter("visitation.txt", true ));    
+out.println("all_personnel_aracde_kpi  ##  "+curr_time);    
+out.close(); 
+]]></method>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">BRANCH</property>
+                    <property name="nativeName">BRANCH</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">ARACDE</property>
+                    <property name="nativeName">ARACDE</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">ARACDE_CODE</property>
+                    <property name="nativeName">ARACDE_CODE</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">TASK</property>
+                    <property name="nativeName">TASK</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">THIS_MON</property>
+                    <property name="nativeName">THIS_MON</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">TASK_RATE</property>
+                    <property name="nativeName">TASK_RATE</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">LAST_MON</property>
+                    <property name="nativeName">LAST_MON</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">GROWN_RATE</property>
+                    <property name="nativeName">GROWN_RATE</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">JZ_TASK</property>
+                    <property name="nativeName">JZ_TASK</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">JZ_THIS_MON</property>
+                    <property name="nativeName">JZ_THIS_MON</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">JZ_TASK_RATE</property>
+                    <property name="nativeName">JZ_TASK_RATE</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">JZ_LAST_MON</property>
+                    <property name="nativeName">JZ_LAST_MON</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">JZ_GROWN_RATE</property>
+                    <property name="nativeName">JZ_GROWN_RATE</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">YX</property>
+                    <property name="nativeName">YX</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">XQ</property>
+                    <property name="nativeName">XQ</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">MYRANK</property>
+                    <property name="nativeName">MYRANK</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[with yj as ( 
+select 
+        value(branch,'合计') as branch,
+        value(aracde,'合计') as aracde,
+        sum(case when category='个险' and kpi_name in('标准保费','价值保费1') then this_mon end) as bb_this_mon,
+        sum(case when category='个险' and kpi_name in('标准保费','价值保费1') then last_mon end) as bb_last_mon,
+        sum(case when category='个险' and kpi_name in('标准保费1','价值保费') then this_mon end) as jz_this_mon,
+        sum(case when category='个险' and kpi_name in('标准保费1','价值保费') then last_mon end) as jz_last_mon,
+        sum(case when category='营销' and kpi_name in('标准保费','价值保费1') then this_mon end) as yx_bb_this,
+        sum(case when category='收展' and kpi_name in('标准保费','价值保费1') then this_mon end) as xq_bb_this
+                from administrator.hn_kpi_information
+                        where kpi_name in('标准保费','价值保费')
+                        and series='支公司'
+                        and kpi_mon between 201502 and 201502
+                                group by grouping sets((branch,aracde),())), 
+task as(                    
+select 
+        value(f.getbranchname(a.branch),'合计') as branch,
+        value(a.shortname,'合计') as aracde,
+        value(b.aracde,'合计') as aracde_code,
+        sum(bb_task) as bb_task,
+        sum(jz_task) as jz_task
+        from administrator.hn_aracde a,
+        (select 
+                branch_name as aracde,
+                sum(case when task_name in('支公司新契约任务','支公司新单价值任务1') then task_aim else 0 end) as bb_task,
+                sum(case when task_name in('支公司新契约任务1','支公司新单价值任务') then task_aim else 0 end) as jz_task
+                from administrator.hn_task 
+                        where task_name in('支公司新契约任务','支公司新单价值任务')
+                        and task_type='基础目标'
+                        and task_mon between 201501 and 201502
+                        and insert_time in(select datetime from (select task_name,max(insert_time) as datetime from administrator.hn_task                 
+                                                where task_name in('支公司新契约任务','支公司新单价值任务')
+                                                and task_type='基础目标' group by task_name)a)
+                                group by branch_name)b
+                where a.aracde=b.aracde
+                group by grouping sets((
+                                a.branch,
+                                a.shortname,b.aracde),())),
+incorporate as(          
+select 
+        a.branch,
+        a.aracde,
+        aracde_code,
+        bb_task,
+        jz_task,
+        value(bb_this_mon,0) as bb_this_mon,
+        value(bb_last_mon,0) as bb_last_mon,
+        value(jz_this_mon,0) as jz_this_mon,
+        value(jz_last_mon,0) as jz_last_mon,
+        value(yx_bb_this,0) as yx,
+        value(xq_bb_this,0) as xq
+                from task a left join yj b on a.branch=b.branch and a.aracde=b.aracde)
+select 
+        branch,
+        aracde,
+        aracde_code,
+        sum(bb_task) as task,
+        sum(bb_this_mon)/10000 as this_mon,
+        case when sum(bb_task) >0 then sum(bb_this_mon)*1.0000/10000/sum(bb_task) end as task_rate,
+        sum(bb_last_mon)/10000 as last_mon,
+        case when sum(bb_last_mon) >0 then sum(bb_this_mon)*1.0000/sum(bb_last_mon)-1 end as grown_rate,
+        sum(jz_task) as jz_task,
+        sum(jz_this_mon)/10000 as jz_this_mon,
+        case when sum(jz_task) >0 then sum(jz_this_mon)*1.0000/10000/sum(jz_task) end as jz_task_rate,
+        sum(jz_last_mon)/10000 as jz_last_mon,
+        case when sum(jz_last_mon) >0 then sum(jz_this_mon)*1.0000/sum(jz_last_mon)-1 end as jz_grown_rate, 
+        sum(yx)/10000 as yx,
+        sum(xq)/10000 as xq,       
+        row_number()over()-1 as myRank
+                from incorporate
+                        group by branch,aracde,aracde_code
+                           		order by this_mon desc    
+
+                ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>BRANCH</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>BRANCH</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>BRANCH</design:label>
+            <design:formattingHints>
+              <design:displaySize>2</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>STATION</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>4</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>STATION</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>STATION</design:label>
+            <design:formattingHints>
+              <design:displaySize>4</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>NAME</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>15</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>NAME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>NAME</design:label>
+            <design:formattingHints>
+              <design:displaySize>15</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SHORTNAME</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>15</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>SHORTNAME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>SHORTNAME</design:label>
+            <design:formattingHints>
+              <design:displaySize>15</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PHONE_CODE</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>4</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PHONE_CODE</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PHONE_CODE</design:label>
+            <design:formattingHints>
+              <design:displaySize>4</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>BRANCH_HB</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>BRANCH_HB</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>BRANCH_HB</design:label>
+            <design:formattingHints>
+              <design:displaySize>2</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>STATION_HB</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>4</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>STATION_HB</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>STATION_HB</design:label>
+            <design:formattingHints>
+              <design:displaySize>4</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>NAME_HB</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>15</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>NAME_HB</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>NAME_HB</design:label>
+            <design:formattingHints>
+              <design:displaySize>15</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>CLASS</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>1</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>CLASS</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>CLASS</design:label>
+            <design:formattingHints>
+              <design:displaySize>1</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>G_CLASS</design:name>
+              <design:position>10</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>1</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>G_CLASS</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>G_CLASS</design:label>
+            <design:formattingHints>
+              <design:displaySize>1</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>B_CLASS</design:name>
+              <design:position>11</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>1</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>B_CLASS</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>B_CLASS</design:label>
+            <design:formattingHints>
+              <design:displaySize>1</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>GROUP</design:name>
+              <design:position>12</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>GROUP</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>GROUP</design:label>
+            <design:formattingHints>
+              <design:displaySize>2</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>C_ORDER</design:name>
+              <design:position>13</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>1</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>C_ORDER</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>C_ORDER</design:label>
+            <design:formattingHints>
+              <design:displaySize>1</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="date_list" id="82">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">KPI_MON</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">KPI_MON</text-property>
+                    <text-property name="heading">KPI_MON</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">KPI_MON</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">KPI_MON</property>
+                    <property name="nativeName">KPI_MON</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select distinct kpi_mon
+	from administrator.hn_kpi_information
+		where kpi_mon < decimal(current date)
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TRANDATE</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>8</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TRANDATE</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TRANDATE</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="task_type" id="216">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">TASK_TYPE</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TASK_TYPE</text-property>
+                    <text-property name="heading">TASK_TYPE</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">TASK_TYPE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">TASK_TYPE</property>
+                    <property name="nativeName">TASK_TYPE</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select distinct task_type
+from administrator.hn_task
+	where task_type not in('考核任务','竞赛任务')]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TASK_TYPE</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>12</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TASK_TYPE</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TASK_TYPE</design:label>
+            <design:formattingHints>
+              <design:displaySize>12</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <image id="130">
+            <property name="marginLeft">0pt</property>
+            <property name="height">100px</property>
+            <property name="width">445px</property>
+            <property name="source">embed</property>
+            <property name="imageName">logo.gif</property>
+        </image>
+        <grid id="131">
+            <property name="textAlign">center</property>
+            <property name="verticalAlign">middle</property>
+            <column id="132"/>
+            <row id="133">
+                <property name="textAlign">left</property>
+                <cell id="134">
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <text id="135">
+                        <property name="fontSize">36pt</property>
+                        <property name="contentType">html</property>
+                        <text-property name="content"><![CDATA[<CENTER>
+支公司新契约达成报表
+</CENTER>
+]]></text-property>
+                    </text>
+                </cell>
+            </row>
+            <row id="136">
+                <cell id="137">
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">0pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="verticalAlign">middle</property>
+                    <table id="138">
+                        <property name="width">15in</property>
+                        <property name="dataSet">Data Set</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">BRANCH</property>
+                                <text-property name="displayName">BRANCH</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["BRANCH"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ARACDE</property>
+                                <text-property name="displayName">ARACDE</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ARACDE"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ARACDE_CODE</property>
+                                <text-property name="displayName">ARACDE_CODE</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ARACDE_CODE"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">TASK</property>
+                                <text-property name="displayName">TASK</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["TASK"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">THIS_MON</property>
+                                <text-property name="displayName">THIS_MON</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["THIS_MON"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">TASK_RATE</property>
+                                <text-property name="displayName">TASK_RATE</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["TASK_RATE"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">LAST_MON</property>
+                                <text-property name="displayName">LAST_MON</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["LAST_MON"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">GROWN_RATE</property>
+                                <text-property name="displayName">GROWN_RATE</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["GROWN_RATE"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">JZ_TASK</property>
+                                <text-property name="displayName">JZ_TASK</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["JZ_TASK"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">JZ_THIS_MON</property>
+                                <text-property name="displayName">JZ_THIS_MON</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["JZ_THIS_MON"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">JZ_TASK_RATE</property>
+                                <text-property name="displayName">JZ_TASK_RATE</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["JZ_TASK_RATE"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">JZ_LAST_MON</property>
+                                <text-property name="displayName">JZ_LAST_MON</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["JZ_LAST_MON"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">JZ_GROWN_RATE</property>
+                                <text-property name="displayName">JZ_GROWN_RATE</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["JZ_GROWN_RATE"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">MYRANK</property>
+                                <text-property name="displayName">MYRANK</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["MYRANK"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">YX</property>
+                                <text-property name="displayName">YX</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["YX"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">XQ</property>
+                                <text-property name="displayName">XQ</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["XQ"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <column id="173">
+                            <property name="width">1.5416666666666667in</property>
+                        </column>
+                        <column id="207">
+                            <property name="width">1.5416666666666667in</property>
+                        </column>
+                        <column id="223">
+                            <property name="width">1.3in</property>
+                        </column>
+                        <column id="174">
+                            <property name="width">1.3in</property>
+                        </column>
+                        <column id="182">
+                            <property name="width">1.3in</property>
+                        </column>
+                        <column id="175">
+                            <property name="width">1.8541666666666667in</property>
+                        </column>
+                        <column id="176">
+                            <property name="width">1.375in</property>
+                        </column>
+                        <column id="177">
+                            <property name="width">1.5833333333333333in</property>
+                        </column>
+                        <column id="229">
+                            <property name="width">1.5833333333333333in</property>
+                        </column>
+                        <column id="245">
+                            <property name="width">1.5833333333333333in</property>
+                        </column>
+                        <column id="241">
+                            <property name="width">1.5833333333333333in</property>
+                        </column>
+                        <column id="237">
+                            <property name="width">1.5833333333333333in</property>
+                        </column>
+                        <column id="233">
+                            <property name="width">1.5833333333333333in</property>
+                        </column>
+                        <column id="259">
+                            <property name="width">1.5833333333333333in</property>
+                        </column>
+                        <column id="263">
+                            <property name="width">1.5833333333333333in</property>
+                        </column>
+                        <header>
+                            <row id="139">
+                                <method name="onPrepare"><![CDATA[this.getStyle().backgroundColor = "#FFCC99"; ]]></method>
+                                <property name="fontSize">30pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="142">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="185">
+                                        <text-property name="text">中支</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="204">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="208">
+                                        <text-property name="text">支公司</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="220">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingTop">10pt</property>
+                                    <property name="paddingBottom">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="224">
+                                        <text-property name="text">代码</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="144">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingTop">10pt</property>
+                                    <property name="paddingBottom">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="187">
+                                        <text-property name="text">任务</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="179">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingTop">10pt</property>
+                                    <property name="paddingBottom">10pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="189">
+                                        <text-property name="text">达成</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="146">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="191">
+                                        <text-property name="text">达成率</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="148">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="193">
+                                        <text-property name="text">同期</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="150">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="195">
+                                        <text-property name="text">同比增长</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="226">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="246">
+                                        <text-property name="text">价值任务</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="242">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="248">
+                                        <text-property name="text">价值达成</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="238">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="250">
+                                        <text-property name="text">价值达成率</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="234">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="252">
+                                        <text-property name="text">价值同期</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="230">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="254">
+                                        <text-property name="text">价值增长</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="256">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="264">
+                                        <text-property name="text">营销</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="260">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="266">
+                                        <text-property name="text">收展</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="152">
+                                <method name="onPrepare"><![CDATA[count=0;
+]]></method>
+                                <method name="onCreate"><![CDATA[count++; 
+if(count % 2 == 0){ 
+this.getStyle().backgroundColor = "#FFFFCC"; 
+}else{ 
+this.getStyle().backgroundColor = "#99CCFF"; 
+} ]]></method>
+                                <property name="fontSize">24pt</property>
+                                <property name="textAlign">center</property>
+                                <cell id="155">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingTop">5pt</property>
+                                    <property name="paddingBottom">5pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="210">
+                                        <property name="resultSetColumn">BRANCH</property>
+                                    </data>
+                                </cell>
+                                <cell id="205">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="paddingTop">5pt</property>
+                                    <property name="paddingBottom">5pt</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="209">
+                                        <property name="resultSetColumn">ARACDE</property>
+                                    </data>
+                                </cell>
+                                <cell id="221">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="225">
+                                        <property name="resultSetColumn">ARACDE_CODE</property>
+                                    </data>
+                                </cell>
+                                <cell id="157">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="211">
+                                        <property name="resultSetColumn">TASK</property>
+                                    </data>
+                                </cell>
+                                <cell id="180">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="212">
+                                        <property name="resultSetColumn">THIS_MON</property>
+                                    </data>
+                                </cell>
+                                <cell id="159">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="213">
+                                        <structure name="numberFormat">
+                                            <property name="category">Percent</property>
+                                            <property name="pattern">###0.00%{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="resultSetColumn">TASK_RATE</property>
+                                    </data>
+                                </cell>
+                                <cell id="161">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="214">
+                                        <property name="resultSetColumn">LAST_MON</property>
+                                    </data>
+                                </cell>
+                                <cell id="163">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="215">
+                                        <structure name="numberFormat">
+                                            <property name="category">Percent</property>
+                                            <property name="pattern">###0.00%{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="resultSetColumn">GROWN_RATE</property>
+                                    </data>
+                                </cell>
+                                <cell id="227">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <list-property name="highlightRules">
+                                        <structure>
+                                            <property name="operator">gt</property>
+                                            <property name="fontWeight">bold</property>
+                                            <property name="color">#FF0000</property>
+                                            <expression name="testExpr" type="javascript">row["DIFF_AVG"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">0</value>
+                                            </simple-property-list>
+                                        </structure>
+                                        <structure>
+                                            <property name="operator">lt</property>
+                                            <property name="fontWeight">normal</property>
+                                            <property name="color">#008000</property>
+                                            <expression name="testExpr" type="javascript">row["DIFF_AVG"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">0</value>
+                                            </simple-property-list>
+                                        </structure>
+                                    </list-property>
+                                    <data id="247">
+                                        <property name="resultSetColumn">JZ_TASK</property>
+                                    </data>
+                                </cell>
+                                <cell id="243">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <list-property name="highlightRules">
+                                        <structure>
+                                            <property name="operator">gt</property>
+                                            <property name="fontWeight">bold</property>
+                                            <property name="color">#FF0000</property>
+                                            <expression name="testExpr" type="javascript">row["DIFF_AVG"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">0</value>
+                                            </simple-property-list>
+                                        </structure>
+                                        <structure>
+                                            <property name="operator">lt</property>
+                                            <property name="fontWeight">normal</property>
+                                            <property name="color">#008000</property>
+                                            <expression name="testExpr" type="javascript">row["DIFF_AVG"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">0</value>
+                                            </simple-property-list>
+                                        </structure>
+                                    </list-property>
+                                    <data id="249">
+                                        <property name="resultSetColumn">JZ_THIS_MON</property>
+                                    </data>
+                                </cell>
+                                <cell id="239">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <list-property name="highlightRules">
+                                        <structure>
+                                            <property name="operator">gt</property>
+                                            <property name="fontWeight">bold</property>
+                                            <property name="color">#FF0000</property>
+                                            <expression name="testExpr" type="javascript">row["DIFF_AVG"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">0</value>
+                                            </simple-property-list>
+                                        </structure>
+                                        <structure>
+                                            <property name="operator">lt</property>
+                                            <property name="fontWeight">normal</property>
+                                            <property name="color">#008000</property>
+                                            <expression name="testExpr" type="javascript">row["DIFF_AVG"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">0</value>
+                                            </simple-property-list>
+                                        </structure>
+                                    </list-property>
+                                    <data id="251">
+                                        <structure name="numberFormat">
+                                            <property name="category">Percent</property>
+                                            <property name="pattern">###0.00%{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="resultSetColumn">JZ_TASK_RATE</property>
+                                    </data>
+                                </cell>
+                                <cell id="235">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <list-property name="highlightRules">
+                                        <structure>
+                                            <property name="operator">gt</property>
+                                            <property name="fontWeight">bold</property>
+                                            <property name="color">#FF0000</property>
+                                            <expression name="testExpr" type="javascript">row["DIFF_AVG"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">0</value>
+                                            </simple-property-list>
+                                        </structure>
+                                        <structure>
+                                            <property name="operator">lt</property>
+                                            <property name="fontWeight">normal</property>
+                                            <property name="color">#008000</property>
+                                            <expression name="testExpr" type="javascript">row["DIFF_AVG"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">0</value>
+                                            </simple-property-list>
+                                        </structure>
+                                    </list-property>
+                                    <data id="253">
+                                        <property name="resultSetColumn">JZ_LAST_MON</property>
+                                    </data>
+                                </cell>
+                                <cell id="231">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <list-property name="highlightRules">
+                                        <structure>
+                                            <property name="operator">gt</property>
+                                            <property name="fontWeight">bold</property>
+                                            <property name="color">#FF0000</property>
+                                            <expression name="testExpr" type="javascript">row["DIFF_AVG"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">0</value>
+                                            </simple-property-list>
+                                        </structure>
+                                        <structure>
+                                            <property name="operator">lt</property>
+                                            <property name="fontWeight">normal</property>
+                                            <property name="color">#008000</property>
+                                            <expression name="testExpr" type="javascript">row["DIFF_AVG"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">0</value>
+                                            </simple-property-list>
+                                        </structure>
+                                    </list-property>
+                                    <data id="255">
+                                        <structure name="numberFormat">
+                                            <property name="category">Percent</property>
+                                            <property name="pattern">###0.00%{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="resultSetColumn">JZ_GROWN_RATE</property>
+                                    </data>
+                                </cell>
+                                <cell id="257">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <list-property name="highlightRules">
+                                        <structure>
+                                            <property name="operator">gt</property>
+                                            <property name="fontWeight">bold</property>
+                                            <property name="color">#FF0000</property>
+                                            <expression name="testExpr" type="javascript">row["DIFF_AVG"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">0</value>
+                                            </simple-property-list>
+                                        </structure>
+                                        <structure>
+                                            <property name="operator">lt</property>
+                                            <property name="fontWeight">normal</property>
+                                            <property name="color">#008000</property>
+                                            <expression name="testExpr" type="javascript">row["DIFF_AVG"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">0</value>
+                                            </simple-property-list>
+                                        </structure>
+                                    </list-property>
+                                    <data id="265">
+                                        <property name="resultSetColumn">YX</property>
+                                    </data>
+                                </cell>
+                                <cell id="261">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <list-property name="highlightRules">
+                                        <structure>
+                                            <property name="operator">gt</property>
+                                            <property name="fontWeight">bold</property>
+                                            <property name="color">#FF0000</property>
+                                            <expression name="testExpr" type="javascript">row["DIFF_AVG"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">0</value>
+                                            </simple-property-list>
+                                        </structure>
+                                        <structure>
+                                            <property name="operator">lt</property>
+                                            <property name="fontWeight">normal</property>
+                                            <property name="color">#008000</property>
+                                            <expression name="testExpr" type="javascript">row["DIFF_AVG"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">0</value>
+                                            </simple-property-list>
+                                        </structure>
+                                    </list-property>
+                                    <data id="267">
+                                        <property name="resultSetColumn">XQ</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="165">
+                                <cell id="167">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="206">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="222">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="168">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="181">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="169">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="170">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="171">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="228">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="244">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="240">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="236">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="232">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="258">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="262">
+                                    <property name="fontSize">12pt</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
+    </body>
+    <list-property name="images">
+        <structure>
+            <property name="name">logo.gif</property>
+            <property name="type">image/gif</property>
+            <property name="data">
+                R0lGODlhvQFkAOYAAP/+//z7/NPT1v39/vz8/fv7/O3t7uTl6ujp7cjL1tnb4hknVB8tWCIwWyMxXCQx
+                XC06YzA9ZTNAaDxIbkJOc15oh2hxj212k32Fno2Uqp6kt6qvwM7R28vO2A0dSxIiTxUkURcmUhopVRwr
+                Vh0sVyAvWSQzXSU0XiY0Xig2Xyo4YTZDajlGbD5LcEVRdUhUd0pWeU1Ze1FdflVggVlkhGNti3N8l3iB
+                m4GJoYaOpZKZrpifs6SqvK+0w7S5yMLG0r/Dz8XJ1Lq/zN7g5dTX3u/w8vn6+/f4+fP2+PH09fn9/ePz
+                8gOShQuWiRaaji2kmT2roYzNxwCRgwCQggCPgQCNfwCLfACJeQCHeAGSgwGRgwKSgwORgwSRgweThQqR
+                gxGXih2dkSKgk0yyqF66sXDBuX/IwaLX0rHe2bvi3tDr6ACGdsfn47bn3/f8+/////7+/v///wAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAHEALAAAAAC9AWQAAAf/gHGC
+                g4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+
+                v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZvBxACps+OUK3B0RHjAkdONrr7ME+LwwVRZkcDSEytkQy
+                KTpIiRs4eIDL0K6gwVs3GDTAoGnHBxM6bO1AsWCFD0QbLOjQsMMHD4YHQ4pc9WZHigdA4hQpkmQAJQUx
+                bPQo8uZNEn+wDtBQeGPIoQ45fEywcCMFDw0bRioN6WZJqCMHEmyogeKBDBpYa2RAMKlDh5sdNmSoQSOi
+                pQKYfEAoYSPJGyNG/woB2aGAQo4MEDYcubG0L7s3Ucaw8USAg44ZLCCgMPFghIgFC0SouAgJCREhO2pM
+                SGzChIoKPSgN2RHOUhALJIzOxYBhwzxBPnQocGGjxYw4SPj63X3tDJgqUAZveiNkBQMSJR48MBFBxooU
+                MW7sMPCIiIYLLFKkUJGiQQQbG4J0qDQjeYwgk4YAuaGigWcUDUqUQMFjUJAMCVwQ+QFBBxCzvAUYjW9V
+                SEFFcJwI0cIKMVgwgwomWHABDBm85ggCOUzAwHwvSJdDCABWUkMIDzBggjrVCYFDDCmUYIIDI6AgAQUu
+                uCBDaIPskAEPXPmwgwUcCCikMwRKIcUUwKXBSf8CPBDhgwUpmOBCChHUgKMj/DHWQA4JCKLBB0Hp+MMk
+                OyhEggQ0jOnIDjs9tIIKDkBAgwYdDHGAEEQYkgMPKWnA0ZCAKlOkkUauQYYnF0zp3gghgOBBDpAg0MMK
+                IMwQVxw7zMBAiyGEQMOVjvAgAQMM1CCEOI9scMEMF4jVogxCdIAZDyES0sMOPAgU6K7GkPEboUdW8QQa
+                nBgggwcLdFYRBhn4gB4kQKgwQlI8ZFiCdxhcUAIEMeRAXSNJVLAACTfkSUkRClzAwAMtwCBBCSF4wMIB
+                vNbbTBlhUAGsgcN2goQGOMwwggoYmEvABjZYQBkjGXwQgwI5sPBABTCMYEH/Ahg84EAKEiy8iA7y3cDV
+                JEJUMCFjL4YQQQU5aACqvTAXg6++wFLRLyFOZULECw3g4CQNLsSwAgQqUEDQIkmgdkMGLFzwgwbGTUAB
+                hA1siuoiQbAwQgX0ThJxiyU4oFwMPQyRp14d9DByzGz/Qka++9pMLCFmIGjJDzu08AAKKyS2WAMNpABB
+                Ay6kpAgHE0AAAws4ZCDDWp5JgAIDENigAAGMHHEBCS50SQkOElzlgAMR6HAAAj/o4BwLK1TZdduw53KG
+                EwUCK+zcg5jRxIHCQcKBBhjIAKHGJCwAOOAS3LCBWDgEqUgPDDjQwAoSIMcCCwxckCENQLwRagQp+OD9
+                /yQ12aSDezLgUAEEJpRwnAginIhT7PTTMiihVtwsCGBeUIGk3Y4AGQhAsAAHmKABDpgBs24gARFMYAcj
+                G58icOA+EoyABTS4QQdsIAIZREACG0jChWYQAkhRwggH8JENomQCBoAgBCJggARicAEM2EADFqqfDl9x
+                v2DpTxBR+ELtpmAFACLNBtejgAVo0D4bxKEmR5gBDBbwgRdooBFDoEAKaICBiKBrByxwXwkWQIFnMSIH
+                H6CBPw7QgbWtKQYjQJbY5LOCC+wgDhvgYg53yEeS9HAKcitEGrxgBWD9r3eP4MAMSDCDIgRgBxXwHAZS
+                AIIE0kURQGhADcYTBwXwQP8GpILPFpPSiA2oYAV5EoIMXiATBFxqEUJQwQdQoBgHMMAFGjDXG3wALxvo
+                gJN9DKYp4NBDfuFuEEkowxZoZiRAGrERCXHBeHwgAQ/U5w2SggEDFgCdHbyOELlJwRXjwIMXpEAEgiuB
+                BMYpAJ8oggh6o4wFPhBDDDZJTYnIwQtqoIEaiO0G3igC6soZtqq8QJgIJUUxA3mIJZSBCcw0Eu8eoQHv
+                8AiPKViADxRwgxdsQAE2eNcIHkChDqBlEAiYgAuCVJIXyOACGpinbn4wgQu4sRAKkIEJ6iOIdEWgAchJ
+                AQssoAFvHGIABhhTECjAACfGIQEZmEEE4GPABjAuoVj//YRvIiqF2xHCDYVwKBOmELdnIiIIo6qBBWrg
+                DQqIoAYeJIEJvGSDoUVgAjiw0C4rhxYO4EAH7tyAByJSlxCswHCGyClEDLGBGEigag14QANakAPEGkJz
+                IKhAB/oZAQeo4K4yeOwDenDSrJoWE8X0Kt3IoAacPTSizkQkImIAoguYYAE4SEIMFkBUHMQJR0nQwI5+
+                QIT5DcACDbhIcRbwgtfcAASkrcECZqCB+REiCDCAwB0RAckWlEAEYSMBCzDwMkH0YAT64WgFVmAC8PTA
+                rwxowWnne4li5u+YcYgCGIqYM0E4VAuwBY5sCbGXEGRgABy4wAQ04AMWhOAiL93u/yKIwIIXcEUILPiA
+                DYTgAxss4AE+aDCKfsICEDJiBwGDAAwZMIIVlGYQQ3ABBC6SBAN0wK1OFUQJLCBC+voYEmOg3b7uW4go
+                CBk4/Y2DQwFpyCQhoqI6OOmqmCa9H/BgBBfIsSIyQIKjkXMGPsBADCZQng08LSXOK4QMXGBGRgTBBwEr
+                AQhSUIMQ6eAEXu5kC0JQAhwBAQQS/rGgF/GEQtbsh/kVcrCgkOT/wvYKZzhEDyjAA8zFQQNwmkHeTPCD
+                A8CABBBwQa0KUQQapMCo5l2vDDzpgR4cwAJSo0EN2lwtSjhJA0FAdRxoGug4GIEHK5CmIHQggqsN+tiH
+                SIMYmP/J0Nz9ilD/a7QyaQbIMhyiADwgZRx8EIERtOAiMXBASohAgwWMgALANIQQTmCBQfygAhTYsTe+
+                lIAhtGAEJNiQDSz0TU1gIAevRKYC3BmHFlQA2QhHhLKrAEhE646rwRpDWF9LBSpYGxH8psEHLEIvLRoO
+                ATeAAJbz+QE1/cAFI2BAXgWBAxHEoQAH2MEETPCBC+xxSRro9yAOYFQLSKDNCQ96HJRN5EEMIApeIOu+
+                CIVk1wL44owIwIR6gE0LMFfXPWBVImaADy9NLwc9joMEYDCINxDhApQWBRzMgYghzAACEJAAT4VO9zig
+                YQzHPHr/ll5WaUO9EUJYmw5q/q3/nd98EBEYZxyIMIMQ/cADICFw2FXhgxaAAAYeq7vQk8y/2vHddlBo
+                7SCSLAkefCoSJkyEAsBciyFggKiajz0hACPEzy+diKGXve5j5oYget72hizigHdP/AAtAQqGBv7S9RWF
+                4jt/SGgQw++Vb6Au/P352PfLwpWu/Clw4fqOUAARxk9+8r+uB+JXgEA5oAAkGGD8YUc/B4ZQ2p6O/wBG
+                MJuuO0mEb5qN4ISQBGqgBkugBGHFBmqABAI4gAzIgEiwBAjYgAyYfce2cNQ3BVoAfo5AAxPQAh74gQty
+                AyJEbizQAi5wK6FjHSp1EQk2AStAAfjkJR64Aj0xAytAA7pG/wESABI6QAMf6AJzJwho8ARhUAakp19P
+                kAZnIAZh0IROGAbDYgZg8IROKAYUWIHSB3zVVgkq4AEf8AHIQQIg8AEeMAPUoQMhQCoPUC0b1wEZwAAo
+                AATk9hgqoHiD0AL5llkKMAEjMAIjFgcOAALgUQEoIAIhQIYscBlXgwb7NQakZwZrwARoYAZIYgVYcAWY
+                uAZTcAZlsAZUYImYGIpXiIUQ10xVoIGPgAM2cAM28FMSUEMwtXgT4CIPEAE8kAELMAGGYQLaVQEpFwHl
+                pQOLYQIiYAFD8AIOsC1zNzgzUAMPQAINMAOrqABCEAEt4Dlo4ARUQAaPeAVgkAZRwARMAP8FZFCO5VgG
+                alAGV5AFUFAG5liOo0iKt2dxl4AESHAESUABIyADcogTE6EcDwABt5iLhrEYKxAfHWMIQyAD7mECFnOM
+                BiQCKyUIEPAAKSA9LbABB4AEBEBNJEACTpWN29iN3xgFWtAEZ+AGKqmS/kAGVyAFzacEK2ld8ehjFkgo
+                /oOK5INyM+A5cXAAMcAALMBUAomLuiiM0uMAJHBwhrAD7RF3vBVjYuMAItAWcVCRGgMBikdNI2BLMHBF
+                IsmNhWAG3giOJ4kGSlIILskEkVaTQrd9BvJ9nHAEPGlGTikC2rMARUmQSAk4JRABadZTFcAAEYABFBAC
+                xvgC76GUSXH/Eu0TAz3GbSOQAitQAitwcG2gjWJJN2UZjlvwBFAQmk+Ad3HgklogBqEJBU9QBpPnljYp
+                fVQgl3PJk55TagygAkDwJXt5lCjgAC9AAyLQM4XAAxDAADSAOCBgjC7wADRwAS2CbiqwHKUyCDiQAgyQ
+                AToQJxIQB5k5kmPZmWNVBVYwnlaAkqVZSFQgnlZwBYzmmlh4ip5AlyPQk4KwARHASCXxAbu5iynwXt2G
+                SoRgAQoReCuAmDE2AjUwBDUwAg1AA8NYArcxCBhwRxQ0Q9ypmSQJjkygBU4gBk/woVBALGRQSB0qBkxI
+                Bq3pnvSFBs0Xn3UZBwZQASRAH28wePup/wO8OCY48AEOcAMuEQc9UJwu0HEGinI0kAQJgD0j0BkvMmOF
+                AE+cExFh2ZpkWZIn2aJqeQVbYAYq2qWKIJ8ykCdBygDNFQc2OpBH6RniAAT3OQHmYgMWNE6Wp5wkQAOC
+                cANVwaTtwwJqUxOqpJQWMA9hqQTlUxNVapZNgF+CsJZnUKg14aWQCqb0oi4OwAPec6ZGuYu4KQgXED+Q
+                kgArIAIwQC9D4GB0WgHocQAzEFkPEAMuYEsSYAGk8QLuwwJqMjs2Ywa6qqtscKgmiZISNAimOQa7qqtY
+                CqnueQQUsAAxgDoSwFwjowMeoAK3CAIs0AHnkwJCAADbBgEi8AIKgP8BnbJdCrACH2CMy0oDz1KNDICX
+                QsBEyHFADNoCipeNDDcF+DoFWwqJTQCOVOAFjWoILuk/+YqvUoCsXXoEMWACMzAEN6BOG8CtZko5tPIA
+                6KYDcdc9cXAENcAxFfACKPAwPSUx6GoCmjUIGSABJnABcQAEGUABQ7MCNeUx0dcENnuzYBAFQeQE4NgE
+                ThCwhVAGX3CzRNsECNulQtADCVAEQLABF9VTG+ADQ6AAGyAEBqAAPeADaxMEG9ADXtsD6eYDYMu0PRAE
+                FlIELuM8RZAALlO1hedfZxC3chu3A3gGaLAEahC3pCcIbDC3fnu0XeqohuCo4/OohVCoh2u4hjuRe8H6
+                RIlAuIS7P43LuJALuJZ7uZibuZq7uZzbuZ77uaAbuqI7uqRbuqZ7uqibuqq7uqzbuq77urAbu7I7u7Rb
+                u7Z7u7ibu7q7u7zbu777u8AbvMI7vMRbvMZ7vMibvMq7vMzbvM77vNAbvdI7vdRbvdZ7vdibvdq7vdzb
+                vd77veAbvuI7vuRbvuZ7vuibvoUQCAA7
+</property>
+        </structure>
+    </list-property>
+</report>
